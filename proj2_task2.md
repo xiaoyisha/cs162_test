@@ -23,9 +23,9 @@ struct thread {
 
 ```
 ### Algorithms
-* halt
+* halt  
 adfa
-* exec
+* exec  
 adf
 * wait
 * practice
