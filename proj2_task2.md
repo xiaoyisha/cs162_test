@@ -31,7 +31,7 @@ When we create a new thread, we allocate a `pro` struct for it, and add it to th
 When the thread finishes loading a program, we increment `pro->sema`.  
 Before the `exec` system call returns, we call `sema_down()`.  
 If the `pro->loaded` of the child thread is true, we will return the pid of the child; Otherwise, we reutn -1.
-* wait
+* wait  
 First we look for a `pro` in the current thread's `children` list whose `pid` equals the given `pid`.  
 If this `pro` doesn't exit, return -1; Otherwise, we call `sema_down()` on that `pro`'s semaphore.
 Then, return its `exit_status`, remove its list_elem from `children`, and free the `pro`.
