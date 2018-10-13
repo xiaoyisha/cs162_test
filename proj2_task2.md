@@ -69,7 +69,7 @@ We use `shutdown_power_off()`.
 * exec  
 We use `process_execute()` to run the executable whose name is given by `args[1]`, and return the new process’s program id (pid).  
 In `thread_create()`, we allocate a `pro` struct for the new thread, and add it to the `children` list of the parent thread. And we initialize `pro->sema` to zero.  
-In `start_process()`, when the thread finishes loading a program, we call `sema_up()` and assign `true` to p->load(p is the `pro` of the new thread).  
+In `start_process()`, when the thread finishes loading a program, we call `sema_up()` and assign `true` to `pro->load`.  
 Before the `exec` system call returns, we call `sema_down()`.  
 If the `pro->loaded` of the child thread is `true`, we will return the pid of the child; Otherwise, we reutn -1.
 * wait  
