@@ -81,7 +81,6 @@
   } ],
   "statements" : [ {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `str`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "z",
@@ -89,10 +88,9 @@
     },
     "value" : {
       "kind" : "BinaryExpr",
-      "typeError" : "Cannot apply operator `+` on types `str` and `str`",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "object"
+        "className" : "str"
       },
       "left" : {
         "kind" : "Identifier",
