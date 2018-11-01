@@ -55,7 +55,6 @@
   } ],
   "statements" : [ {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `int`; got type `bool`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
@@ -63,6 +62,7 @@
     },
     "value" : {
       "kind" : "BooleanLiteral",
+      "typeError" : "Expected type `int`; got type `bool`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "bool"
@@ -73,7 +73,6 @@
     "location" : [ 4, 1, 4, 9 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `bool`; got type `int`",
     "var" : {
       "kind" : "Identifier",
       "name" : "y",
@@ -81,6 +80,7 @@
     },
     "value" : {
       "kind" : "IntegerLiteral",
+      "typeError" : "Expected type `bool`; got type `int`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "int"
@@ -140,7 +140,6 @@
     "location" : [ 7, 1, 7, 9 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `int`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
