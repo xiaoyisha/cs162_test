@@ -70,7 +70,7 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "UnaryExpr",
-      "typeError" : "Cannot apply operator `not` on type `object`",
+      "typeError" : "Cannot apply operator `not` on type `null`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "bool"
@@ -78,10 +78,6 @@
       "operator" : "not",
       "operand" : {
         "kind" : "ListExpr",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "object"
-        },
         "elements" : [ ],
         "location" : [ 4, 5, 4, 6 ]
       },
