@@ -93,10 +93,6 @@
         "location" : [ 4, 9, 4, 9 ]
       }, {
         "kind" : "IntegerLiteral",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
         "value" : 3,
         "location" : [ 4, 12, 4, 12 ]
       } ],
@@ -105,7 +101,6 @@
     "location" : [ 4, 1, 4, 13 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `[object]`; got type `[int]`",
     "var" : {
       "kind" : "Identifier",
       "name" : "y",
@@ -126,7 +121,6 @@
     "location" : [ 5, 1, 5, 5 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `[object]`; got type `[int]`",
     "var" : {
       "kind" : "Identifier",
       "name" : "y",
