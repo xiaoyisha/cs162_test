@@ -85,6 +85,10 @@
         "location" : [ 4, 6, 4, 6 ]
       }, {
         "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "value" : 2,
         "location" : [ 4, 9, 4, 9 ]
       }, {
