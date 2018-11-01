@@ -88,6 +88,7 @@
     },
     "value" : {
       "kind" : "VarAssignExpr",
+      "typeError" : "Expected type `bool`; got type `int`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "int"
@@ -111,7 +112,6 @@
     "location" : [ 5, 1, 5, 9 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `int`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
@@ -119,9 +119,10 @@
     },
     "value" : {
       "kind" : "VarAssignExpr",
+      "typeError" : "Expected type `int`; got `None`",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "object"
+        "className" : "int"
       },
       "var" : {
         "kind" : "Identifier",
@@ -141,7 +142,6 @@
     "location" : [ 6, 1, 6, 12 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `int`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
@@ -149,9 +149,10 @@
     },
     "value" : {
       "kind" : "VarAssignExpr",
+      "typeError" : "Expected type `int`; got `[]`",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "object"
+        "className" : "int"
       },
       "var" : {
         "kind" : "Identifier",
@@ -243,6 +244,7 @@
     },
     "value" : {
       "kind" : "VarAssignExpr",
+      "typeError" : "Expected type `int`; got type `bool`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "bool"
