@@ -188,6 +188,10 @@
     },
     "value" : {
       "kind" : "IndexAssignExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "int"
+      },
       "listElement" : {
         "kind" : "IndexExpr",
         "list" : {
