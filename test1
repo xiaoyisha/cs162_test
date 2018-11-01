@@ -126,13 +126,6 @@
     "kind" : "IndexAssignStmt",
     "listElement" : {
       "kind" : "IndexExpr",
-      "inferredType" : {
-        "kind" : "ListValueType",
-        "elementType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        }
-      },
       "list" : {
         "kind" : "Identifier",
         "inferredType" : {
@@ -170,13 +163,6 @@
     "kind" : "IndexAssignStmt",
     "listElement" : {
       "kind" : "IndexExpr",
-      "inferredType" : {
-        "kind" : "ListValueType",
-        "elementType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        }
-      },
       "list" : {
         "kind" : "Identifier",
         "inferredType" : {
@@ -202,15 +188,30 @@
     },
     "value" : {
       "kind" : "IndexAssignExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "int"
+      },
       "listElement" : {
         "kind" : "IndexExpr",
         "list" : {
           "kind" : "Identifier",
+          "inferredType" : {
+            "kind" : "ListValueType",
+            "elementType" : {
+              "kind" : "ClassValueType",
+              "className" : "object"
+            }
+          },
           "name" : "y",
           "location" : [ 7, 8, 7, 8 ]
         },
         "index" : {
           "kind" : "IntegerLiteral",
+          "inferredType" : {
+            "kind" : "ClassValueType",
+            "className" : "int"
+          },
           "value" : 0,
           "location" : [ 7, 10, 7, 10 ]
         },
@@ -218,6 +219,10 @@
       },
       "value" : {
         "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "value" : 4,
         "location" : [ 7, 15, 7, 15 ]
       },
@@ -227,4 +232,3 @@
   } ],
   "location" : [ 1, 1, 7, 15 ]
 }
-
