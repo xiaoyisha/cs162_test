@@ -101,7 +101,7 @@
       "typeError" : "Cannot apply operator `<` on types `bool` and `bool`",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "int"
+        "className" : "bool"
       },
       "left" : {
         "kind" : "BooleanLiteral",
@@ -318,7 +318,7 @@
       "typeError" : "Cannot apply operator `+` on types `object` and `object`",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "int"
+        "className" : "object"
       },
       "left" : {
         "kind" : "NoneLiteral",
