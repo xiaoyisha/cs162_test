@@ -1,3 +1,4 @@
+BooleanLiteral
 {
   "kind" : "Program",
   "declarations" : [ {
@@ -112,6 +113,7 @@
     "location" : [ 5, 1, 5, 9 ]
   }, {
     "kind" : "VarAssignStmt",
+    "typeError" : "Expected type `int`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
@@ -122,7 +124,7 @@
       "typeError" : "Expected type `int`; got `None`",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "int"
+        "className" : "object"
       },
       "var" : {
         "kind" : "Identifier",
