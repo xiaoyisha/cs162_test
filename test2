@@ -202,6 +202,10 @@
     },
     "value" : {
       "kind" : "IndexAssignExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "int"
+      },
       "listElement" : {
         "kind" : "IndexExpr",
         "inferredType" : {
@@ -249,4 +253,3 @@
   } ],
   "location" : [ 1, 1, 7, 15 ]
 }
-
