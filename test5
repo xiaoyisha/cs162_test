@@ -194,6 +194,10 @@
       },
       "listElement" : {
         "kind" : "IndexExpr",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "object"
+        },
         "list" : {
           "kind" : "Identifier",
           "inferredType" : {
