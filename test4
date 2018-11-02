@@ -126,10 +126,6 @@
     "kind" : "IndexAssignStmt",
     "listElement" : {
       "kind" : "IndexExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "int"
-      },
       "list" : {
         "kind" : "Identifier",
         "inferredType" : {
@@ -167,10 +163,6 @@
     "kind" : "IndexAssignStmt",
     "listElement" : {
       "kind" : "IndexExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "int"
-      },
       "list" : {
         "kind" : "Identifier",
         "inferredType" : {
@@ -202,10 +194,6 @@
       },
       "listElement" : {
         "kind" : "IndexExpr",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "object"
-        },
         "list" : {
           "kind" : "Identifier",
           "inferredType" : {
