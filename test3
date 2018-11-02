@@ -47,6 +47,10 @@
       "kind" : "ExprStmt",
       "expr" : {
         "kind" : "IndexExpr",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "str"
+        },
         "list" : {
           "kind" : "Identifier",
           "inferredType" : {
