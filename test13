@@ -236,6 +236,7 @@
     "location" : [ 9, 1, 9, 10 ]
   }, {
     "kind" : "VarAssignStmt",
+    "typeError" : "Expected type `int`; got type `bool`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
@@ -246,7 +247,7 @@
       "typeError" : "Expected type `int`; got type `bool`",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "int"
+        "className" : "bool"
       },
       "var" : {
         "kind" : "Identifier",
