@@ -30,10 +30,6 @@
       },
       "value" : {
         "kind" : "IntegerLiteral",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
         "value" : 1,
         "location" : [ 2, 13, 2, 13 ]
       },
@@ -130,10 +126,6 @@
     },
     "value" : {
       "kind" : "CallExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "A"
-      },
       "function" : {
         "kind" : "Identifier",
         "name" : "A",
@@ -145,7 +137,7 @@
     "location" : [ 8, 1, 8, 7 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `str`; got `None`",
+    "typeError" : "Expected type `str`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "z",
@@ -162,15 +154,10 @@
     "location" : [ 11, 1, 11, 8 ]
   }, {
     "kind" : "MemberAssignStmt",
-    "typeError" : "Expected type `int`; got `None`",
     "objectMember" : {
       "kind" : "MemberExpr",
       "object" : {
         "kind" : "Identifier",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "A"
-        },
         "name" : "a",
         "location" : [ 12, 1, 12, 1 ]
       },
@@ -183,16 +170,11 @@
     },
     "value" : {
       "kind" : "NoneLiteral",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "object"
-      },
       "location" : [ 12, 7, 12, 10 ]
     },
     "location" : [ 12, 1, 12, 10 ]
   }, {
     "kind" : "IndexAssignStmt",
-    "typeError" : "Expected type `bool`; got `None`",
     "listElement" : {
       "kind" : "IndexExpr",
       "list" : {
