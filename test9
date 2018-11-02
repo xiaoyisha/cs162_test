@@ -1,3 +1,4 @@
+Reading src/test/data/pa2/sample/func_def_call.py
 {
   "kind" : "Program",
   "declarations" : [ {
@@ -103,18 +104,10 @@
       },
       "args" : [ {
         "kind" : "StringLiteral",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "str"
-        },
         "value" : "Hello",
         "location" : [ 7, 5, 7, 11 ]
       }, {
         "kind" : "BooleanLiteral",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "bool"
-        },
         "value" : false,
         "location" : [ 7, 14, 7, 18 ]
       } ],
@@ -124,3 +117,4 @@
   } ],
   "location" : [ 1, 1, 7, 19 ]
 }
+
