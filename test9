@@ -197,7 +197,6 @@
     },
     "value" : {
       "kind" : "IndexAssignExpr",
-      "typeError" : "Index is of non-integer type `bool`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "int"
