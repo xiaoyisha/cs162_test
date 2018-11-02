@@ -159,7 +159,6 @@
     "location" : [ 6, 1, 6, 13 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `[int]`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
@@ -250,7 +249,6 @@
     "location" : [ 9, 1, 9, 17 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `[int]`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
