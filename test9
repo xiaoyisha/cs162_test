@@ -42,7 +42,7 @@
     "declarations" : [ ],
     "statements" : [ {
       "kind" : "ReturnStmt",
-      "typeError" : "Expected type `int`; got `object`",
+      "typeError" : "Expected type `int`; got `None`",
       "value" : {
         "kind" : "NoneLiteral",
         "inferredType" : {
@@ -99,7 +99,7 @@
     "declarations" : [ ],
     "statements" : [ {
       "kind" : "ReturnStmt",
-      "typeError" : "Expected type `str`; got `null`",
+      "typeError" : "Expected type `str`; got `None`",
       "value" : null,
       "location" : [ 8, 5, 8, 10 ]
     } ],
