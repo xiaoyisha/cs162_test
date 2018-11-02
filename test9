@@ -44,6 +44,10 @@
       "kind" : "ReturnStmt",
       "value" : {
         "kind" : "CallExpr",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "function" : {
           "kind" : "Identifier",
           "name" : "bar",
@@ -73,6 +77,10 @@
       "kind" : "ReturnStmt",
       "value" : {
         "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "value" : 1,
         "location" : [ 5, 12, 5, 12 ]
       },
@@ -84,6 +92,10 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "CallExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "int"
+      },
       "function" : {
         "kind" : "Identifier",
         "name" : "foo",
@@ -91,10 +103,18 @@
       },
       "args" : [ {
         "kind" : "StringLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "str"
+        },
         "value" : "Hello",
         "location" : [ 7, 5, 7, 11 ]
       }, {
         "kind" : "BooleanLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "bool"
+        },
         "value" : false,
         "location" : [ 7, 14, 7, 18 ]
       } ],
