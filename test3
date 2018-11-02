@@ -176,7 +176,6 @@
     "location" : [ 7, 1, 7, 6 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `[object]`; got type `[int]`",
     "var" : {
       "kind" : "Identifier",
       "name" : "y",
@@ -188,7 +187,7 @@
         "kind" : "ListValueType",
         "elementType" : {
           "kind" : "ClassValueType",
-          "className" : "int"
+          "className" : "object"
         }
       },
       "elements" : [ {
