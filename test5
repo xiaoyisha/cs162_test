@@ -10,25 +10,22 @@
         "location" : [ 1, 1, 1, 1 ]
       },
       "type" : {
-        "kind" : "ListType",
-        "elementType" : {
-          "kind" : "ClassType",
-          "className" : "int",
-          "location" : [ 1, 4, 1, 6 ]
-        },
-        "location" : [ 1, 3, 1, 7 ]
+        "kind" : "ClassType",
+        "className" : "str",
+        "location" : [ 1, 3, 1, 5 ]
       },
-      "location" : [ 1, 1, 1, 7 ]
+      "location" : [ 1, 1, 1, 5 ]
     },
     "value" : {
-      "kind" : "NoneLiteral",
+      "kind" : "StringLiteral",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "object"
+        "className" : "str"
       },
-      "location" : [ 1, 11, 1, 14 ]
+      "value" : "Hello",
+      "location" : [ 1, 9, 1, 15 ]
     },
-    "location" : [ 1, 1, 1, 14 ]
+    "location" : [ 1, 1, 1, 15 ]
   }, {
     "kind" : "VarDef",
     "var" : {
@@ -39,176 +36,140 @@
         "location" : [ 2, 1, 2, 1 ]
       },
       "type" : {
-        "kind" : "ListType",
-        "elementType" : {
-          "kind" : "ClassType",
-          "className" : "object",
-          "location" : [ 2, 4, 2, 9 ]
-        },
-        "location" : [ 2, 3, 2, 10 ]
+        "kind" : "ClassType",
+        "className" : "str",
+        "location" : [ 2, 3, 2, 5 ]
       },
-      "location" : [ 2, 1, 2, 10 ]
+      "location" : [ 2, 1, 2, 5 ]
     },
     "value" : {
-      "kind" : "NoneLiteral",
+      "kind" : "StringLiteral",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "object"
+        "className" : "str"
       },
-      "location" : [ 2, 14, 2, 17 ]
+      "value" : "World",
+      "location" : [ 2, 9, 2, 15 ]
     },
-    "location" : [ 2, 1, 2, 17 ]
+    "location" : [ 2, 1, 2, 15 ]
+  }, {
+    "kind" : "VarDef",
+    "var" : {
+      "kind" : "TypedVar",
+      "identifier" : {
+        "kind" : "Identifier",
+        "name" : "z",
+        "location" : [ 3, 1, 3, 1 ]
+      },
+      "type" : {
+        "kind" : "ClassType",
+        "className" : "str",
+        "location" : [ 3, 3, 3, 5 ]
+      },
+      "location" : [ 3, 1, 3, 5 ]
+    },
+    "value" : {
+      "kind" : "StringLiteral",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "str"
+      },
+      "value" : "",
+      "location" : [ 3, 9, 3, 10 ]
+    },
+    "location" : [ 3, 1, 3, 10 ]
   } ],
   "statements" : [ {
-    "kind" : "VarAssignStmt",
-    "var" : {
-      "kind" : "Identifier",
-      "name" : "x",
-      "location" : [ 4, 1, 4, 1 ]
-    },
-    "value" : {
-      "kind" : "ListExpr",
-      "inferredType" : {
-        "kind" : "ListValueType",
-        "elementType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        }
-      },
-      "elements" : [ {
-        "kind" : "IntegerLiteral",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
-        "value" : 1,
-        "location" : [ 4, 6, 4, 6 ]
-      }, {
-        "kind" : "IntegerLiteral",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
-        "value" : 2,
-        "location" : [ 4, 9, 4, 9 ]
-      } ],
-      "location" : [ 4, 5, 4, 10 ]
-    },
-    "location" : [ 4, 1, 4, 10 ]
-  }, {
-    "kind" : "VarAssignStmt",
-    "var" : {
-      "kind" : "Identifier",
-      "name" : "y",
-      "location" : [ 5, 1, 5, 1 ]
-    },
-    "value" : {
-      "kind" : "ListExpr",
-      "inferredType" : {
-        "kind" : "ListValueType",
-        "elementType" : {
-          "kind" : "ClassValueType",
-          "className" : "object"
-        }
-      },
-      "elements" : [ {
-        "kind" : "NoneLiteral",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "object"
-        },
-        "location" : [ 5, 6, 5, 9 ]
-      } ],
-      "location" : [ 5, 5, 5, 10 ]
-    },
-    "location" : [ 5, 1, 5, 10 ]
-  }, {
-    "kind" : "IndexAssignStmt",
-    "listElement" : {
-      "kind" : "IndexExpr",
-      "list" : {
-        "kind" : "Identifier",
-        "inferredType" : {
-          "kind" : "ListValueType",
-          "elementType" : {
-            "kind" : "ClassValueType",
-            "className" : "int"
-          }
-        },
-        "name" : "x",
-        "location" : [ 6, 1, 6, 1 ]
-      },
-      "index" : {
-        "kind" : "IntegerLiteral",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
-        "value" : 0,
-        "location" : [ 6, 3, 6, 3 ]
-      },
-      "location" : [ 6, 1, 6, 4 ]
-    },
-    "value" : {
-      "kind" : "IntegerLiteral",
+    "kind" : "ExprStmt",
+    "expr" : {
+      "kind" : "BinaryExpr",
+      "typeError" : "Cannot apply operator `+` on types `int` and `str`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "int"
       },
-      "value" : 3,
-      "location" : [ 6, 8, 6, 8 ]
-    },
-    "location" : [ 6, 1, 6, 8 ]
-  }, {
-    "kind" : "IndexAssignStmt",
-    "listElement" : {
-      "kind" : "IndexExpr",
-      "list" : {
-        "kind" : "Identifier",
-        "inferredType" : {
-          "kind" : "ListValueType",
-          "elementType" : {
-            "kind" : "ClassValueType",
-            "className" : "int"
-          }
-        },
-        "name" : "x",
-        "location" : [ 7, 1, 7, 1 ]
-      },
-      "index" : {
+      "left" : {
         "kind" : "IntegerLiteral",
         "inferredType" : {
           "kind" : "ClassValueType",
           "className" : "int"
         },
         "value" : 1,
-        "location" : [ 7, 3, 7, 3 ]
+        "location" : [ 5, 1, 5, 1 ]
       },
-      "location" : [ 7, 1, 7, 4 ]
+      "operator" : "+",
+      "right" : {
+        "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "str"
+        },
+        "name" : "x",
+        "location" : [ 5, 5, 5, 5 ]
+      },
+      "location" : [ 5, 1, 5, 5 ]
+    },
+    "location" : [ 5, 1, 5, 5 ]
+  }, {
+    "kind" : "VarAssignStmt",
+    "typeError" : "Expected type `str`; got type `int`",
+    "var" : {
+      "kind" : "Identifier",
+      "name" : "z",
+      "location" : [ 6, 1, 6, 1 ]
+    },
+    "value" : {
+      "kind" : "BinaryExpr",
+      "typeError" : "Cannot apply operator `+` on types `str` and `int`",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "int"
+      },
+      "left" : {
+        "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "str"
+        },
+        "name" : "x",
+        "location" : [ 6, 5, 6, 5 ]
+      },
+      "operator" : "+",
+      "right" : {
+        "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
+        "value" : 1,
+        "location" : [ 6, 9, 6, 9 ]
+      },
+      "location" : [ 6, 5, 6, 9 ]
+    },
+    "location" : [ 6, 1, 6, 9 ]
+  }, {
+    "kind" : "VarAssignStmt",
+    "var" : {
+      "kind" : "Identifier",
+      "name" : "z",
+      "location" : [ 7, 1, 7, 1 ]
     },
     "value" : {
       "kind" : "IndexAssignExpr",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "int"
+        "className" : "str"
       },
       "listElement" : {
         "kind" : "IndexExpr",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "object"
-        },
         "list" : {
           "kind" : "Identifier",
           "inferredType" : {
-            "kind" : "ListValueType",
-            "elementType" : {
-              "kind" : "ClassValueType",
-              "className" : "object"
-            }
+            "kind" : "ClassValueType",
+            "className" : "str"
           },
-          "name" : "y",
-          "location" : [ 7, 8, 7, 8 ]
+          "name" : "x",
+          "location" : [ 7, 5, 7, 5 ]
         },
         "index" : {
           "kind" : "IntegerLiteral",
@@ -217,22 +178,85 @@
             "className" : "int"
           },
           "value" : 0,
-          "location" : [ 7, 10, 7, 10 ]
+          "location" : [ 7, 7, 7, 7 ]
         },
-        "location" : [ 7, 8, 7, 11 ]
+        "location" : [ 7, 5, 7, 8 ]
       },
       "value" : {
+        "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "str"
+        },
+        "name" : "y",
+        "location" : [ 7, 12, 7, 12 ]
+      },
+      "location" : [ 7, 5, 7, 12 ]
+    },
+    "location" : [ 7, 1, 7, 12 ]
+  }, {
+    "kind" : "IndexAssignStmt",
+    "listElement" : {
+      "kind" : "IndexExpr",
+      "list" : {
+        "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "str"
+        },
+        "name" : "x",
+        "location" : [ 8, 1, 8, 1 ]
+      },
+      "index" : {
         "kind" : "IntegerLiteral",
         "inferredType" : {
           "kind" : "ClassValueType",
           "className" : "int"
         },
-        "value" : 4,
-        "location" : [ 7, 15, 7, 15 ]
+        "value" : 1,
+        "location" : [ 8, 3, 8, 3 ]
       },
-      "location" : [ 7, 8, 7, 15 ]
+      "location" : [ 8, 1, 8, 4 ]
     },
-    "location" : [ 7, 1, 7, 15 ]
+    "value" : {
+      "kind" : "Identifier",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "str"
+      },
+      "name" : "y",
+      "location" : [ 8, 8, 8, 8 ]
+    },
+    "location" : [ 8, 1, 8, 8 ]
+  }, {
+    "kind" : "ExprStmt",
+    "expr" : {
+      "kind" : "IndexExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "str"
+      },
+      "list" : {
+        "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "str"
+        },
+        "name" : "x",
+        "location" : [ 9, 1, 9, 1 ]
+      },
+      "index" : {
+        "kind" : "BooleanLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "bool"
+        },
+        "value" : true,
+        "location" : [ 9, 3, 9, 6 ]
+      },
+      "location" : [ 9, 1, 9, 7 ]
+    },
+    "location" : [ 9, 1, 9, 7 ]
   } ],
-  "location" : [ 1, 1, 7, 15 ]
+  "location" : [ 1, 1, 9, 7 ]
 }
