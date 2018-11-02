@@ -192,7 +192,6 @@
     "location" : [ 7, 1, 7, 17 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `int`; got type `[int]`",
     "var" : {
       "kind" : "Identifier",
       "name" : "y",
@@ -201,11 +200,8 @@
     "value" : {
       "kind" : "IndexExpr",
       "inferredType" : {
-        "kind" : "ListValueType",
-        "elementType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        }
+        "kind" : "ClassValueType",
+        "className" : "int"
       },
       "list" : {
         "kind" : "Identifier",
@@ -235,13 +231,6 @@
     "kind" : "IndexAssignStmt",
     "listElement" : {
       "kind" : "IndexExpr",
-      "inferredType" : {
-        "kind" : "ListValueType",
-        "elementType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        }
-      },
       "list" : {
         "kind" : "Identifier",
         "inferredType" : {
@@ -279,13 +268,6 @@
     "kind" : "IndexAssignStmt",
     "listElement" : {
       "kind" : "IndexExpr",
-      "inferredType" : {
-        "kind" : "ListValueType",
-        "elementType" : {
-          "kind" : "ClassValueType",
-          "className" : "bool"
-        }
-      },
       "list" : {
         "kind" : "Identifier",
         "inferredType" : {
@@ -312,11 +294,8 @@
     "value" : {
       "kind" : "IndexExpr",
       "inferredType" : {
-        "kind" : "ListValueType",
-        "elementType" : {
-          "kind" : "ClassValueType",
-          "className" : "bool"
-        }
+        "kind" : "ClassValueType",
+        "className" : "bool"
       },
       "list" : {
         "kind" : "Identifier",
@@ -352,11 +331,8 @@
     "value" : {
       "kind" : "IndexExpr",
       "inferredType" : {
-        "kind" : "ListValueType",
-        "elementType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        }
+        "kind" : "ClassValueType",
+        "className" : "int"
       },
       "list" : {
         "kind" : "Identifier",
@@ -385,4 +361,3 @@
   } ],
   "location" : [ 1, 1, 12, 8 ]
 }
-
