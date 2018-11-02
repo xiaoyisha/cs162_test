@@ -42,7 +42,7 @@
     "declarations" : [ ],
     "statements" : [ {
       "kind" : "ReturnStmt",
-      "typeError" : "Expected type `int`; got `None`",
+      "typeError" : "Expected type `int`; got `object`",
       "value" : {
         "kind" : "NoneLiteral",
         "inferredType" : {
@@ -70,7 +70,7 @@
     "declarations" : [ ],
     "statements" : [ {
       "kind" : "ReturnStmt",
-      "typeError" : "Expected type `bool`; got type `int`",
+      "typeError" : "Expected type `bool`; got `int`",
       "value" : {
         "kind" : "IntegerLiteral",
         "inferredType" : {
@@ -99,7 +99,7 @@
     "declarations" : [ ],
     "statements" : [ {
       "kind" : "ReturnStmt",
-      "typeError" : "Expected type `str`; got `None`",
+      "typeError" : "Expected type `str`; got `null`",
       "value" : null,
       "location" : [ 8, 5, 8, 10 ]
     } ],
@@ -141,3 +141,4 @@
   } ],
   "location" : [ 1, 1, 10, 19 ]
 }
+
