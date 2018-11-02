@@ -116,7 +116,6 @@
     "location" : [ 5, 1, 5, 9 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `str`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "z",
@@ -124,10 +123,9 @@
     },
     "value" : {
       "kind" : "IndexExpr",
-      "typeError" : "Cannot index into type `str`",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "object"
+        "className" : "str"
       },
       "list" : {
         "kind" : "Identifier",
