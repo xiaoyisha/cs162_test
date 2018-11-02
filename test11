@@ -70,7 +70,7 @@
     "declarations" : [ ],
     "statements" : [ {
       "kind" : "ReturnStmt",
-      "typeError" : "Expected type `bool`; got `int`",
+      "typeError" : "Expected type `bool`; got type `int`",
       "value" : {
         "kind" : "IntegerLiteral",
         "inferredType" : {
