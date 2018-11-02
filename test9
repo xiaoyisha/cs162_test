@@ -111,9 +111,10 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "IndexExpr",
+      "typeError" : "Cannot index into type `bool`",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "bool"
+        "className" : "object"
       },
       "list" : {
         "kind" : "BooleanLiteral",
@@ -140,6 +141,7 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "IndexExpr",
+      "typeError" : "Cannot index into type `object`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "object"
@@ -167,6 +169,7 @@
     "location" : [ 6, 1, 6, 5 ]
   }, {
     "kind" : "IndexAssignStmt",
+    "typeError" : "Index is of non-integer type `bool`",
     "listElement" : {
       "kind" : "IndexExpr",
       "list" : {
