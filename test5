@@ -128,11 +128,22 @@
       "kind" : "IndexExpr",
       "list" : {
         "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ListValueType",
+          "elementType" : {
+            "kind" : "ClassValueType",
+            "className" : "int"
+          }
+        },
         "name" : "x",
         "location" : [ 6, 1, 6, 1 ]
       },
       "index" : {
         "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "value" : 0,
         "location" : [ 6, 3, 6, 3 ]
       },
@@ -154,11 +165,22 @@
       "kind" : "IndexExpr",
       "list" : {
         "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ListValueType",
+          "elementType" : {
+            "kind" : "ClassValueType",
+            "className" : "int"
+          }
+        },
         "name" : "x",
         "location" : [ 7, 1, 7, 1 ]
       },
       "index" : {
         "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "value" : 1,
         "location" : [ 7, 3, 7, 3 ]
       },
@@ -172,10 +194,6 @@
       },
       "listElement" : {
         "kind" : "IndexExpr",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "object"
-        },
         "list" : {
           "kind" : "Identifier",
           "inferredType" : {
@@ -214,4 +232,3 @@
   } ],
   "location" : [ 1, 1, 7, 15 ]
 }
-
