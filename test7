@@ -197,6 +197,7 @@
     "location" : [ 7, 1, 7, 12 ]
   }, {
     "kind" : "IndexAssignStmt",
+    "typeError" : "`str` is not a list type",
     "listElement" : {
       "kind" : "IndexExpr",
       "list" : {
