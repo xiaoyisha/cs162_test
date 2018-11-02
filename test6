@@ -156,7 +156,6 @@
     },
     "value" : {
       "kind" : "IndexAssignExpr",
-      "typeError" : "`str` is not a list type",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "str"
@@ -185,6 +184,7 @@
       },
       "value" : {
         "kind" : "Identifier",
+        "typeError" : "`str` is not a list type",
         "inferredType" : {
           "kind" : "ClassValueType",
           "className" : "str"
@@ -197,7 +197,6 @@
     "location" : [ 7, 1, 7, 12 ]
   }, {
     "kind" : "IndexAssignStmt",
-    "typeError" : "`str` is not a list type",
     "listElement" : {
       "kind" : "IndexExpr",
       "list" : {
@@ -263,3 +262,4 @@
   } ],
   "location" : [ 1, 1, 9, 7 ]
 }
+
