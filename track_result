@@ -1,0 +1,116 @@
+- Test: src\test\data\pa2\sample\ast_coverage.py failed
+Reading src\test\data\pa2\sample\bad_assign_expr.py
+- Test: src\test\data\pa2\sample\bad_assign_expr.py failed
+Reading src\test\data\pa2\sample\bad_class_attr.py
++ Test: src\test\data\pa2\sample\bad_class_attr.py passed
+Reading src\test\data\pa2\sample\bad_class_attr_type.py
+- Test: src\test\data\pa2\sample\bad_class_attr_type.py failed
+Reading src\test\data\pa2\sample\bad_class_init_override.py
++ Test: src\test\data\pa2\sample\bad_class_init_override.py passed
+Reading src\test\data\pa2\sample\bad_class_init_return.py
++ Test: src\test\data\pa2\sample\bad_class_init_return.py passed
+Reading src\test\data\pa2\sample\bad_class_member_expr.py
+- Test: src\test\data\pa2\sample\bad_class_member_expr.py failed
+Reading src\test\data\pa2\sample\bad_class_method.py
++ Test: src\test\data\pa2\sample\bad_class_method.py passed
+Reading src\test\data\pa2\sample\bad_class_method_invoke.py
+- Test: src\test\data\pa2\sample\bad_class_method_invoke.py failed
+Reading src\test\data\pa2\sample\bad_class_method_override.py
++ Test: src\test\data\pa2\sample\bad_class_method_override.py passed
+Reading src\test\data\pa2\sample\bad_class_method_override_attr.py
++ Test: src\test\data\pa2\sample\bad_class_method_override_attr.py passed
+Reading src\test\data\pa2\sample\bad_class_super.py
++ Test: src\test\data\pa2\sample\bad_class_super.py passed
+Reading src\test\data\pa2\sample\bad_concat.py
++ Test: src\test\data\pa2\sample\bad_concat.py passed
+Reading src\test\data\pa2\sample\bad_duplicate_class.py
++ Test: src\test\data\pa2\sample\bad_duplicate_class.py passed
+Reading src\test\data\pa2\sample\bad_duplicate_class_member.py
++ Test: src\test\data\pa2\sample\bad_duplicate_class_member.py passed
+Reading src\test\data\pa2\sample\bad_duplicate_global.py
++ Test: src\test\data\pa2\sample\bad_duplicate_global.py passed
+Reading src\test\data\pa2\sample\bad_duplicate_global_2.py
++ Test: src\test\data\pa2\sample\bad_duplicate_global_2.py passed
+Reading src\test\data\pa2\sample\bad_duplicate_global_3.py
++ Test: src\test\data\pa2\sample\bad_duplicate_global_3.py passed
+Reading src\test\data\pa2\sample\bad_duplicate_local.py
++ Test: src\test\data\pa2\sample\bad_duplicate_local.py passed
+Reading src\test\data\pa2\sample\bad_expr_binary.py
++ Test: src\test\data\pa2\sample\bad_expr_binary.py passed
+Reading src\test\data\pa2\sample\bad_expr_unary.py
++ Test: src\test\data\pa2\sample\bad_expr_unary.py passed
+Reading src\test\data\pa2\sample\bad_func_def_call.py
+- Test: src\test\data\pa2\sample\bad_func_def_call.py failed
+Reading src\test\data\pa2\sample\bad_func_def_return.py
+- Test: src\test\data\pa2\sample\bad_func_def_return.py failed
+Reading src\test\data\pa2\sample\bad_list_assign.py
++ Test: src\test\data\pa2\sample\bad_list_assign.py passed
+Reading src\test\data\pa2\sample\bad_list_index.py
+- Test: src\test\data\pa2\sample\bad_list_index.py failed
+Reading src\test\data\pa2\sample\bad_local_assign.py
++ Test: src\test\data\pa2\sample\bad_local_assign.py passed
+Reading src\test\data\pa2\sample\bad_none_assign.py
+- Test: src\test\data\pa2\sample\bad_none_assign.py failed
+Reading src\test\data\pa2\sample\bad_nonlocal_global.py
++ Test: src\test\data\pa2\sample\bad_nonlocal_global.py passed
+Reading src\test\data\pa2\sample\bad_return_missing.py
++ Test: src\test\data\pa2\sample\bad_return_missing.py passed
+Reading src\test\data\pa2\sample\bad_return_top.py
++ Test: src\test\data\pa2\sample\bad_return_top.py passed
+Reading src\test\data\pa2\sample\bad_shadow_local.py
++ Test: src\test\data\pa2\sample\bad_shadow_local.py passed
+Reading src\test\data\pa2\sample\bad_shadow_local_2.py
++ Test: src\test\data\pa2\sample\bad_shadow_local_2.py passed
+Reading src\test\data\pa2\sample\bad_strings.py
+- Test: src\test\data\pa2\sample\bad_strings.py failed
+Reading src\test\data\pa2\sample\bad_type_annotation.py
++ Test: src\test\data\pa2\sample\bad_type_annotation.py passed
+Reading src\test\data\pa2\sample\bad_type_id.py
++ Test: src\test\data\pa2\sample\bad_type_id.py passed
+Reading src\test\data\pa2\sample\bad_var_assign.py
++ Test: src\test\data\pa2\sample\bad_var_assign.py passed
+Reading src\test\data\pa2\sample\class_def_assign.py
+- Test: src\test\data\pa2\sample\class_def_assign.py failed
+Reading src\test\data\pa2\sample\class_def_attr.py
+- Test: src\test\data\pa2\sample\class_def_attr.py failed
+Reading src\test\data\pa2\sample\class_def_init.py
+- Test: src\test\data\pa2\sample\class_def_init.py failed
+Reading src\test\data\pa2\sample\class_def_methods.py
+- Test: src\test\data\pa2\sample\class_def_methods.py failed
+Reading src\test\data\pa2\sample\decl_global_forward.py
+- Test: src\test\data\pa2\sample\decl_global_forward.py failed
+Reading src\test\data\pa2\sample\decl_nonlocal_forward.py
+- Test: src\test\data\pa2\sample\decl_nonlocal_forward.py failed
+Reading src\test\data\pa2\sample\expr_binary.py
++ Test: src\test\data\pa2\sample\expr_binary.py passed
+Reading src\test\data\pa2\sample\expr_concat.py
++ Test: src\test\data\pa2\sample\expr_concat.py passed
+Reading src\test\data\pa2\sample\expr_id.py
++ Test: src\test\data\pa2\sample\expr_id.py passed
+Reading src\test\data\pa2\sample\expr_int.py
++ Test: src\test\data\pa2\sample\expr_int.py passed
+Reading src\test\data\pa2\sample\expr_lists.py
++ Test: src\test\data\pa2\sample\expr_lists.py passed
+Reading src\test\data\pa2\sample\expr_list_index.py
++ Test: src\test\data\pa2\sample\expr_list_index.py passed
+Reading src\test\data\pa2\sample\expr_unary.py
++ Test: src\test\data\pa2\sample\expr_unary.py passed
+Reading src\test\data\pa2\sample\expr_var_assign.py
++ Test: src\test\data\pa2\sample\expr_var_assign.py passed
+Reading src\test\data\pa2\sample\func_def_call.py
+- Test: src\test\data\pa2\sample\func_def_call.py failed
+Reading src\test\data\pa2\sample\stmt_for_lists.py
++ Test: src\test\data\pa2\sample\stmt_for_lists.py passed
+Reading src\test\data\pa2\sample\stmt_for_strings.py
++ Test: src\test\data\pa2\sample\stmt_for_strings.py passed
+Reading src\test\data\pa2\sample\stmt_if.py
++ Test: src\test\data\pa2\sample\stmt_if.py passed
+Reading src\test\data\pa2\sample\stmt_list_assign.py
++ Test: src\test\data\pa2\sample\stmt_list_assign.py passed
+Reading src\test\data\pa2\sample\stmt_var_assign.py
++ Test: src\test\data\pa2\sample\stmt_var_assign.py passed
+Reading src\test\data\pa2\sample\stmt_while.py
++ Test: src\test\data\pa2\sample\stmt_while.py passed
+Reading src\test\data\pa2\sample\strings.py
++ Test: src\test\data\pa2\sample\strings.py passed
+Tests: 41 passed, 17 failed, and 0 ignored.
