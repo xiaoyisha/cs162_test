@@ -112,7 +112,6 @@
     "location" : [ 5, 1, 5, 9 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `int`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
@@ -120,10 +119,10 @@
     },
     "value" : {
       "kind" : "VarAssignExpr",
-      "typeError" : "Expected type `int`; got type `object`",
+      "typeError" : "Expected type `int`; got `None`",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "object"
+        "className" : "int"
       },
       "var" : {
         "kind" : "Identifier",
@@ -143,7 +142,6 @@
     "location" : [ 6, 1, 6, 12 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `int`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
@@ -151,10 +149,10 @@
     },
     "value" : {
       "kind" : "VarAssignExpr",
-      "typeError" : "Expected type `int`; got type `object`",
+      "typeError" : "Expected type `int`; got `[]`",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "object"
+        "className" : "int"
       },
       "var" : {
         "kind" : "Identifier",
