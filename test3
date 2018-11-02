@@ -159,7 +159,6 @@
     "location" : [ 6, 1, 6, 13 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `[int]`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
@@ -177,7 +176,6 @@
     "location" : [ 7, 1, 7, 6 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `[object]`; got type `[int]`",
     "var" : {
       "kind" : "Identifier",
       "name" : "y",
@@ -189,7 +187,7 @@
         "kind" : "ListValueType",
         "elementType" : {
           "kind" : "ClassValueType",
-          "className" : "int"
+          "className" : "object"
         }
       },
       "elements" : [ {
@@ -250,7 +248,6 @@
     "location" : [ 9, 1, 9, 17 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `[int]`; got type `object`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
@@ -332,4 +329,3 @@
   } ],
   "location" : [ 1, 1, 12, 11 ]
 }
-
