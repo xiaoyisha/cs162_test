@@ -115,6 +115,7 @@
   } ],
   "statements" : [ {
     "kind" : "VarAssignStmt",
+    "typeError" : "Expected type `[int]`; got type `[object]`",
     "var" : {
       "kind" : "Identifier",
       "name" : "x",
@@ -126,7 +127,7 @@
         "kind" : "ListValueType",
         "elementType" : {
           "kind" : "ClassValueType",
-          "className" : "int"
+          "className" : "object"
         }
       },
       "elements" : [ {
@@ -212,6 +213,7 @@
     "location" : [ 8, 1, 8, 13 ]
   }, {
     "kind" : "VarAssignStmt",
+    "typeError" : "Expected type `[bool]`; got type `[object]`",
     "var" : {
       "kind" : "Identifier",
       "name" : "z",
@@ -223,7 +225,7 @@
         "kind" : "ListValueType",
         "elementType" : {
           "kind" : "ClassValueType",
-          "className" : "bool"
+          "className" : "object"
         }
       },
       "elements" : [ {
