@@ -146,6 +146,10 @@
         "location" : [ 9, 14, 9, 18 ]
       }, {
         "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "value" : 3,
         "location" : [ 9, 21, 9, 21 ]
       } ],
@@ -156,7 +160,7 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "CallExpr",
-      "typeError" : "Expected type `str`; got type `str` in parameter 0",
+      "typeError" : "Expected type `bool`; got type `int` in parameter 1",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "int"
