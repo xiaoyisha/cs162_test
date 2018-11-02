@@ -203,11 +203,8 @@
     "value" : {
       "kind" : "IndexAssignExpr",
       "inferredType" : {
-        "kind" : "ListValueType",
-        "elementType" : {
-          "kind" : "ClassValueType",
-          "className" : "object"
-        }
+        "kind" : "ClassValueType",
+        "className" : "int"
       },
       "listElement" : {
         "kind" : "IndexExpr",
@@ -256,3 +253,4 @@
   } ],
   "location" : [ 1, 1, 7, 15 ]
 }
+
