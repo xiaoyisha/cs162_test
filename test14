@@ -274,6 +274,10 @@
       "kind" : "MemberExpr",
       "object" : {
         "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "A"
+        },
         "name" : "a",
         "location" : [ 19, 1, 19, 1 ]
       },
@@ -286,6 +290,10 @@
     },
     "value" : {
       "kind" : "IntegerLiteral",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "int"
+      },
       "value" : 1,
       "location" : [ 19, 7, 19, 7 ]
     },
@@ -296,6 +304,10 @@
       "kind" : "MemberExpr",
       "object" : {
         "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "B"
+        },
         "name" : "b",
         "location" : [ 20, 1, 20, 1 ]
       },
@@ -308,8 +320,16 @@
     },
     "value" : {
       "kind" : "MemberExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "int"
+      },
       "object" : {
         "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "A"
+        },
         "name" : "a",
         "location" : [ 20, 7, 20, 7 ]
       },
@@ -327,6 +347,10 @@
       "kind" : "MemberExpr",
       "object" : {
         "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "C"
+        },
         "name" : "c",
         "location" : [ 21, 1, 21, 1 ]
       },
@@ -339,10 +363,22 @@
     },
     "value" : {
       "kind" : "BinaryExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "bool"
+      },
       "left" : {
         "kind" : "MemberExpr",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "object" : {
           "kind" : "Identifier",
+          "inferredType" : {
+            "kind" : "ClassValueType",
+            "className" : "A"
+          },
           "name" : "a",
           "location" : [ 21, 7, 21, 7 ]
         },
@@ -356,8 +392,16 @@
       "operator" : "==",
       "right" : {
         "kind" : "MemberExpr",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "object" : {
           "kind" : "Identifier",
+          "inferredType" : {
+            "kind" : "ClassValueType",
+            "className" : "B"
+          },
           "name" : "b",
           "location" : [ 21, 14, 21, 14 ]
         },
