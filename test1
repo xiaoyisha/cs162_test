@@ -106,13 +106,9 @@
     "location" : [ 5, 1, 5, 5 ]
   }, {
     "kind" : "MemberAssignStmt",
+    "typeError" : "There is no attribute named `baz` in class `object`",
     "objectMember" : {
       "kind" : "MemberExpr",
-      "typeError" : "There is no attribute named `baz` in class `object`",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "object"
-      },
       "object" : {
         "kind" : "Identifier",
         "inferredType" : {
