@@ -1,3 +1,4 @@
+Reading src/test/data/pa2/sample/class_def_attr.py
 {
   "kind" : "Program",
   "declarations" : [ {
@@ -320,10 +321,6 @@
     },
     "value" : {
       "kind" : "MemberExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "int"
-      },
       "object" : {
         "kind" : "Identifier",
         "inferredType" : {
@@ -363,16 +360,13 @@
     },
     "value" : {
       "kind" : "BinaryExpr",
+      "typeError" : "Cannot apply operator `==` on types `null` and `null`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "bool"
       },
       "left" : {
         "kind" : "MemberExpr",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
         "object" : {
           "kind" : "Identifier",
           "inferredType" : {
@@ -392,10 +386,6 @@
       "operator" : "==",
       "right" : {
         "kind" : "MemberExpr",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
         "object" : {
           "kind" : "Identifier",
           "inferredType" : {
@@ -418,3 +408,4 @@
   } ],
   "location" : [ 1, 1, 21, 16 ]
 }
+
