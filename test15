@@ -320,6 +320,10 @@
     },
     "value" : {
       "kind" : "MemberExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "int"
+      },
       "object" : {
         "kind" : "Identifier",
         "inferredType" : {
@@ -359,13 +363,16 @@
     },
     "value" : {
       "kind" : "BinaryExpr",
-      "typeError" : "Cannot apply operator `==` on types `null` and `null`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "bool"
       },
       "left" : {
         "kind" : "MemberExpr",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "object" : {
           "kind" : "Identifier",
           "inferredType" : {
@@ -385,6 +392,10 @@
       "operator" : "==",
       "right" : {
         "kind" : "MemberExpr",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "object" : {
           "kind" : "Identifier",
           "inferredType" : {
