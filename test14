@@ -101,7 +101,6 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "CallExpr",
-      "typeError" : "Not a function or class: print",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "object"
@@ -113,6 +112,10 @@
       },
       "args" : [ {
         "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "name" : "x",
         "location" : [ 9, 7, 9, 7 ]
       } ],
