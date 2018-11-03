@@ -255,6 +255,10 @@
     },
     "value" : {
       "kind" : "VarAssignExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "C"
+      },
       "var" : {
         "kind" : "Identifier",
         "name" : "a",
@@ -262,6 +266,10 @@
       },
       "value" : {
         "kind" : "VarAssignExpr",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "C"
+        },
         "var" : {
           "kind" : "Identifier",
           "name" : "c",
@@ -269,6 +277,10 @@
         },
         "value" : {
           "kind" : "CallExpr",
+          "inferredType" : {
+            "kind" : "ClassValueType",
+            "className" : "C"
+          },
           "function" : {
             "kind" : "Identifier",
             "name" : "C",
