@@ -213,7 +213,7 @@
       "kind" : "CallExpr",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "object"
+        "className" : "A"
       },
       "function" : {
         "kind" : "Identifier",
@@ -235,7 +235,7 @@
       "kind" : "CallExpr",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "object"
+        "className" : "B"
       },
       "function" : {
         "kind" : "Identifier",
@@ -257,7 +257,7 @@
       "kind" : "CallExpr",
       "inferredType" : {
         "kind" : "ClassValueType",
-        "className" : "object"
+        "className" : "C"
       },
       "function" : {
         "kind" : "Identifier",
