@@ -228,7 +228,7 @@
     "kind" : "VarAssignStmt",
     "var" : {
       "kind" : "Identifier",
-      "name" : "b",
+      "name" : "a",
       "location" : [ 16, 1, 16, 1 ]
     },
     "value" : {
@@ -250,171 +250,54 @@
     "kind" : "VarAssignStmt",
     "var" : {
       "kind" : "Identifier",
-      "name" : "c",
+      "name" : "b",
       "location" : [ 17, 1, 17, 1 ]
     },
     "value" : {
-      "kind" : "CallExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "C"
-      },
-      "function" : {
+      "kind" : "VarAssignExpr",
+      "var" : {
         "kind" : "Identifier",
-        "name" : "C",
+        "name" : "a",
         "location" : [ 17, 5, 17, 5 ]
       },
-      "args" : [ ],
-      "location" : [ 17, 5, 17, 7 ]
-    },
-    "location" : [ 17, 1, 17, 7 ]
-  }, {
-    "kind" : "MemberAssignStmt",
-    "objectMember" : {
-      "kind" : "MemberExpr",
-      "object" : {
-        "kind" : "Identifier",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "A"
-        },
-        "name" : "a",
-        "location" : [ 19, 1, 19, 1 ]
-      },
-      "member" : {
-        "kind" : "Identifier",
-        "name" : "x",
-        "location" : [ 19, 3, 19, 3 ]
-      },
-      "location" : [ 19, 1, 19, 3 ]
-    },
-    "value" : {
-      "kind" : "IntegerLiteral",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "int"
-      },
-      "value" : 1,
-      "location" : [ 19, 7, 19, 7 ]
-    },
-    "location" : [ 19, 1, 19, 7 ]
-  }, {
-    "kind" : "MemberAssignStmt",
-    "objectMember" : {
-      "kind" : "MemberExpr",
-      "object" : {
-        "kind" : "Identifier",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "B"
-        },
-        "name" : "b",
-        "location" : [ 20, 1, 20, 1 ]
-      },
-      "member" : {
-        "kind" : "Identifier",
-        "name" : "x",
-        "location" : [ 20, 3, 20, 3 ]
-      },
-      "location" : [ 20, 1, 20, 3 ]
-    },
-    "value" : {
-      "kind" : "MemberExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "int"
-      },
-      "object" : {
-        "kind" : "Identifier",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "A"
-        },
-        "name" : "a",
-        "location" : [ 20, 7, 20, 7 ]
-      },
-      "member" : {
-        "kind" : "Identifier",
-        "name" : "x",
-        "location" : [ 20, 9, 20, 9 ]
-      },
-      "location" : [ 20, 7, 20, 9 ]
-    },
-    "location" : [ 20, 1, 20, 9 ]
-  }, {
-    "kind" : "MemberAssignStmt",
-    "objectMember" : {
-      "kind" : "MemberExpr",
-      "object" : {
-        "kind" : "Identifier",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "C"
-        },
-        "name" : "c",
-        "location" : [ 21, 1, 21, 1 ]
-      },
-      "member" : {
-        "kind" : "Identifier",
-        "name" : "z",
-        "location" : [ 21, 3, 21, 3 ]
-      },
-      "location" : [ 21, 1, 21, 3 ]
-    },
-    "value" : {
-      "kind" : "BinaryExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "bool"
-      },
-      "left" : {
-        "kind" : "MemberExpr",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
-        "object" : {
+      "value" : {
+        "kind" : "VarAssignExpr",
+        "var" : {
           "kind" : "Identifier",
-          "inferredType" : {
-            "kind" : "ClassValueType",
-            "className" : "A"
+          "name" : "c",
+          "location" : [ 17, 9, 17, 9 ]
+        },
+        "value" : {
+          "kind" : "CallExpr",
+          "function" : {
+            "kind" : "Identifier",
+            "name" : "C",
+            "location" : [ 17, 13, 17, 13 ]
           },
-          "name" : "a",
-          "location" : [ 21, 7, 21, 7 ]
+          "args" : [ ],
+          "location" : [ 17, 13, 17, 15 ]
         },
-        "member" : {
-          "kind" : "Identifier",
-          "name" : "x",
-          "location" : [ 21, 9, 21, 9 ]
-        },
-        "location" : [ 21, 7, 21, 9 ]
+        "location" : [ 17, 9, 17, 15 ]
       },
-      "operator" : "==",
-      "right" : {
-        "kind" : "MemberExpr",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
-        "object" : {
-          "kind" : "Identifier",
-          "inferredType" : {
-            "kind" : "ClassValueType",
-            "className" : "B"
-          },
-          "name" : "b",
-          "location" : [ 21, 14, 21, 14 ]
-        },
-        "member" : {
-          "kind" : "Identifier",
-          "name" : "x",
-          "location" : [ 21, 16, 21, 16 ]
-        },
-        "location" : [ 21, 14, 21, 16 ]
-      },
-      "location" : [ 21, 7, 21, 16 ]
+      "location" : [ 17, 5, 17, 15 ]
     },
-    "location" : [ 21, 1, 21, 16 ]
+    "location" : [ 17, 1, 17, 15 ]
+  }, {
+    "kind" : "VarAssignStmt",
+    "var" : {
+      "kind" : "Identifier",
+      "name" : "c",
+      "location" : [ 18, 1, 18, 1 ]
+    },
+    "value" : {
+      "kind" : "NoneLiteral",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "object"
+      },
+      "location" : [ 18, 5, 18, 8 ]
+    },
+    "location" : [ 18, 1, 18, 8 ]
   } ],
-  "location" : [ 1, 1, 21, 16 ]
+  "location" : [ 1, 1, 18, 8 ]
 }
