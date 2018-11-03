@@ -162,6 +162,7 @@
     "location" : [ 11, 1, 11, 8 ]
   }, {
     "kind" : "MemberAssignStmt",
+    "typeError" : "Expected type `int`; got `None`",
     "objectMember" : {
       "kind" : "MemberExpr",
       "object" : {
