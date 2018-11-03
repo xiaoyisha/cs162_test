@@ -145,7 +145,7 @@
     "location" : [ 8, 1, 8, 7 ]
   }, {
     "kind" : "VarAssignStmt",
-    "typeError" : "Expected type `str`; got type `object`",
+    "typeError" : "Expected type `str`; got `None`",
     "var" : {
       "kind" : "Identifier",
       "name" : "z",
@@ -162,6 +162,7 @@
     "location" : [ 11, 1, 11, 8 ]
   }, {
     "kind" : "MemberAssignStmt",
+    "typeError" : "Expected type `int`; got `None`",
     "objectMember" : {
       "kind" : "MemberExpr",
       "object" : {
@@ -191,6 +192,7 @@
     "location" : [ 12, 1, 12, 10 ]
   }, {
     "kind" : "IndexAssignStmt",
+    "typeError" : "Expected type `bool`; got `None`",
     "listElement" : {
       "kind" : "IndexExpr",
       "list" : {
@@ -228,4 +230,3 @@
   } ],
   "location" : [ 1, 1, 13, 11 ]
 }
-
