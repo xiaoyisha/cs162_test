@@ -46,7 +46,6 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "CallExpr",
-      "typeError" : "Not a function or class: A",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "A"
