@@ -268,6 +268,109 @@
       "location" : [ 17, 5, 17, 7 ]
     },
     "location" : [ 17, 1, 17, 7 ]
+  }, {
+    "kind" : "MemberAssignStmt",
+    "objectMember" : {
+      "kind" : "MemberExpr",
+      "object" : {
+        "kind" : "Identifier",
+        "name" : "a",
+        "location" : [ 19, 1, 19, 1 ]
+      },
+      "member" : {
+        "kind" : "Identifier",
+        "name" : "x",
+        "location" : [ 19, 3, 19, 3 ]
+      },
+      "location" : [ 19, 1, 19, 3 ]
+    },
+    "value" : {
+      "kind" : "IntegerLiteral",
+      "value" : 1,
+      "location" : [ 19, 7, 19, 7 ]
+    },
+    "location" : [ 19, 1, 19, 7 ]
+  }, {
+    "kind" : "MemberAssignStmt",
+    "objectMember" : {
+      "kind" : "MemberExpr",
+      "object" : {
+        "kind" : "Identifier",
+        "name" : "b",
+        "location" : [ 20, 1, 20, 1 ]
+      },
+      "member" : {
+        "kind" : "Identifier",
+        "name" : "x",
+        "location" : [ 20, 3, 20, 3 ]
+      },
+      "location" : [ 20, 1, 20, 3 ]
+    },
+    "value" : {
+      "kind" : "MemberExpr",
+      "object" : {
+        "kind" : "Identifier",
+        "name" : "a",
+        "location" : [ 20, 7, 20, 7 ]
+      },
+      "member" : {
+        "kind" : "Identifier",
+        "name" : "x",
+        "location" : [ 20, 9, 20, 9 ]
+      },
+      "location" : [ 20, 7, 20, 9 ]
+    },
+    "location" : [ 20, 1, 20, 9 ]
+  }, {
+    "kind" : "MemberAssignStmt",
+    "objectMember" : {
+      "kind" : "MemberExpr",
+      "object" : {
+        "kind" : "Identifier",
+        "name" : "c",
+        "location" : [ 21, 1, 21, 1 ]
+      },
+      "member" : {
+        "kind" : "Identifier",
+        "name" : "z",
+        "location" : [ 21, 3, 21, 3 ]
+      },
+      "location" : [ 21, 1, 21, 3 ]
+    },
+    "value" : {
+      "kind" : "BinaryExpr",
+      "left" : {
+        "kind" : "MemberExpr",
+        "object" : {
+          "kind" : "Identifier",
+          "name" : "a",
+          "location" : [ 21, 7, 21, 7 ]
+        },
+        "member" : {
+          "kind" : "Identifier",
+          "name" : "x",
+          "location" : [ 21, 9, 21, 9 ]
+        },
+        "location" : [ 21, 7, 21, 9 ]
+      },
+      "operator" : "==",
+      "right" : {
+        "kind" : "MemberExpr",
+        "object" : {
+          "kind" : "Identifier",
+          "name" : "b",
+          "location" : [ 21, 14, 21, 14 ]
+        },
+        "member" : {
+          "kind" : "Identifier",
+          "name" : "x",
+          "location" : [ 21, 16, 21, 16 ]
+        },
+        "location" : [ 21, 14, 21, 16 ]
+      },
+      "location" : [ 21, 7, 21, 16 ]
+    },
+    "location" : [ 21, 1, 21, 16 ]
   } ],
-  "location" : [ 1, 1, 17, 7 ]
+  "location" : [ 1, 1, 21, 16 ]
 }
