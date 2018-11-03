@@ -326,6 +326,10 @@
       },
       "object" : {
         "kind" : "Identifier",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "A"
+        },
         "name" : "a",
         "location" : [ 20, 7, 20, 7 ]
       },
@@ -371,6 +375,10 @@
         },
         "object" : {
           "kind" : "Identifier",
+          "inferredType" : {
+            "kind" : "ClassValueType",
+            "className" : "A"
+          },
           "name" : "a",
           "location" : [ 21, 7, 21, 7 ]
         },
@@ -390,6 +398,10 @@
         },
         "object" : {
           "kind" : "Identifier",
+          "inferredType" : {
+            "kind" : "ClassValueType",
+            "className" : "B"
+          },
           "name" : "b",
           "location" : [ 21, 14, 21, 14 ]
         },
