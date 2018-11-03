@@ -56,6 +56,7 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "MemberExpr",
+      "typeError" : "There is no attribute named `foo` in class `int`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "object"
@@ -81,6 +82,7 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "MemberExpr",
+      "typeError" : "There is no attribute named `bar` in class `object`",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "object"
@@ -104,6 +106,7 @@
     "location" : [ 5, 1, 5, 5 ]
   }, {
     "kind" : "MemberAssignStmt",
+    "typeError" : "There is no attribute named `baz` in class `object`",
     "objectMember" : {
       "kind" : "MemberExpr",
       "object" : {
@@ -135,4 +138,3 @@
   } ],
   "location" : [ 1, 1, 6, 9 ]
 }
-
