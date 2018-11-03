@@ -37,7 +37,6 @@
       } ],
       "statements" : [ {
         "kind" : "VarAssignStmt",
-        "typeError" : "Not a variable: x",
         "var" : {
           "kind" : "Identifier",
           "name" : "x",
@@ -55,13 +54,11 @@
         "location" : [ 4, 9, 4, 13 ]
       }, {
         "kind" : "ReturnStmt",
-        "typeError" : "Expected type `int`; got type `object`",
         "value" : {
           "kind" : "Identifier",
-          "typeError" : "Not a variable: x",
           "inferredType" : {
             "kind" : "ClassValueType",
-            "className" : "object"
+            "className" : "int"
           },
           "name" : "x",
           "location" : [ 5, 16, 5, 16 ]
@@ -100,10 +97,9 @@
       "kind" : "ExprStmt",
       "expr" : {
         "kind" : "CallExpr",
-        "typeError" : "Not a function or class: inner",
         "inferredType" : {
           "kind" : "ClassValueType",
-          "className" : "object"
+          "className" : "int"
         },
         "function" : {
           "kind" : "Identifier",
@@ -116,13 +112,11 @@
       "location" : [ 7, 5, 7, 11 ]
     }, {
       "kind" : "ReturnStmt",
-      "typeError" : "Expected type `int`; got type `object`",
       "value" : {
         "kind" : "Identifier",
-        "typeError" : "Not a variable: x",
         "inferredType" : {
           "kind" : "ClassValueType",
-          "className" : "object"
+          "className" : "int"
         },
         "name" : "x",
         "location" : [ 8, 12, 8, 12 ]
