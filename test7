@@ -220,15 +220,13 @@
       "declarations" : [ ],
       "statements" : [ {
         "kind" : "MemberAssignStmt",
-        "typeError" : "Expected type `int`; got type `object`",
         "objectMember" : {
           "kind" : "MemberExpr",
           "object" : {
             "kind" : "Identifier",
-            "typeError" : "Not a variable: self",
             "inferredType" : {
               "kind" : "ClassValueType",
-              "className" : "object"
+              "className" : "C"
             },
             "name" : "self",
             "location" : [ 15, 9, 15, 12 ]
@@ -242,10 +240,9 @@
         },
         "value" : {
           "kind" : "Identifier",
-          "typeError" : "Not a variable: val",
           "inferredType" : {
             "kind" : "ClassValueType",
-            "className" : "object"
+            "className" : "int"
           },
           "name" : "val",
           "location" : [ 15, 18, 15, 20 ]
@@ -521,6 +518,10 @@
       },
       "args" : [ {
         "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "value" : 0,
         "location" : [ 27, 9, 27, 9 ]
       } ],
