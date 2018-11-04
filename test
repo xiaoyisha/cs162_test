@@ -423,6 +423,10 @@
       },
       "args" : [ {
         "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "value" : 1,
         "location" : [ 25, 9, 25, 9 ]
       } ],
