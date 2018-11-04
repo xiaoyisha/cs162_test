@@ -423,6 +423,10 @@
       },
       "args" : [ {
         "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "value" : 1,
         "location" : [ 25, 9, 25, 9 ]
       } ],
@@ -434,6 +438,10 @@
     "expr" : {
       "kind" : "MethodCallExpr",
       "typeError" : "There is no method named `get_Z` in class `B`",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "object"
+      },
       "method" : {
         "kind" : "MemberExpr",
         "object" : {
@@ -491,7 +499,7 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "MethodCallExpr",
-      "typeError" : "Expected type `int`; got `bool` in parameter 0",
+      "typeError" : "Expected type `int`; got type `bool` in parameter 1",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "object"
@@ -530,7 +538,7 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "MethodCallExpr",
-      "typeError" : "Expected type `int`; got `None` in parameter 0",
+      "typeError" : "Expected type `int`; got `None` in parameter 1",
       "inferredType" : {
         "kind" : "ClassValueType",
         "className" : "object"
@@ -567,4 +575,3 @@
   } ],
   "location" : [ 1, 1, 29, 13 ]
 }
-
