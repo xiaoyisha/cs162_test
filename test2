@@ -75,10 +75,9 @@
           },
           "object" : {
             "kind" : "Identifier",
-            "typeError" : "Not a variable: self",
             "inferredType" : {
               "kind" : "ClassValueType",
-              "className" : "object"
+              "className" : "A"
             },
             "name" : "self",
             "location" : [ 5, 16, 5, 19 ]
@@ -221,15 +220,13 @@
       "declarations" : [ ],
       "statements" : [ {
         "kind" : "MemberAssignStmt",
-        "typeError" : "Expected type `int`; got type `object`",
         "objectMember" : {
           "kind" : "MemberExpr",
           "object" : {
             "kind" : "Identifier",
-            "typeError" : "Not a variable: self",
             "inferredType" : {
               "kind" : "ClassValueType",
-              "className" : "object"
+              "className" : "C"
             },
             "name" : "self",
             "location" : [ 15, 9, 15, 12 ]
@@ -243,10 +240,9 @@
         },
         "value" : {
           "kind" : "Identifier",
-          "typeError" : "Not a variable: val",
           "inferredType" : {
             "kind" : "ClassValueType",
-            "className" : "object"
+            "className" : "int"
           },
           "name" : "val",
           "location" : [ 15, 18, 15, 20 ]
@@ -420,12 +416,12 @@
     },
     "value" : {
       "kind" : "MethodCallExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "int"
+      },
       "method" : {
         "kind" : "MemberExpr",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
         "object" : {
           "kind" : "Identifier",
           "inferredType" : {
@@ -468,12 +464,12 @@
     },
     "value" : {
       "kind" : "MethodCallExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "int"
+      },
       "method" : {
         "kind" : "MemberExpr",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
         "object" : {
           "kind" : "Identifier",
           "inferredType" : {
@@ -498,12 +494,12 @@
     "kind" : "ExprStmt",
     "expr" : {
       "kind" : "MethodCallExpr",
+      "inferredType" : {
+        "kind" : "ClassValueType",
+        "className" : "object"
+      },
       "method" : {
         "kind" : "MemberExpr",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "object"
-        },
         "object" : {
           "kind" : "Identifier",
           "inferredType" : {
@@ -522,6 +518,10 @@
       },
       "args" : [ {
         "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "value" : 0,
         "location" : [ 27, 9, 27, 9 ]
       } ],
