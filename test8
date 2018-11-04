@@ -518,6 +518,10 @@
       },
       "args" : [ {
         "kind" : "IntegerLiteral",
+        "inferredType" : {
+          "kind" : "ClassValueType",
+          "className" : "int"
+        },
         "value" : 0,
         "location" : [ 27, 9, 27, 9 ]
       } ],
