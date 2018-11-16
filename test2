@@ -1,533 +1,389 @@
-{
-  "kind" : "Program",
-  "declarations" : [ {
-    "kind" : "ClassDef",
-    "name" : {
-      "kind" : "Identifier",
-      "name" : "A",
-      "location" : [ 1, 7, 1, 7 ]
-    },
-    "superClass" : {
-      "kind" : "Identifier",
-      "name" : "object",
-      "location" : [ 1, 9, 1, 14 ]
-    },
-    "declarations" : [ {
-      "kind" : "VarDef",
-      "var" : {
-        "kind" : "TypedVar",
-        "identifier" : {
-          "kind" : "Identifier",
-          "name" : "x",
-          "location" : [ 2, 5, 2, 5 ]
-        },
-        "type" : {
-          "kind" : "ClassType",
-          "className" : "int",
-          "location" : [ 2, 7, 2, 9 ]
-        },
-        "location" : [ 2, 5, 2, 9 ]
-      },
-      "value" : {
-        "kind" : "IntegerLiteral",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
-        "value" : 1,
-        "location" : [ 2, 13, 2, 13 ]
-      },
-      "location" : [ 2, 5, 2, 13 ]
-    }, {
-      "kind" : "FuncDef",
-      "name" : {
-        "kind" : "Identifier",
-        "name" : "get_A",
-        "location" : [ 4, 9, 4, 13 ]
-      },
-      "params" : [ {
-        "kind" : "TypedVar",
-        "identifier" : {
-          "kind" : "Identifier",
-          "name" : "self",
-          "location" : [ 4, 15, 4, 18 ]
-        },
-        "type" : {
-          "kind" : "ClassType",
-          "className" : "A",
-          "location" : [ 4, 21, 4, 23 ]
-        },
-        "location" : [ 4, 15, 4, 23 ]
-      } ],
-      "returnType" : {
-        "kind" : "ClassType",
-        "className" : "int",
-        "location" : [ 4, 29, 4, 31 ]
-      },
-      "declarations" : [ ],
-      "statements" : [ {
-        "kind" : "ReturnStmt",
-        "value" : {
-          "kind" : "MemberExpr",
-          "inferredType" : {
-            "kind" : "ClassValueType",
-            "className" : "int"
-          },
-          "object" : {
-            "kind" : "Identifier",
-            "inferredType" : {
-              "kind" : "ClassValueType",
-              "className" : "A"
-            },
-            "name" : "self",
-            "location" : [ 5, 16, 5, 19 ]
-          },
-          "member" : {
-            "kind" : "Identifier",
-            "name" : "x",
-            "location" : [ 5, 21, 5, 21 ]
-          },
-          "location" : [ 5, 16, 5, 21 ]
-        },
-        "location" : [ 5, 9, 5, 21 ]
-      } ],
-      "location" : [ 4, 5, 5, 21 ]
-    } ],
-    "location" : [ 1, 1, 5, 21 ]
-  }, {
-    "kind" : "ClassDef",
-    "name" : {
-      "kind" : "Identifier",
-      "name" : "B",
-      "location" : [ 7, 7, 7, 7 ]
-    },
-    "superClass" : {
-      "kind" : "Identifier",
-      "name" : "A",
-      "location" : [ 7, 9, 7, 9 ]
-    },
-    "declarations" : [ {
-      "kind" : "FuncDef",
-      "name" : {
-        "kind" : "Identifier",
-        "name" : "__init__",
-        "location" : [ 8, 9, 8, 16 ]
-      },
-      "params" : [ {
-        "kind" : "TypedVar",
-        "identifier" : {
-          "kind" : "Identifier",
-          "name" : "self",
-          "location" : [ 8, 18, 8, 21 ]
-        },
-        "type" : {
-          "kind" : "ClassType",
-          "className" : "B",
-          "location" : [ 8, 24, 8, 26 ]
-        },
-        "location" : [ 8, 18, 8, 26 ]
-      } ],
-      "returnType" : {
-        "kind" : "ClassType",
-        "className" : "object",
-        "location" : [ 8, 32, 8, 37 ]
-      },
-      "declarations" : [ ],
-      "statements" : [ {
-        "kind" : "PassStmt",
-        "location" : [ 9, 9, 9, 12 ]
-      } ],
-      "location" : [ 8, 5, 9, 12 ]
-    } ],
-    "location" : [ 7, 1, 9, 12 ]
-  }, {
-    "kind" : "ClassDef",
-    "name" : {
-      "kind" : "Identifier",
-      "name" : "C",
-      "location" : [ 11, 7, 11, 7 ]
-    },
-    "superClass" : {
-      "kind" : "Identifier",
-      "name" : "B",
-      "location" : [ 11, 9, 11, 9 ]
-    },
-    "declarations" : [ {
-      "kind" : "VarDef",
-      "var" : {
-        "kind" : "TypedVar",
-        "identifier" : {
-          "kind" : "Identifier",
-          "name" : "z",
-          "location" : [ 12, 5, 12, 5 ]
-        },
-        "type" : {
-          "kind" : "ClassType",
-          "className" : "bool",
-          "location" : [ 12, 7, 12, 10 ]
-        },
-        "location" : [ 12, 5, 12, 10 ]
-      },
-      "value" : {
-        "kind" : "BooleanLiteral",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "bool"
-        },
-        "value" : true,
-        "location" : [ 12, 14, 12, 17 ]
-      },
-      "location" : [ 12, 5, 12, 17 ]
-    }, {
-      "kind" : "FuncDef",
-      "name" : {
-        "kind" : "Identifier",
-        "name" : "set_A",
-        "location" : [ 14, 9, 14, 13 ]
-      },
-      "params" : [ {
-        "kind" : "TypedVar",
-        "identifier" : {
-          "kind" : "Identifier",
-          "name" : "self",
-          "location" : [ 14, 15, 14, 18 ]
-        },
-        "type" : {
-          "kind" : "ClassType",
-          "className" : "C",
-          "location" : [ 14, 21, 14, 23 ]
-        },
-        "location" : [ 14, 15, 14, 23 ]
-      }, {
-        "kind" : "TypedVar",
-        "identifier" : {
-          "kind" : "Identifier",
-          "name" : "val",
-          "location" : [ 14, 26, 14, 28 ]
-        },
-        "type" : {
-          "kind" : "ClassType",
-          "className" : "int",
-          "location" : [ 14, 31, 14, 33 ]
-        },
-        "location" : [ 14, 26, 14, 33 ]
-      } ],
-      "returnType" : {
-        "kind" : "ClassType",
-        "className" : "object",
-        "location" : [ 14, 39, 14, 44 ]
-      },
-      "declarations" : [ ],
-      "statements" : [ {
-        "kind" : "MemberAssignStmt",
-        "objectMember" : {
-          "kind" : "MemberExpr",
-          "object" : {
-            "kind" : "Identifier",
-            "inferredType" : {
-              "kind" : "ClassValueType",
-              "className" : "C"
-            },
-            "name" : "self",
-            "location" : [ 15, 9, 15, 12 ]
-          },
-          "member" : {
-            "kind" : "Identifier",
-            "name" : "x",
-            "location" : [ 15, 14, 15, 14 ]
-          },
-          "location" : [ 15, 9, 15, 14 ]
-        },
-        "value" : {
-          "kind" : "Identifier",
-          "inferredType" : {
-            "kind" : "ClassValueType",
-            "className" : "int"
-          },
-          "name" : "val",
-          "location" : [ 15, 18, 15, 20 ]
-        },
-        "location" : [ 15, 9, 15, 20 ]
-      } ],
-      "location" : [ 14, 5, 15, 20 ]
-    } ],
-    "location" : [ 11, 1, 15, 20 ]
-  }, {
-    "kind" : "VarDef",
-    "var" : {
-      "kind" : "TypedVar",
-      "identifier" : {
-        "kind" : "Identifier",
-        "name" : "a",
-        "location" : [ 17, 1, 17, 1 ]
-      },
-      "type" : {
-        "kind" : "ClassType",
-        "className" : "A",
-        "location" : [ 17, 3, 17, 3 ]
-      },
-      "location" : [ 17, 1, 17, 3 ]
-    },
-    "value" : {
-      "kind" : "NoneLiteral",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "object"
-      },
-      "location" : [ 17, 7, 17, 10 ]
-    },
-    "location" : [ 17, 1, 17, 10 ]
-  }, {
-    "kind" : "VarDef",
-    "var" : {
-      "kind" : "TypedVar",
-      "identifier" : {
-        "kind" : "Identifier",
-        "name" : "b",
-        "location" : [ 18, 1, 18, 1 ]
-      },
-      "type" : {
-        "kind" : "ClassType",
-        "className" : "B",
-        "location" : [ 18, 3, 18, 3 ]
-      },
-      "location" : [ 18, 1, 18, 3 ]
-    },
-    "value" : {
-      "kind" : "NoneLiteral",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "object"
-      },
-      "location" : [ 18, 7, 18, 10 ]
-    },
-    "location" : [ 18, 1, 18, 10 ]
-  }, {
-    "kind" : "VarDef",
-    "var" : {
-      "kind" : "TypedVar",
-      "identifier" : {
-        "kind" : "Identifier",
-        "name" : "c",
-        "location" : [ 19, 1, 19, 1 ]
-      },
-      "type" : {
-        "kind" : "ClassType",
-        "className" : "C",
-        "location" : [ 19, 3, 19, 3 ]
-      },
-      "location" : [ 19, 1, 19, 3 ]
-    },
-    "value" : {
-      "kind" : "NoneLiteral",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "object"
-      },
-      "location" : [ 19, 7, 19, 10 ]
-    },
-    "location" : [ 19, 1, 19, 10 ]
-  } ],
-  "statements" : [ {
-    "kind" : "VarAssignStmt",
-    "var" : {
-      "kind" : "Identifier",
-      "name" : "a",
-      "location" : [ 21, 1, 21, 1 ]
-    },
-    "value" : {
-      "kind" : "CallExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "A"
-      },
-      "function" : {
-        "kind" : "Identifier",
-        "name" : "A",
-        "location" : [ 21, 5, 21, 5 ]
-      },
-      "args" : [ ],
-      "location" : [ 21, 5, 21, 7 ]
-    },
-    "location" : [ 21, 1, 21, 7 ]
-  }, {
-    "kind" : "VarAssignStmt",
-    "var" : {
-      "kind" : "Identifier",
-      "name" : "b",
-      "location" : [ 22, 1, 22, 1 ]
-    },
-    "value" : {
-      "kind" : "CallExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "B"
-      },
-      "function" : {
-        "kind" : "Identifier",
-        "name" : "B",
-        "location" : [ 22, 5, 22, 5 ]
-      },
-      "args" : [ ],
-      "location" : [ 22, 5, 22, 7 ]
-    },
-    "location" : [ 22, 1, 22, 7 ]
-  }, {
-    "kind" : "VarAssignStmt",
-    "var" : {
-      "kind" : "Identifier",
-      "name" : "c",
-      "location" : [ 23, 1, 23, 1 ]
-    },
-    "value" : {
-      "kind" : "CallExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "C"
-      },
-      "function" : {
-        "kind" : "Identifier",
-        "name" : "C",
-        "location" : [ 23, 5, 23, 5 ]
-      },
-      "args" : [ ],
-      "location" : [ 23, 5, 23, 7 ]
-    },
-    "location" : [ 23, 1, 23, 7 ]
-  }, {
-    "kind" : "MemberAssignStmt",
-    "objectMember" : {
-      "kind" : "MemberExpr",
-      "object" : {
-        "kind" : "Identifier",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "B"
-        },
-        "name" : "b",
-        "location" : [ 25, 1, 25, 1 ]
-      },
-      "member" : {
-        "kind" : "Identifier",
-        "name" : "x",
-        "location" : [ 25, 3, 25, 3 ]
-      },
-      "location" : [ 25, 1, 25, 3 ]
-    },
-    "value" : {
-      "kind" : "MethodCallExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "int"
-      },
-      "method" : {
-        "kind" : "MemberExpr",
-        "object" : {
-          "kind" : "Identifier",
-          "inferredType" : {
-            "kind" : "ClassValueType",
-            "className" : "A"
-          },
-          "name" : "a",
-          "location" : [ 25, 7, 25, 7 ]
-        },
-        "member" : {
-          "kind" : "Identifier",
-          "name" : "get_A",
-          "location" : [ 25, 9, 25, 13 ]
-        },
-        "location" : [ 25, 7, 25, 13 ]
-      },
-      "args" : [ ],
-      "location" : [ 25, 7, 25, 15 ]
-    },
-    "location" : [ 25, 1, 25, 15 ]
-  }, {
-    "kind" : "MemberAssignStmt",
-    "objectMember" : {
-      "kind" : "MemberExpr",
-      "object" : {
-        "kind" : "Identifier",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "A"
-        },
-        "name" : "a",
-        "location" : [ 26, 1, 26, 1 ]
-      },
-      "member" : {
-        "kind" : "Identifier",
-        "name" : "x",
-        "location" : [ 26, 3, 26, 3 ]
-      },
-      "location" : [ 26, 1, 26, 3 ]
-    },
-    "value" : {
-      "kind" : "MethodCallExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "int"
-      },
-      "method" : {
-        "kind" : "MemberExpr",
-        "object" : {
-          "kind" : "Identifier",
-          "inferredType" : {
-            "kind" : "ClassValueType",
-            "className" : "B"
-          },
-          "name" : "b",
-          "location" : [ 26, 7, 26, 7 ]
-        },
-        "member" : {
-          "kind" : "Identifier",
-          "name" : "get_A",
-          "location" : [ 26, 9, 26, 13 ]
-        },
-        "location" : [ 26, 7, 26, 13 ]
-      },
-      "args" : [ ],
-      "location" : [ 26, 7, 26, 15 ]
-    },
-    "location" : [ 26, 1, 26, 15 ]
-  }, {
-    "kind" : "ExprStmt",
-    "expr" : {
-      "kind" : "MethodCallExpr",
-      "inferredType" : {
-        "kind" : "ClassValueType",
-        "className" : "object"
-      },
-      "method" : {
-        "kind" : "MemberExpr",
-        "object" : {
-          "kind" : "Identifier",
-          "inferredType" : {
-            "kind" : "ClassValueType",
-            "className" : "C"
-          },
-          "name" : "c",
-          "location" : [ 27, 1, 27, 1 ]
-        },
-        "member" : {
-          "kind" : "Identifier",
-          "name" : "set_A",
-          "location" : [ 27, 3, 27, 7 ]
-        },
-        "location" : [ 27, 1, 27, 7 ]
-      },
-      "args" : [ {
-        "kind" : "IntegerLiteral",
-        "inferredType" : {
-          "kind" : "ClassValueType",
-          "className" : "int"
-        },
-        "value" : 0,
-        "location" : [ 27, 9, 27, 9 ]
-      } ],
-      "location" : [ 27, 1, 27, 10 ]
-    },
-    "location" : [ 27, 1, 27, 10 ]
-  } ],
-  "location" : [ 1, 1, 27, 10 ]
-}
+
+.data
+
+.globl $object$prototype
+$object$prototype:
+  .word 0                                  # Type tag for class: object
+  .word 3                                  # Object size
+  .word $object$dispatchTable              # Pointer to dispatch table
+  .align 2
+
+.globl $int$prototype
+$int$prototype:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 0                                  # Initial value of attribute: __int__
+  .align 2
+
+.globl $bool$prototype
+$bool$prototype:
+  .word 2                                  # Type tag for class: bool
+  .word 4                                  # Object size
+  .word $bool$dispatchTable                # Pointer to dispatch table
+  .word 0                                  # Initial value of attribute: __bool__
+  .align 2
+
+.globl $str$prototype
+$str$prototype:
+  .word 3                                  # Type tag for class: str
+  .word 5                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_2                            # Initial value of attribute: __len__
+  .word 0                                  # Initial value of attribute: __str__
+  .align 2
+
+.globl $.list$prototype
+$.list$prototype:
+  .word -1                                 # Type tag for class: .list
+  .word 4                                  # Object size
+  .word 0                                  # Pointer to dispatch table
+  .word const_2                            # Initial value of attribute: __len__
+  .align 2
+
+.globl $object$dispatchTable
+$object$dispatchTable:
+  .word $object.__init__                   # Implementation for method: object.__init__
+
+.globl $int$dispatchTable
+$int$dispatchTable:
+  .word $object.__init__                   # Implementation for method: int.__init__
+
+.globl $bool$dispatchTable
+$bool$dispatchTable:
+  .word $object.__init__                   # Implementation for method: bool.__init__
+
+.globl $str$dispatchTable
+$str$dispatchTable:
+  .word $object.__init__                   # Implementation for method: str.__init__
+
+.text
+
+.globl main
+main:
+  lui a0, 8192                             # Initialize heap size (in multiples of 4KB)
+  add s11, s11, a0                         # Save heap size
+  jal heap.init                            # Call heap.init routine
+  mv gp, a0                                # Initialize heap pointer
+  mv s10, gp                               # Set beginning of heap
+  add s11, s10, s11                        # Set end of heap (= start of heap + heap size)
+  addi fp, sp, 4                           # New fp is just below stack top
+  li a0, 10                                # Code for ecall: exit
+  ecall
+
+.globl $object.__init__
+$object.__init__:
+  mv a0, zero                              # `None` constant
+  jr ra                                    # Return
+
+.globl $print
+$print:
+  lw a0, 4(sp)                             # Load arg
+  beq a0, zero, label_1                    # None is an illegal argument
+  lw t0, 0(a0)                             # Get type tag of arg
+  li t1, 1                                 # Load type tag of `int`
+  beq t0, t1, label_2                      # Go to print(int)
+  li t1, 3                                 # Load type tag of `str`
+  beq t0, t1, label_3                      # Go to print(str)
+  li t1, 2                                 # Load type tag of `bool`
+  beq t0, t1, label_4                      # Go to print(bool)
+  label_1:                                 # Invalid argument
+  li a0, 1                                 # Exit code for: Invalid argument
+  la a1, const_3                           # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+  label_4:                                 # Print bool object in A0
+  lw a0, 12(a0)                            # Load attribute __bool__
+  beq a0, zero, label_6                    # Go to: print(False)
+  la a0, const_4                           # String representation: True
+  j label_3                                # Go to: print(str)
+  label_6:                                 # Print False object in A0
+  la a0, const_5                           # String representation: False
+  j label_3                                # Go to: print(str)
+  label_3:                                 # Print str object in A0
+  addi a1, a0, 16                          # Load address of attribute __str__
+  j label_5                                # Print the null-terminated string is now in A1
+  mv a0, zero                              # Load None
+  j label_0                                # Go to return
+  label_2:                                 # Print int object in A0
+  lw a1, 12(a0)                            # Load attribute __int__
+  li a0, 1                                 # Code for ecall: print_int
+  ecall                                    # Print integer
+  li a1, 10                                # Load newline character
+  li a0, 11                                # Code for ecall: print_char
+  ecall                                    # Print character
+  mv a0, zero                              # Load None
+  j label_0                                # Go to return
+  label_5:                                 # Print null-terminated string in A1
+  li a0, 4                                 # Code for ecall: print_string
+  ecall                                    # Print string
+  li a1, 10                                # Load newline character
+  li a0, 11                                # Code for ecall: print_char
+  ecall                                    # Print character
+  mv a0, zero                              # Load None
+  label_0:                                 # End of function
+  jr ra                                    # Return to caller
+
+.globl $len
+$len:
+  lw a0, 4(sp)                             # Load arg
+  beq a0, zero, label_7                    # None is an illegal argument
+  lw t0, 0(a0)                             # Get type tag of arg
+  li t1, 3                                 # Load type tag of `str`
+  beq t0, t1, label_8                      # Go to len(str)
+  li t1, -1                                # Load type tag for list objects
+  beq t0, t1, label_9                      # Go to len(list)
+  label_7:                                 # Invalid argument
+  li a0, 1                                 # Exit code for: Invalid argument
+  la a1, const_3                           # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+  label_8:                                 # Get length of string
+  lw a0, 12(a0)                            # Load attribute: __len__
+  jr ra                                    # Return to caller
+  label_9:                                 # Get length of list
+  lw a0, 12(a0)                            # Load attribute: __len__
+  jr ra                                    # Return to caller
+
+.globl $input
+$input:
+  li a0, 6                                 # Exit code for: Unsupported operation
+  la a1, const_6                           # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+
+.globl alloc
+alloc:
+  lw a1, 4(a0)                             # Get size of object in words
+  j alloc2                                 # Allocate object with exact size
+
+.globl alloc2
+alloc2:
+  li a2, 4                                 # Word size in bytes
+  mul a2, a1, a2                           # Calculate number of bytes to allocate
+  add a2, gp, a2                           # Estimate where GP will move
+  bgeu a2, s11, label_10                   # Go to OOM handler if too large
+  lw t0, 4(a0)                             # Get size of object in words
+  mv t2, a0                                # Initialize src ptr
+  mv t3, gp                                # Initialize dest ptr
+  label_11:                                # Copy-loop header
+  lw t1, 0(t2)                             # Load next word from src
+  sw t1, 0(t3)                             # Store next word to dest
+  addi t2, t2, 4                           # Increment src
+  addi t3, t3, 4                           # Increment dest
+  addi t0, t0, -1                          # Decrement counter
+  bne t0, zero, label_11                   # Loop if more words left to copy
+  mv a0, gp                                # Save new object's address to return
+  sw a1, 4(a0)                             # Set size of new object in words (same as requested size)
+  mv gp, a2                                # Set next free slot in the heap
+  jr ra                                    # Return to caller
+  label_10:                                # OOM handler
+  li a0, 5                                 # Exit code for: Out of memory
+  la a1, const_7                           # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+
+.globl abort
+abort:
+  mv t0, a0                                # Save exit code in temp
+  li a0, 4                                 # Code for ecall: print_string
+  ecall                                    # Print error message in a1
+  li a1, 10                                # Load newline character
+  li a0, 11                                # Code for ecall: print_char
+  ecall                                    # Print newline
+  mv a1, t0                                # Move exit code to a1
+  li a0, 17                                # Code for ecall: exit2
+  ecall                                    # Exit with code
+  label_12:                                # Infinite loop
+  j label_12                               # Prevent fallthrough
+
+.globl heap.init
+heap.init:
+  mv a1, a0                                # Move requested size to A1
+  li a0, 9                                 # Code for ecall: sbrk
+  ecall                                    # Request A1 bytes
+  jr ra                                    # Return to caller
+
+.globl error.None
+error.None:
+  li a0, 4                                 # Exit code for: Operation on None
+  la a1, const_8                           # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+
+.globl error.Div
+error.Div:
+  li a0, 2                                 # Exit code for: Divison by zero
+  la a1, const_9                           # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+
+.globl error.OOB
+error.OOB:
+  li a0, 3                                 # Exit code for: Index out of bounds
+  la a1, const_10                          # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+
+.data
+
+.globl const_0
+const_0:
+  .word 2                                  # Type tag for class: bool
+  .word 4                                  # Object size
+  .word $bool$dispatchTable                # Pointer to dispatch table
+  .word 0                                  # Constant value of attribute: __bool__
+  .align 2
+
+.globl const_1
+const_1:
+  .word 2                                  # Type tag for class: bool
+  .word 4                                  # Object size
+  .word $bool$dispatchTable                # Pointer to dispatch table
+  .word 1                                  # Constant value of attribute: __bool__
+  .align 2
+
+.globl const_7
+const_7:
+  .word 3                                  # Type tag for class: str
+  .word 8                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_11                           # Constant value of attribute: __len__
+  .string "Out of memory"                  # Constant value of attribute: __str__
+  .align 2
+
+.globl const_10
+const_10:
+  .word 3                                  # Type tag for class: str
+  .word 9                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_12                           # Constant value of attribute: __len__
+  .string "Index out of bounds"            # Constant value of attribute: __str__
+  .align 2
+
+.globl const_9
+const_9:
+  .word 3                                  # Type tag for class: str
+  .word 8                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_13                           # Constant value of attribute: __len__
+  .string "Divison by zero"                # Constant value of attribute: __str__
+  .align 2
+
+.globl const_4
+const_4:
+  .word 3                                  # Type tag for class: str
+  .word 6                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_14                           # Constant value of attribute: __len__
+  .string "True"                           # Constant value of attribute: __str__
+  .align 2
+
+.globl const_8
+const_8:
+  .word 3                                  # Type tag for class: str
+  .word 9                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_15                           # Constant value of attribute: __len__
+  .string "Operation on None"              # Constant value of attribute: __str__
+  .align 2
+
+.globl const_3
+const_3:
+  .word 3                                  # Type tag for class: str
+  .word 9                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_16                           # Constant value of attribute: __len__
+  .string "Invalid argument"               # Constant value of attribute: __str__
+  .align 2
+
+.globl const_6
+const_6:
+  .word 3                                  # Type tag for class: str
+  .word 10                                 # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_17                           # Constant value of attribute: __len__
+  .string "Unsupported operation"          # Constant value of attribute: __str__
+  .align 2
+
+.globl const_5
+const_5:
+  .word 3                                  # Type tag for class: str
+  .word 6                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_18                           # Constant value of attribute: __len__
+  .string "False"                          # Constant value of attribute: __str__
+  .align 2
+
+.globl const_2
+const_2:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 0                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_16
+const_16:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 16                                 # Constant value of attribute: __int__
+  .align 2
+
+.globl const_15
+const_15:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 17                                 # Constant value of attribute: __int__
+  .align 2
+
+.globl const_12
+const_12:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 19                                 # Constant value of attribute: __int__
+  .align 2
+
+.globl const_14
+const_14:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 4                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_17
+const_17:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 21                                 # Constant value of attribute: __int__
+  .align 2
+
+.globl const_18
+const_18:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 5                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_11
+const_11:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 13                                 # Constant value of attribute: __int__
+  .align 2
+
+.globl const_13
+const_13:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 15                                 # Constant value of attribute: __int__
+  .align 2
+
