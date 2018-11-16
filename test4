@@ -151,21 +151,12 @@ $input:
   la a1, const_6                           # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
   j abort                                  # Abort
-
-.globl $f
-$f:
   mv a0, zero                              # Returning None implicitly
   label_10:                                # Epilogue
   jr ra                                    # Return to caller
-
-.globl $g
-$g:
   mv a0, zero                              # Returning None implicitly
   label_11:                                # Epilogue
   jr ra                                    # Return to caller
-
-.globl $h
-$h:
   mv a0, zero                              # Returning None implicitly
   label_12:                                # Epilogue
   jr ra                                    # Return to caller
