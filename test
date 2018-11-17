@@ -57,10 +57,6 @@ $bool$dispatchTable:
 $str$dispatchTable:
   .word $object.__init__                   # Implementation for method: str.__init__
 
-.globl $x
-$x:
-  .word const_3                            # Initial value of global var: x
-
 .text
 
 .globl main
@@ -72,7 +68,6 @@ main:
   mv s10, gp                               # Set beginning of heap
   add s11, s10, s11                        # Set end of heap (= start of heap + heap size)
   addi fp, sp, 4                           # New fp is just below stack top
-  lw a0, $x                                # Load global: x
   sw a0, -4(fp)                            # Push on stack slot 1
   addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
@@ -162,6 +157,12 @@ $input:
   addi a1, a1, 16                          # Load address of attribute __str__
   j abort                                  # Abort
 
+.globl $f
+$f:
+  mv a0, zero                              # Returning None implicitly
+  label_11:                                # Epilogue
+  jr ra                                    # Return to caller
+
 .globl alloc
 alloc:
   lw a1, 4(a0)                             # Get size of object in words
@@ -172,22 +173,22 @@ alloc2:
   li a2, 4                                 # Word size in bytes
   mul a2, a1, a2                           # Calculate number of bytes to allocate
   add a2, gp, a2                           # Estimate where GP will move
-  bgeu a2, s11, label_11                   # Go to OOM handler if too large
+  bgeu a2, s11, label_12                   # Go to OOM handler if too large
   lw t0, 4(a0)                             # Get size of object in words
   mv t2, a0                                # Initialize src ptr
   mv t3, gp                                # Initialize dest ptr
-  label_12:                                # Copy-loop header
+  label_13:                                # Copy-loop header
   lw t1, 0(t2)                             # Load next word from src
   sw t1, 0(t3)                             # Store next word to dest
   addi t2, t2, 4                           # Increment src
   addi t3, t3, 4                           # Increment dest
   addi t0, t0, -1                          # Decrement counter
-  bne t0, zero, label_12                   # Loop if more words left to copy
+  bne t0, zero, label_13                   # Loop if more words left to copy
   mv a0, gp                                # Save new object's address to return
   sw a1, 4(a0)                             # Set size of new object in words (same as requested size)
   mv gp, a2                                # Set next free slot in the heap
   jr ra                                    # Return to caller
-  label_11:                                # OOM handler
+  label_12:                                # OOM handler
   li a0, 5                                 # Exit code for: Out of memory
   la a1, const_8                           # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
@@ -204,8 +205,8 @@ abort:
   mv a1, t0                                # Move exit code to a1
   li a0, 17                                # Code for ecall: exit2
   ecall                                    # Exit with code
-  label_13:                                # Infinite loop
-  j label_13                               # Prevent fallthrough
+  label_14:                                # Infinite loop
+  j label_14                               # Prevent fallthrough
 
 .globl heap.init
 heap.init:
@@ -341,6 +342,14 @@ const_17:
   .word 16                                 # Constant value of attribute: __int__
   .align 2
 
+.globl const_3
+const_3:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 1                                  # Constant value of attribute: __int__
+  .align 2
+
 .globl const_16
 const_16:
   .word 1                                  # Type tag for class: int
@@ -379,14 +388,6 @@ const_19:
   .word 4                                  # Object size
   .word $int$dispatchTable                 # Pointer to dispatch table
   .word 5                                  # Constant value of attribute: __int__
-  .align 2
-
-.globl const_3
-const_3:
-  .word 1                                  # Type tag for class: int
-  .word 4                                  # Object size
-  .word $int$dispatchTable                 # Pointer to dispatch table
-  .word 42                                 # Constant value of attribute: __int__
   .align 2
 
 .globl const_12
