@@ -68,6 +68,7 @@ main:
   mv s10, gp                               # Set beginning of heap
   add s11, s10, s11                        # Set end of heap (= start of heap + heap size)
   addi fp, sp, 4                           # New fp is just below stack top
+  jal $f                                   # Invoke function: f
   sw a0, -4(fp)                            # Push on stack slot 1
   addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
@@ -159,8 +160,21 @@ $input:
 
 .globl $f
 $f:
-  mv a0, zero                              # Returning None implicitly
-  label_11:                                # Epilogue
+  la a0, const_3                           # Initial value for local: x
+  sw a0, 0(sp)                             # Put local variable on stack top + 0
+  sw fp, -4(sp)                            # Put control link on stack top + 1
+  sw ra, -8(sp)                            # Put return address on stack top + 2
+  addi sp, sp, -12                         # Increment stack pointer by 3
+  addi fp, sp, 4                           # New fp is just below stack top
+  label_11:                                # Begin function statements
+  lw a0, 8(fp)                             # Load var: f.x
+  j label_12                               # Go to return
+  mv a0, zero                              # Load None
+  j label_12                               # Jump to function epilogue
+  label_12:                                # Epilogue
+  lw ra, 0(fp)                             # Get return address
+  lw fp, 4(fp)                             # Use control link to restore caller's fp
+  addi sp, sp, 12                          # Decrement stack pointer by 3
   jr ra                                    # Return to caller
 
 .globl alloc
@@ -173,22 +187,22 @@ alloc2:
   li a2, 4                                 # Word size in bytes
   mul a2, a1, a2                           # Calculate number of bytes to allocate
   add a2, gp, a2                           # Estimate where GP will move
-  bgeu a2, s11, label_12                   # Go to OOM handler if too large
+  bgeu a2, s11, label_13                   # Go to OOM handler if too large
   lw t0, 4(a0)                             # Get size of object in words
   mv t2, a0                                # Initialize src ptr
   mv t3, gp                                # Initialize dest ptr
-  label_13:                                # Copy-loop header
+  label_14:                                # Copy-loop header
   lw t1, 0(t2)                             # Load next word from src
   sw t1, 0(t3)                             # Store next word to dest
   addi t2, t2, 4                           # Increment src
   addi t3, t3, 4                           # Increment dest
   addi t0, t0, -1                          # Decrement counter
-  bne t0, zero, label_13                   # Loop if more words left to copy
+  bne t0, zero, label_14                   # Loop if more words left to copy
   mv a0, gp                                # Save new object's address to return
   sw a1, 4(a0)                             # Set size of new object in words (same as requested size)
   mv gp, a2                                # Set next free slot in the heap
   jr ra                                    # Return to caller
-  label_12:                                # OOM handler
+  label_13:                                # OOM handler
   li a0, 5                                 # Exit code for: Out of memory
   la a1, const_8                           # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
@@ -205,8 +219,8 @@ abort:
   mv a1, t0                                # Move exit code to a1
   li a0, 17                                # Code for ecall: exit2
   ecall                                    # Exit with code
-  label_14:                                # Infinite loop
-  j label_14                               # Prevent fallthrough
+  label_15:                                # Infinite loop
+  j label_15                               # Prevent fallthrough
 
 .globl heap.init
 heap.init:
