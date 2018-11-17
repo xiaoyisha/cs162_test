@@ -68,6 +68,17 @@ main:
   mv s10, gp                               # Set beginning of heap
   add s11, s10, s11                        # Set end of heap (= start of heap + heap size)
   addi fp, sp, 4                           # New fp is just below stack top
+  la a0, const_1                           # Load boolean literal: true
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  la a0, const_0                           # Load boolean literal: false
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  label_0:                                 # End of program
   li a0, 10                                # Code for ecall: exit
   ecall
 
@@ -79,33 +90,33 @@ $object.__init__:
 .globl $print
 $print:
   lw a0, 4(sp)                             # Load arg
-  beq a0, zero, label_1                    # None is an illegal argument
+  beq a0, zero, label_2                    # None is an illegal argument
   lw t0, 0(a0)                             # Get type tag of arg
   li t1, 1                                 # Load type tag of `int`
-  beq t0, t1, label_2                      # Go to print(int)
+  beq t0, t1, label_3                      # Go to print(int)
   li t1, 3                                 # Load type tag of `str`
-  beq t0, t1, label_3                      # Go to print(str)
+  beq t0, t1, label_4                      # Go to print(str)
   li t1, 2                                 # Load type tag of `bool`
-  beq t0, t1, label_4                      # Go to print(bool)
-  label_1:                                 # Invalid argument
+  beq t0, t1, label_5                      # Go to print(bool)
+  label_2:                                 # Invalid argument
   li a0, 1                                 # Exit code for: Invalid argument
   la a1, const_3                           # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
   j abort                                  # Abort
-  label_4:                                 # Print bool object in A0
+  label_5:                                 # Print bool object in A0
   lw a0, 12(a0)                            # Load attribute __bool__
-  beq a0, zero, label_6                    # Go to: print(False)
+  beq a0, zero, label_7                    # Go to: print(False)
   la a0, const_4                           # String representation: True
-  j label_3                                # Go to: print(str)
-  label_6:                                 # Print False object in A0
+  j label_4                                # Go to: print(str)
+  label_7:                                 # Print False object in A0
   la a0, const_5                           # String representation: False
-  j label_3                                # Go to: print(str)
-  label_3:                                 # Print str object in A0
+  j label_4                                # Go to: print(str)
+  label_4:                                 # Print str object in A0
   addi a1, a0, 16                          # Load address of attribute __str__
-  j label_5                                # Print the null-terminated string is now in A1
+  j label_6                                # Print the null-terminated string is now in A1
   mv a0, zero                              # Load None
-  j label_0                                # Go to return
-  label_2:                                 # Print int object in A0
+  j label_1                                # Go to return
+  label_3:                                 # Print int object in A0
   lw a1, 12(a0)                            # Load attribute __int__
   li a0, 1                                 # Code for ecall: print_int
   ecall                                    # Print integer
@@ -113,35 +124,35 @@ $print:
   li a0, 11                                # Code for ecall: print_char
   ecall                                    # Print character
   mv a0, zero                              # Load None
-  j label_0                                # Go to return
-  label_5:                                 # Print null-terminated string in A1
+  j label_1                                # Go to return
+  label_6:                                 # Print null-terminated string in A1
   li a0, 4                                 # Code for ecall: print_string
   ecall                                    # Print string
   li a1, 10                                # Load newline character
   li a0, 11                                # Code for ecall: print_char
   ecall                                    # Print character
   mv a0, zero                              # Load None
-  label_0:                                 # End of function
+  label_1:                                 # End of function
   jr ra                                    # Return to caller
 
 .globl $len
 $len:
   lw a0, 4(sp)                             # Load arg
-  beq a0, zero, label_7                    # None is an illegal argument
+  beq a0, zero, label_8                    # None is an illegal argument
   lw t0, 0(a0)                             # Get type tag of arg
   li t1, 3                                 # Load type tag of `str`
-  beq t0, t1, label_8                      # Go to len(str)
+  beq t0, t1, label_9                      # Go to len(str)
   li t1, -1                                # Load type tag for list objects
-  beq t0, t1, label_9                      # Go to len(list)
-  label_7:                                 # Invalid argument
+  beq t0, t1, label_10                     # Go to len(list)
+  label_8:                                 # Invalid argument
   li a0, 1                                 # Exit code for: Invalid argument
   la a1, const_3                           # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
   j abort                                  # Abort
-  label_8:                                 # Get length of string
+  label_9:                                 # Get length of string
   lw a0, 12(a0)                            # Load attribute: __len__
   jr ra                                    # Return to caller
-  label_9:                                 # Get length of list
+  label_10:                                # Get length of list
   lw a0, 12(a0)                            # Load attribute: __len__
   jr ra                                    # Return to caller
 
@@ -162,22 +173,22 @@ alloc2:
   li a2, 4                                 # Word size in bytes
   mul a2, a1, a2                           # Calculate number of bytes to allocate
   add a2, gp, a2                           # Estimate where GP will move
-  bgeu a2, s11, label_10                   # Go to OOM handler if too large
+  bgeu a2, s11, label_11                   # Go to OOM handler if too large
   lw t0, 4(a0)                             # Get size of object in words
   mv t2, a0                                # Initialize src ptr
   mv t3, gp                                # Initialize dest ptr
-  label_11:                                # Copy-loop header
+  label_12:                                # Copy-loop header
   lw t1, 0(t2)                             # Load next word from src
   sw t1, 0(t3)                             # Store next word to dest
   addi t2, t2, 4                           # Increment src
   addi t3, t3, 4                           # Increment dest
   addi t0, t0, -1                          # Decrement counter
-  bne t0, zero, label_11                   # Loop if more words left to copy
+  bne t0, zero, label_12                   # Loop if more words left to copy
   mv a0, gp                                # Save new object's address to return
   sw a1, 4(a0)                             # Set size of new object in words (same as requested size)
   mv gp, a2                                # Set next free slot in the heap
   jr ra                                    # Return to caller
-  label_10:                                # OOM handler
+  label_11:                                # OOM handler
   li a0, 5                                 # Exit code for: Out of memory
   la a1, const_7                           # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
@@ -194,8 +205,8 @@ abort:
   mv a1, t0                                # Move exit code to a1
   li a0, 17                                # Code for ecall: exit2
   ecall                                    # Exit with code
-  label_12:                                # Infinite loop
-  j label_12                               # Prevent fallthrough
+  label_13:                                # Infinite loop
+  j label_13                               # Prevent fallthrough
 
 .globl heap.init
 heap.init:
