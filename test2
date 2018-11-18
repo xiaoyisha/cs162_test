@@ -68,16 +68,6 @@ main:
   mv s10, gp                               # Set beginning of heap
   add s11, s10, s11                        # Set end of heap (= start of heap + heap size)
   addi fp, sp, 4                           # New fp is just below stack top
-  la a0, const_1                           # Load boolean literal: true
-  sw a0, -4(fp)                            # Push on stack slot 1
-  addi sp, sp, -4                          # Increment stack pointer by 1
-  jal $print                               # Invoke function: print
-  addi sp, sp, 4                           # Decrement stack pointer by 1
-  la a0, const_0                           # Load boolean literal: false
-  sw a0, -4(fp)                            # Push on stack slot 1
-  addi sp, sp, -4                          # Increment stack pointer by 1
-  jal $print                               # Invoke function: print
-  addi sp, sp, 4                           # Decrement stack pointer by 1
   label_0:                                 # End of program
   li a0, 10                                # Code for ecall: exit
   ecall
