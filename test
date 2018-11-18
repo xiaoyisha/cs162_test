@@ -57,14 +57,6 @@ $bool$dispatchTable:
 $str$dispatchTable:
   .word $object.__init__                   # Implementation for method: str.__init__
 
-.globl $x
-$x:
-  .word const_2                            # Initial value of global var: x
-
-.globl $y
-$y:
-  .word const_3                            # Initial value of global var: y
-
 .text
 
 .globl main
@@ -76,10 +68,18 @@ main:
   mv s10, gp                               # Set beginning of heap
   add s11, s10, s11                        # Set end of heap (= start of heap + heap size)
   addi fp, sp, 4                           # New fp is just below stack top
-  la a0, const_4                           # Load integer literal: 42
-  sw a0, $y, t0                            # Assign global: y (using tmp register)
-  sw a0, $x, t0                            # Assign global: x (using tmp register)
-  lw a0, $x                                # Load global: x
+  la a0, const_3                           # Load integer literal: 1
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, const_4                           # Load integer literal: 100
+  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t0)                            # Load attribute: __int__
+  lw a0, 12(a0)                            # Load attribute: __int__
+  add a0, t0, a0                           # Operator +
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, $int$prototype                    # Load pointer to prototype of: int
+  jal alloc                                # Allocate new object
+  lw t0, -4(fp)                            # Pop stack slot 1
+  sw t0, 12(a0)                            # Set attribute: __int__
   sw a0, -4(fp)                            # Push on stack slot 1
   addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
@@ -372,6 +372,14 @@ const_14:
   .word 19                                 # Constant value of attribute: __int__
   .align 2
 
+.globl const_4
+const_4:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 100                                # Constant value of attribute: __int__
+  .align 2
+
 .globl const_16
 const_16:
   .word 1                                  # Type tag for class: int
@@ -394,14 +402,6 @@ const_20:
   .word 4                                  # Object size
   .word $int$dispatchTable                 # Pointer to dispatch table
   .word 5                                  # Constant value of attribute: __int__
-  .align 2
-
-.globl const_4
-const_4:
-  .word 1                                  # Type tag for class: int
-  .word 4                                  # Object size
-  .word $int$dispatchTable                 # Pointer to dispatch table
-  .word 42                                 # Constant value of attribute: __int__
   .align 2
 
 .globl const_13
