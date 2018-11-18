@@ -74,14 +74,12 @@ main:
   addi fp, sp, 4                           # New fp is just below stack top
   lw a0, $x                                # Load global: x
   lw a0, 12(a0)                            # Load attribute: __int__
-  sub a0, zero, a0                         # Operator -
+  sub a0, zero, a0                         # Unary negation
   sw a0, -4(fp)                            # Push on stack slot 1
-  la a0, const_2                           # Load pointer to prototype of: int
+  la a0, $int$prototype                    # Load pointer to prototype of: int
   jal alloc                                # Allocate new object
   lw t0, -4(fp)                            # Pop stack slot 1
-  sw t0, 12(a0)                            # Set attribute: 
-  sw a0, -4(fp)                            # Push on stack slot 1
-  addi sp, sp, -4                          # Increment stack pointer by 1
+  sw t0, 12(a0)                            # Set attribute: __int__
   sw a0, -4(fp)                            # Push on stack slot 1
   addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
