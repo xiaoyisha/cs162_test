@@ -70,30 +70,33 @@ main:
   addi fp, sp, 4                           # New fp is just below stack top
   la a0, const_0                           # Load boolean literal: false
   lw a0, 12(a0)                            # Load attribute: __bool__
-  beq a0, zero, label_0                    # Conditional branch
+  beq a0, zero, label_1                    # Conditional branch
   la a0, const_3                           # Load string literal
   sw a0, -4(fp)                            # Push on stack slot 1
   addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
   addi sp, sp, 4                           # Decrement stack pointer by 1
-  j label_1                                # Then body complete; jump to end-if
-  label_0:                                 # Else body
-  la a0, const_1                           # Load boolean literal: true
-  lw a0, 12(a0)                            # Load attribute: __bool__
-  beq a0, zero, label_2                    # Conditional branch
+  j label_2                                # Then body complete; jump to end-if
+  label_1:                                 # Else body
   la a0, const_1                           # Load boolean literal: true
   lw a0, 12(a0)                            # Load attribute: __bool__
   beq a0, zero, label_3                    # Conditional branch
+  la a0, const_1                           # Load boolean literal: true
+  lw a0, 12(a0)                            # Load attribute: __bool__
+  beq a0, zero, label_5                    # Conditional branch
   la a0, const_4                           # Load string literal
   sw a0, -4(fp)                            # Push on stack slot 1
   addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
   addi sp, sp, 4                           # Decrement stack pointer by 1
+  j label_6                                # Then body complete; jump to end-if
+  label_5:                                 # Else body
+  label_6:                                 # End of if-else statement
   j label_4                                # Then body complete; jump to end-if
   label_3:                                 # Else body
-  j label_5                                # Then body complete; jump to end-if
-  label_2:                                 # Else body
-  label_6:                                 # End of program
+  label_4:                                 # End of if-else statement
+  label_2:                                 # End of if-else statement
+  label_0:                                 # End of program
   li a0, 10                                # Code for ecall: exit
   ecall
 
