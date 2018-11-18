@@ -70,8 +70,16 @@ main:
   addi fp, sp, 4                           # New fp is just below stack top
   la a0, const_3                           # Load integer literal: 1
   sw a0, -4(fp)                            # Push on stack slot 1
-  addi sp, sp, -4                          # Increment stack pointer by 1
   la a0, const_4                           # Load integer literal: 100
+  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t0)                            # Load attribute: __int__
+  lw a0, 12(a0)                            # Load attribute: __int__
+  add a0, t0, a0                           # Operator +
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, $int$prototype                    # Load pointer to prototype of: int
+  jal alloc                                # Allocate new object
+  lw t0, -4(fp)                            # Pop stack slot 1
+  sw t0, 12(a0)                            # Set attribute: __int__
   sw a0, -4(fp)                            # Push on stack slot 1
   addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
