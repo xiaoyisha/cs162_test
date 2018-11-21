@@ -70,14 +70,14 @@ main:
   addi fp, sp, 4                           # New fp is just below stack top
   jal $f                                   # Invoke function: f
   lw t0, 12(a0)                            # Load attribute: __bool__
-  bnez t0, label_1                         # Operator or: short circuit-left operand
+  bnez t0, label_1                         # Operator or: short-circuit left operand
   jal $g                                   # Invoke function: g
   label_1:                                 # Done evaluating operator: or
   lw a0, 12(a0)                            # Load attribute: __bool__
   beq a0, zero, label_2                    # Conditional branch
   jal $g                                   # Invoke function: g
   lw t0, 12(a0)                            # Load attribute: __bool__
-  beqz t0, label_4                         # Operator and: short circuit-left operand
+  beqz t0, label_4                         # Operator and: short-circuit left operand
   jal $f                                   # Invoke function: f
   label_4:                                 # Done evaluating operator: and
   lw a0, 12(a0)                            # Load attribute: __bool__
@@ -91,16 +91,16 @@ main:
   label_5:                                 # Else body
   jal $f                                   # Invoke function: f
   lw t0, 12(a0)                            # Load attribute: __bool__
-  beqz t0, label_7                         # Operator and: short circuit-left operand
+  beqz t0, label_7                         # Operator and: short-circuit left operand
   jal $g                                   # Invoke function: g
   lw t0, 12(a0)                            # Load attribute: __bool__
-  bnez t0, label_8                         # Operator or: short circuit-left operand
+  bnez t0, label_8                         # Operator or: short-circuit left operand
   jal $f                                   # Invoke function: f
   label_8:                                 # Done evaluating operator: or
   label_7:                                 # Done evaluating operator: and
   lw a0, 12(a0)                            # Load attribute: __bool__
   seqz a0, a0                              # Logical not
-  beqz a0, label_9                         # Choose boolean to make true
+  beqz a0, label_9                         # Choose boolean to make
   la a0, const_1                           # Make True
   j label_10                               # Jump over 'Make False' branch
   label_9:                                 # Branch to make False
@@ -215,7 +215,6 @@ $f:
   j label_22                               # Go to return
   mv a0, zero                              # Load None
   j label_22                               # Jump to function epilogue
-  mv a0, zero                              # Returning None implicitly
   label_22:                                # Epilogue
   lw ra, 0(fp)                             # Get return address
   lw fp, 4(fp)                             # Use control link to restore caller's fp
@@ -238,7 +237,6 @@ $g:
   j label_24                               # Go to return
   mv a0, zero                              # Load None
   j label_24                               # Jump to function epilogue
-  mv a0, zero                              # Returning None implicitly
   label_24:                                # Epilogue
   lw ra, 0(fp)                             # Get return address
   lw fp, 4(fp)                             # Use control link to restore caller's fp
