@@ -112,7 +112,7 @@ main:
   lw t0, -8(fp)                            # Pop stack slot 2
   sw t0, 16(a0)                            # Set list element at index: 0
   sw a0, -8(fp)                            # Push on stack slot 2
-  addi sp, sp, -8                          # tryIncrement stack pointer by 2
+  addi sp, sp, -8                          # Increment stack pointer by 2
   jal $concat                              # Invoke function: concat
   addi sp, sp, 8                           # Decrement stack pointer by 2
   sw a0, $z, t0                            # Assign global: z (using tmp register)
@@ -121,7 +121,7 @@ main:
   sw a0, -4(fp)                            # Push on stack slot 1
   lw a0, $z                                # Load global: z
   sw a0, -8(fp)                            # Push on stack slot 2
-  addi sp, sp, -8                          # tryIncrement stack pointer by 2
+  addi sp, sp, -8                          # Increment stack pointer by 2
   jal $len                                 # Invoke function: len
   addi sp, sp, 8                           # Decrement stack pointer by 2
   lw t0, -4(fp)                            # Pop stack slot 1
@@ -158,21 +158,21 @@ main:
   mul a0, a0, t0                           # Compute list element offset in bytes
   add a0, a1, a0                           # Pointer to list element
   lw a0, 0(a0)                             # Get list element
-  sw a0, -8(fp)                            # Push on stack slot 2
-  addi sp, sp, -8                          # tryIncrement stack pointer by 2
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
-  addi sp, sp, 8                           # Decrement stack pointer by 2
+  addi sp, sp, 4                           # Decrement stack pointer by 1
   lw a0, $i                                # Load global: i
-  sw a0, -8(fp)                            # Push on stack slot 2
+  sw a0, -4(fp)                            # Push on stack slot 1
   la a0, const_3                           # Load integer literal: 1
-  lw t0, -8(fp)                            # Pop stack slot 2
+  lw t0, -4(fp)                            # Pop stack slot 1
   lw t0, 12(t0)                            # Load attribute: __int__
   lw a0, 12(a0)                            # Load attribute: __int__
   add a0, t0, a0                           # Operator +
-  sw a0, -8(fp)                            # Push on stack slot 2
+  sw a0, -4(fp)                            # Push on stack slot 1
   la a0, $int$prototype                    # Load pointer to prototype of: int
   jal alloc                                # Allocate new object
-  lw t0, -8(fp)                            # Pop stack slot 2
+  lw t0, -4(fp)                            # Pop stack slot 1
   sw t0, 12(a0)                            # Set attribute: __int__
   sw a0, $i, t0                            # Assign global: i (using tmp register)
   j label_1                                # Loop back to header
@@ -272,19 +272,64 @@ $concat:
   lw a0, 12(fp)                            # Load var: concat.x
   sw a0, -4(fp)                            # Push on stack slot 1
   lw a0, 8(fp)                             # Load var: concat.y
+  mv t1, a0                                # Move operand
   lw t0, -4(fp)                            # Pop stack slot 1
+  beqz t0, label_20                        # Ensure not None
+  beqz t1, label_20                        # Ensure not None
+  j label_21                               # Go to not-None
+  label_20:                                # Operand is None
+  j error.None                             # Go to error handler
+  label_21:                                # Operands are not None
+  lw a0, 4(t0)                             # Get size of left operand
+  lw a1, 4(t1)                             # Get size of right operand
+  add a1, a0, a1                           # Sum of sizes of both operands
+  addi a1, a1, -4                          # Subtract double-counted words
+  la a0, $.list$prototype                  # Load pointer to prototype of list object
+  sw t1, -4(fp)                            # Push on stack slot 1
+  sw t0, -8(fp)                            # Push on stack slot 2
+  jal alloc2                               # Alloc list object with specified size
+  mv a1, zero                              # Initialize new list length accumulator to 0
+  addi t3, a0, 16                          # Initialize dest ptr to first element of new list
+  lw t2, -8(fp)                            # Pop stack slot 2
+  lw t0, 12(t2)                            # Get attribute: __len__ of operand
   lw t0, 12(t0)                            # Load attribute: __int__
-  lw a0, 12(a0)                            # Load attribute: __int__
-  add a0, t0, a0                           # Operator +
+  add a1, a1, t0                           # Add operand length to new list length accumulator
+  addi t2, t2, 16                          # Initialize src ptr to first element of operand list
+  label_22:                                # Copy-loop header
+  beqz t0, label_23                        # Exit loop if no more words to copy
+  lw t1, 0(t2)                             # Load next word from src
+  sw t1, 0(t3)                             # Store next word to dest
+  addi t2, t2, 4                           # Increment src
+  addi t3, t3, 4                           # Increment dest
+  addi t0, t0, -1                          # Decrement counter
+  j label_22                               # Go to loop header
+  label_23:                                # Copy-loop footer
+  lw t2, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t2)                            # Get attribute: __len__ of operand
+  lw t0, 12(t0)                            # Load attribute: __int__
+  add a1, a1, t0                           # Add operand length to new list length accumulator
+  addi t2, t2, 16                          # Initialize src ptr to first element of operand list
+  label_24:                                # Copy-loop header
+  beqz t0, label_25                        # Exit loop if no more words to copy
+  lw t1, 0(t2)                             # Load next word from src
+  sw t1, 0(t3)                             # Store next word to dest
+  addi t2, t2, 4                           # Increment src
+  addi t3, t3, 4                           # Increment dest
+  addi t0, t0, -1                          # Decrement counter
+  j label_24                               # Go to loop header
+  label_25:                                # Copy-loop footer
   sw a0, -4(fp)                            # Push on stack slot 1
+  sw a1, -8(fp)                            # Push on stack slot 2
   la a0, $int$prototype                    # Load pointer to prototype of: int
   jal alloc                                # Allocate new object
-  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, -8(fp)                            # Pop stack slot 2
   sw t0, 12(a0)                            # Set attribute: __int__
+  mv a1, a0                                # Move result
+  lw a0, -4(fp)                            # Pop stack slot 1
+  sw a1, 12(a0)                            # Set attribute __len__ of new list
   j label_19                               # Go to return
   mv a0, zero                              # Load None
   j label_19                               # Jump to function epilogue
-  mv a0, zero                              # Returning None implicitly
   label_19:                                # Epilogue
   lw ra, 0(fp)                             # Get return address
   lw fp, 4(fp)                             # Use control link to restore caller's fp
@@ -301,22 +346,22 @@ alloc2:
   li a2, 4                                 # Word size in bytes
   mul a2, a1, a2                           # Calculate number of bytes to allocate
   add a2, gp, a2                           # Estimate where GP will move
-  bgeu a2, s11, label_20                   # Go to OOM handler if too large
+  bgeu a2, s11, label_26                   # Go to OOM handler if too large
   lw t0, 4(a0)                             # Get size of object in words
   mv t2, a0                                # Initialize src ptr
   mv t3, gp                                # Initialize dest ptr
-  label_21:                                # Copy-loop header
+  label_27:                                # Copy-loop header
   lw t1, 0(t2)                             # Load next word from src
   sw t1, 0(t3)                             # Store next word to dest
   addi t2, t2, 4                           # Increment src
   addi t3, t3, 4                           # Increment dest
   addi t0, t0, -1                          # Decrement counter
-  bne t0, zero, label_21                   # Loop if more words left to copy
+  bne t0, zero, label_27                   # Loop if more words left to copy
   mv a0, gp                                # Save new object's address to return
   sw a1, 4(a0)                             # Set size of new object in words (same as requested size)
   mv gp, a2                                # Set next free slot in the heap
   jr ra                                    # Return to caller
-  label_20:                                # OOM handler
+  label_26:                                # OOM handler
   li a0, 5                                 # Exit code for: Out of memory
   la a1, const_13                          # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
@@ -333,8 +378,8 @@ abort:
   mv a1, t0                                # Move exit code to a1
   li a0, 17                                # Code for ecall: exit2
   ecall                                    # Exit with code
-  label_22:                                # Infinite loop
-  j label_22                               # Prevent fallthrough
+  label_28:                                # Infinite loop
+  j label_28                               # Prevent fallthrough
 
 .globl heap.init
 heap.init:
