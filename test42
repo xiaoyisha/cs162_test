@@ -96,14 +96,14 @@ main:
   sw a0, -8(fp)                            # Push on stack slot 2
   la a0, const_2                           # Load integer literal: 0
   lw a1, -8(fp)                            # Pop stack slot 2
-  lw t0, -4(fp)                            # Pop stack slot1
+  lw t0, -4(fp)                            # Pop stack slot 1
   bnez a1, label_1                         # Ensure not None
   j error.None                             # Go to error handler
   label_1:                                 # Not None
   lw a0, 12(a0)                            # Load attribute: __int__
   lw t1, 12(a1)                            # Load attribute: __len__
-  lw t1, 12(t0)                            # Load attribute: __int__
-  slt t1, a0, t0                           # is index < len?
+  lw t1, 12(t1)                            # Load attribute: __int__
+  slt t1, a0, t1                           # is index < len?
   beqz t1, label_2                         # Ensure index < len
   bltz a0, label_2                         # Ensure index is >= 0
   j label_3                                # OK, index is within bounds
@@ -116,19 +116,19 @@ main:
   add a0, a1, a0                           # Pointer to list element
   sw t0, 0(a0)                             # Set list element
   la a0, const_7                           # Load integer literal: 5
-  sw a0, -8(fp)                            # Push on stack slot 2
+  sw a0, -4(fp)                            # Push on stack slot 1
   lw a0, $x                                # Load global: x
-  sw a0, -12(fp)                           # Push on stack slot 3
+  sw a0, -8(fp)                            # Push on stack slot 2
   la a0, const_3                           # Load integer literal: 1
-  lw a1, -12(fp)                           # Pop stack slot 3
-  lw t0, -8(fp)                            # Pop stack slot2
+  lw a1, -8(fp)                            # Pop stack slot 2
+  lw t0, -4(fp)                            # Pop stack slot 1
   bnez a1, label_4                         # Ensure not None
   j error.None                             # Go to error handler
   label_4:                                 # Not None
   lw a0, 12(a0)                            # Load attribute: __int__
   lw t1, 12(a1)                            # Load attribute: __len__
-  lw t1, 12(t0)                            # Load attribute: __int__
-  slt t1, a0, t0                           # is index < len?
+  lw t1, 12(t1)                            # Load attribute: __int__
+  slt t1, a0, t1                           # is index < len?
   beqz t1, label_5                         # Ensure index < len
   bltz a0, label_5                         # Ensure index is >= 0
   j label_6                                # OK, index is within bounds
@@ -141,19 +141,19 @@ main:
   add a0, a1, a0                           # Pointer to list element
   sw t0, 0(a0)                             # Set list element
   la a0, const_8                           # Load integer literal: 6
-  sw a0, -12(fp)                           # Push on stack slot 3
+  sw a0, -4(fp)                            # Push on stack slot 1
   lw a0, $x                                # Load global: x
-  sw a0, -16(fp)                           # Push on stack slot 4
+  sw a0, -8(fp)                            # Push on stack slot 2
   la a0, const_4                           # Load integer literal: 2
-  lw a1, -16(fp)                           # Pop stack slot 4
-  lw t0, -12(fp)                           # Pop stack slot3
+  lw a1, -8(fp)                            # Pop stack slot 2
+  lw t0, -4(fp)                            # Pop stack slot 1
   bnez a1, label_7                         # Ensure not None
   j error.None                             # Go to error handler
   label_7:                                 # Not None
   lw a0, 12(a0)                            # Load attribute: __int__
   lw t1, 12(a1)                            # Load attribute: __len__
-  lw t1, 12(t0)                            # Load attribute: __int__
-  slt t1, a0, t0                           # is index < len?
+  lw t1, 12(t1)                            # Load attribute: __int__
+  slt t1, a0, t1                           # is index < len?
   beqz t1, label_8                         # Ensure index < len
   bltz a0, label_8                         # Ensure index is >= 0
   j label_9                                # OK, index is within bounds
@@ -166,9 +166,9 @@ main:
   add a0, a1, a0                           # Pointer to list element
   sw t0, 0(a0)                             # Set list element
   lw a0, $x                                # Load global: x
-  sw a0, -16(fp)                           # Push on stack slot 4
+  sw a0, -4(fp)                            # Push on stack slot 1
   la a0, const_2                           # Load integer literal: 0
-  lw a1, -16(fp)                           # Pop stack slot 4
+  lw a1, -4(fp)                            # Pop stack slot 1
   bnez a1, label_10                        # Ensure not None
   j error.None                             # Go to error handler
   label_10:                                # Not None
@@ -187,14 +187,14 @@ main:
   mul a0, a0, t0                           # Compute list element offset in bytes
   add a0, a1, a0                           # Pointer to list element
   lw a0, 0(a0)                             # Get list element
-  sw a0, -16(fp)                           # Push on stack slot 4
-  addi sp, sp, -16                         # Increment stack pointer by 4
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
-  addi sp, sp, 16                          # Decrement stack pointer by 4
+  addi sp, sp, 4                           # Decrement stack pointer by 1
   lw a0, $x                                # Load global: x
-  sw a0, -16(fp)                           # Push on stack slot 4
+  sw a0, -4(fp)                            # Push on stack slot 1
   la a0, const_3                           # Load integer literal: 1
-  lw a1, -16(fp)                           # Pop stack slot 4
+  lw a1, -4(fp)                            # Pop stack slot 1
   bnez a1, label_13                        # Ensure not None
   j error.None                             # Go to error handler
   label_13:                                # Not None
@@ -213,14 +213,14 @@ main:
   mul a0, a0, t0                           # Compute list element offset in bytes
   add a0, a1, a0                           # Pointer to list element
   lw a0, 0(a0)                             # Get list element
-  sw a0, -16(fp)                           # Push on stack slot 4
-  addi sp, sp, -16                         # Increment stack pointer by 4
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
-  addi sp, sp, 16                          # Decrement stack pointer by 4
+  addi sp, sp, 4                           # Decrement stack pointer by 1
   lw a0, $x                                # Load global: x
-  sw a0, -16(fp)                           # Push on stack slot 4
+  sw a0, -4(fp)                            # Push on stack slot 1
   la a0, const_4                           # Load integer literal: 2
-  lw a1, -16(fp)                           # Pop stack slot 4
+  lw a1, -4(fp)                            # Pop stack slot 1
   bnez a1, label_16                        # Ensure not None
   j error.None                             # Go to error handler
   label_16:                                # Not None
@@ -239,10 +239,10 @@ main:
   mul a0, a0, t0                           # Compute list element offset in bytes
   add a0, a1, a0                           # Pointer to list element
   lw a0, 0(a0)                             # Get list element
-  sw a0, -16(fp)                           # Push on stack slot 4
-  addi sp, sp, -16                         # Increment stack pointer by 4
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
-  addi sp, sp, 16                          # Decrement stack pointer by 4
+  addi sp, sp, 4                           # Decrement stack pointer by 1
   label_0:                                 # End of program
   li a0, 10                                # Code for ecall: exit
   ecall
