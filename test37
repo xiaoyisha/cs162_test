@@ -1,0 +1,679 @@
+
+.data
+
+.globl $object$prototype
+$object$prototype:
+  .word 0                                  # Type tag for class: object
+  .word 3                                  # Object size
+  .word $object$dispatchTable              # Pointer to dispatch table
+  .align 2
+
+.globl $int$prototype
+$int$prototype:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 0                                  # Initial value of attribute: __int__
+  .align 2
+
+.globl $bool$prototype
+$bool$prototype:
+  .word 2                                  # Type tag for class: bool
+  .word 4                                  # Object size
+  .word $bool$dispatchTable                # Pointer to dispatch table
+  .word 0                                  # Initial value of attribute: __bool__
+  .align 2
+
+.globl $str$prototype
+$str$prototype:
+  .word 3                                  # Type tag for class: str
+  .word 5                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_2                            # Initial value of attribute: __len__
+  .word 0                                  # Initial value of attribute: __str__
+  .align 2
+
+.globl $.list$prototype
+$.list$prototype:
+  .word -1                                 # Type tag for class: .list
+  .word 4                                  # Object size
+  .word 0                                  # Pointer to dispatch table
+  .word const_2                            # Initial value of attribute: __len__
+  .align 2
+
+.globl $object$dispatchTable
+$object$dispatchTable:
+  .word $object.__init__                   # Implementation for method: object.__init__
+
+.globl $int$dispatchTable
+$int$dispatchTable:
+  .word $object.__init__                   # Implementation for method: int.__init__
+
+.globl $bool$dispatchTable
+$bool$dispatchTable:
+  .word $object.__init__                   # Implementation for method: bool.__init__
+
+.globl $str$dispatchTable
+$str$dispatchTable:
+  .word $object.__init__                   # Implementation for method: str.__init__
+
+.globl $z
+$z:
+  .word 0                                  # Initial value of global var: z
+
+.globl $i
+$i:
+  .word const_2                            # Initial value of global var: i
+
+.text
+
+.globl main
+main:
+  lui a0, 8192                             # Initialize heap size (in multiples of 4KB)
+  add s11, s11, a0                         # Save heap size
+  jal heap.init                            # Call heap.init routine
+  mv gp, a0                                # Initialize heap pointer
+  mv s10, gp                               # Set beginning of heap
+  add s11, s10, s11                        # Set end of heap (= start of heap + heap size)
+  addi fp, sp, 4                           # New fp is just below stack top
+  la a0, const_3                           # Load integer literal: 1
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, const_4                           # Load integer literal: 2
+  sw a0, -8(fp)                            # Push on stack slot 2
+  la a0, const_5                           # Load integer literal: 3
+  sw a0, -12(fp)                           # Push on stack slot 3
+  la a0, $.list$prototype                  # Load pointer to prototype of list object
+  li a1, 7                                 # Object size for list with 3 elements
+  jal alloc2                               # Alloc list object with specified size
+  la t0, const_5                           # Load integer literal: 3
+  sw t0, 12(a0)                            # Set attribute: __len__
+  lw t0, -12(fp)                           # Pop stack slot 3
+  sw t0, 24(a0)                            # Set list element at index: 2
+  lw t0, -8(fp)                            # Pop stack slot 2
+  sw t0, 20(a0)                            # Set list element at index: 1
+  lw t0, -4(fp)                            # Pop stack slot 1
+  sw t0, 16(a0)                            # Set list element at index: 0
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, const_6                           # Load integer literal: 4
+  sw a0, -8(fp)                            # Push on stack slot 2
+  la a0, const_7                           # Load integer literal: 5
+  sw a0, -12(fp)                           # Push on stack slot 3
+  la a0, const_8                           # Load integer literal: 6
+  sw a0, -16(fp)                           # Push on stack slot 4
+  la a0, $.list$prototype                  # Load pointer to prototype of list object
+  li a1, 7                                 # Object size for list with 3 elements
+  jal alloc2                               # Alloc list object with specified size
+  la t0, const_5                           # Load integer literal: 3
+  sw t0, 12(a0)                            # Set attribute: __len__
+  lw t0, -16(fp)                           # Pop stack slot 4
+  sw t0, 24(a0)                            # Set list element at index: 2
+  lw t0, -12(fp)                           # Pop stack slot 3
+  sw t0, 20(a0)                            # Set list element at index: 1
+  lw t0, -8(fp)                            # Pop stack slot 2
+  sw t0, 16(a0)                            # Set list element at index: 0
+  mv t1, a0                                # Move operand
+  lw t0, -4(fp)                            # Pop stack slot 1
+  beqz t0, label_1                         # Ensure not None
+  beqz t1, label_1                         # Ensure not None
+  j label_2                                # Go to not-None
+  label_1:                                 # Operand is None
+  j error.None                             # Go to error handler
+  label_2:                                 # Operands are not None
+  lw a0, 4(t0)                             # Get size of left operand
+  lw a1, 4(t1)                             # Get size of right operand
+  add a1, a0, a1                           # Sum of sizes of both operands
+  addi a1, a1, -4                          # Subtract double-counted words
+  la a0, $.list$prototype                  # Load pointer to prototype of list object
+  sw t1, -4(fp)                            # Push on stack slot 1
+  sw t0, -8(fp)                            # Push on stack slot 2
+  jal alloc2                               # Alloc list object with specified size
+  mv a1, zero                              # Initialize new list length accumulator to 0
+  addi t3, a0, 16                          # Initialize dest ptr to first element of new list
+  lw t2, -8(fp)                            # Pop stack slot 2
+  lw t0, 12(t2)                            # Get attribute: __len__ of operand
+  lw t0, 12(t0)                            # Load attribute: __int__
+  add a1, a1, t0                           # Add operand length to new list length accumulator
+  addi t2, t2, 16                          # Initialize src ptr to first element of operand list
+  label_3:                                 # Copy-loop header
+  beqz t0, label_4                         # Exit loop if no more words to copy
+  lw t1, 0(t2)                             # Load next word from src
+  sw t1, 0(t3)                             # Store next word to dest
+  addi t2, t2, 4                           # Increment src
+  addi t3, t3, 4                           # Increment dest
+  addi t0, t0, -1                          # Decrement counter
+  j label_3                                # Go to loop header
+  label_4:                                 # Copy-loop footer
+  lw t2, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t2)                            # Get attribute: __len__ of operand
+  lw t0, 12(t0)                            # Load attribute: __int__
+  add a1, a1, t0                           # Add operand length to new list length accumulator
+  addi t2, t2, 16                          # Initialize src ptr to first element of operand list
+  label_5:                                 # Copy-loop header
+  beqz t0, label_6                         # Exit loop if no more words to copy
+  lw t1, 0(t2)                             # Load next word from src
+  sw t1, 0(t3)                             # Store next word to dest
+  addi t2, t2, 4                           # Increment src
+  addi t3, t3, 4                           # Increment dest
+  addi t0, t0, -1                          # Decrement counter
+  j label_5                                # Go to loop header
+  label_6:                                 # Copy-loop footer
+  sw a0, -4(fp)                            # Push on stack slot 1
+  sw a1, -8(fp)                            # Push on stack slot 2
+  la a0, $int$prototype                    # Load pointer to prototype of: int
+  jal alloc                                # Allocate new object
+  lw t0, -8(fp)                            # Pop stack slot 2
+  sw t0, 12(a0)                            # Set attribute: __int__
+  mv a1, a0                                # Move result
+  lw a0, -4(fp)                            # Pop stack slot 1
+  sw a1, 12(a0)                            # Set attribute __len__ of new list
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, const_9                           # Load integer literal: 7
+  sw a0, -8(fp)                            # Push on stack slot 2
+  la a0, const_10                          # Load integer literal: 8
+  sw a0, -12(fp)                           # Push on stack slot 3
+  la a0, const_11                          # Load integer literal: 9
+  sw a0, -16(fp)                           # Push on stack slot 4
+  la a0, $.list$prototype                  # Load pointer to prototype of list object
+  li a1, 7                                 # Object size for list with 3 elements
+  jal alloc2                               # Alloc list object with specified size
+  la t0, const_5                           # Load integer literal: 3
+  sw t0, 12(a0)                            # Set attribute: __len__
+  lw t0, -16(fp)                           # Pop stack slot 4
+  sw t0, 24(a0)                            # Set list element at index: 2
+  lw t0, -12(fp)                           # Pop stack slot 3
+  sw t0, 20(a0)                            # Set list element at index: 1
+  lw t0, -8(fp)                            # Pop stack slot 2
+  sw t0, 16(a0)                            # Set list element at index: 0
+  mv t1, a0                                # Move operand
+  lw t0, -4(fp)                            # Pop stack slot 1
+  beqz t0, label_7                         # Ensure not None
+  beqz t1, label_7                         # Ensure not None
+  j label_8                                # Go to not-None
+  label_7:                                 # Operand is None
+  j error.None                             # Go to error handler
+  label_8:                                 # Operands are not None
+  lw a0, 4(t0)                             # Get size of left operand
+  lw a1, 4(t1)                             # Get size of right operand
+  add a1, a0, a1                           # Sum of sizes of both operands
+  addi a1, a1, -4                          # Subtract double-counted words
+  la a0, $.list$prototype                  # Load pointer to prototype of list object
+  sw t1, -4(fp)                            # Push on stack slot 1
+  sw t0, -8(fp)                            # Push on stack slot 2
+  jal alloc2                               # Alloc list object with specified size
+  mv a1, zero                              # Initialize new list length accumulator to 0
+  addi t3, a0, 16                          # Initialize dest ptr to first element of new list
+  lw t2, -8(fp)                            # Pop stack slot 2
+  lw t0, 12(t2)                            # Get attribute: __len__ of operand
+  lw t0, 12(t0)                            # Load attribute: __int__
+  add a1, a1, t0                           # Add operand length to new list length accumulator
+  addi t2, t2, 16                          # Initialize src ptr to first element of operand list
+  label_9:                                 # Copy-loop header
+  beqz t0, label_10                        # Exit loop if no more words to copy
+  lw t1, 0(t2)                             # Load next word from src
+  sw t1, 0(t3)                             # Store next word to dest
+  addi t2, t2, 4                           # Increment src
+  addi t3, t3, 4                           # Increment dest
+  addi t0, t0, -1                          # Decrement counter
+  j label_9                                # Go to loop header
+  label_10:                                # Copy-loop footer
+  lw t2, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t2)                            # Get attribute: __len__ of operand
+  lw t0, 12(t0)                            # Load attribute: __int__
+  add a1, a1, t0                           # Add operand length to new list length accumulator
+  addi t2, t2, 16                          # Initialize src ptr to first element of operand list
+  label_11:                                # Copy-loop header
+  beqz t0, label_12                        # Exit loop if no more words to copy
+  lw t1, 0(t2)                             # Load next word from src
+  sw t1, 0(t3)                             # Store next word to dest
+  addi t2, t2, 4                           # Increment src
+  addi t3, t3, 4                           # Increment dest
+  addi t0, t0, -1                          # Decrement counter
+  j label_11                               # Go to loop header
+  label_12:                                # Copy-loop footer
+  sw a0, -4(fp)                            # Push on stack slot 1
+  sw a1, -8(fp)                            # Push on stack slot 2
+  la a0, $int$prototype                    # Load pointer to prototype of: int
+  jal alloc                                # Allocate new object
+  lw t0, -8(fp)                            # Pop stack slot 2
+  sw t0, 12(a0)                            # Set attribute: __int__
+  mv a1, a0                                # Move result
+  lw a0, -4(fp)                            # Pop stack slot 1
+  sw a1, 12(a0)                            # Set attribute __len__ of new list
+  sw a0, $z, t0                            # Assign global: z (using tmp register)
+  label_13:                                # While loop header
+  lw a0, $i                                # Load global: i
+  sw a0, -4(fp)                            # Push on stack slot 1
+  lw a0, $z                                # Load global: z
+  sw a0, -8(fp)                            # Push on stack slot 2
+  addi sp, sp, -8                          # Increment stack pointer by 2
+  jal $len                                 # Invoke function: len
+  addi sp, sp, 8                           # Decrement stack pointer by 2
+  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t0)                            # Load attribute: __int__
+  lw a0, 12(a0)                            # Load attribute: __int__
+  slt a0, t0, a0                           # Operator <
+  beqz a0, label_15                        # Choose boolean to make
+  la a0, const_1                           # Make True
+  j label_16                               # Jump over 'Make False' branch
+  label_15:                                # Branch to make False
+  la a0, const_0                           # Make False
+  label_16:                                # Done making boolean
+  lw a0, 12(a0)                            # Load attribute: __bool__
+  beqz a0, label_14                        # Exit while loop if condition is false
+  lw a0, $z                                # Load global: z
+  sw a0, -4(fp)                            # Push on stack slot 1
+  lw a0, $i                                # Load global: i
+  lw a1, -4(fp)                            # Pop stack slot 1
+  bnez a1, label_17                        # Ensure not None
+  j error.None                             # Go to error handler
+  label_17:                                # Not None
+  lw a0, 12(a0)                            # Load attribute: __int__
+  lw t0, 12(a1)                            # Load attribute: __len__
+  lw t0, 12(t0)                            # Load attribute: __int__
+  slt t0, a0, t0                           # is index < len?
+  beqz t0, label_18                        # Ensure index < len
+  bltz a0, label_18                        # Ensure index is >= 0
+  j label_19                               # OK, index is within bounds
+  label_18:                                # Index out of bounds
+  j error.OOB                              # Go to error handler
+  label_19:                                # Index within bounds
+  addi a0, a0, 4                           # Compute list element offset in words
+  li t0, 4                                 # Word size in bytes
+  mul a0, a0, t0                           # Compute list element offset in bytes
+  add a0, a1, a0                           # Pointer to list element
+  lw a0, 0(a0)                             # Get list element
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  lw a0, $i                                # Load global: i
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, const_3                           # Load integer literal: 1
+  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t0)                            # Load attribute: __int__
+  lw a0, 12(a0)                            # Load attribute: __int__
+  add a0, t0, a0                           # Operator +
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, $int$prototype                    # Load pointer to prototype of: int
+  jal alloc                                # Allocate new object
+  lw t0, -4(fp)                            # Pop stack slot 1
+  sw t0, 12(a0)                            # Set attribute: __int__
+  sw a0, $i, t0                            # Assign global: i (using tmp register)
+  j label_13                               # Loop back to header
+  label_14:                                # End of while loop
+  label_0:                                 # End of program
+  li a0, 10                                # Code for ecall: exit
+  ecall
+
+.globl $object.__init__
+$object.__init__:
+  mv a0, zero                              # `None` constant
+  jr ra                                    # Return
+
+.globl $print
+$print:
+  lw a0, 4(sp)                             # Load arg
+  beq a0, zero, label_21                   # None is an illegal argument
+  lw t0, 0(a0)                             # Get type tag of arg
+  li t1, 1                                 # Load type tag of `int`
+  beq t0, t1, label_22                     # Go to print(int)
+  li t1, 3                                 # Load type tag of `str`
+  beq t0, t1, label_23                     # Go to print(str)
+  li t1, 2                                 # Load type tag of `bool`
+  beq t0, t1, label_24                     # Go to print(bool)
+  label_21:                                # Invalid argument
+  li a0, 1                                 # Exit code for: Invalid argument
+  la a1, const_12                          # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+  label_24:                                # Print bool object in A0
+  lw a0, 12(a0)                            # Load attribute __bool__
+  beq a0, zero, label_26                   # Go to: print(False)
+  la a0, const_13                          # String representation: True
+  j label_23                               # Go to: print(str)
+  label_26:                                # Print False object in A0
+  la a0, const_14                          # String representation: False
+  j label_23                               # Go to: print(str)
+  label_23:                                # Print str object in A0
+  addi a1, a0, 16                          # Load address of attribute __str__
+  j label_25                               # Print the null-terminated string is now in A1
+  mv a0, zero                              # Load None
+  j label_20                               # Go to return
+  label_22:                                # Print int object in A0
+  lw a1, 12(a0)                            # Load attribute __int__
+  li a0, 1                                 # Code for ecall: print_int
+  ecall                                    # Print integer
+  li a1, 10                                # Load newline character
+  li a0, 11                                # Code for ecall: print_char
+  ecall                                    # Print character
+  mv a0, zero                              # Load None
+  j label_20                               # Go to return
+  label_25:                                # Print null-terminated string in A1
+  li a0, 4                                 # Code for ecall: print_string
+  ecall                                    # Print string
+  li a1, 10                                # Load newline character
+  li a0, 11                                # Code for ecall: print_char
+  ecall                                    # Print character
+  mv a0, zero                              # Load None
+  label_20:                                # End of function
+  jr ra                                    # Return to caller
+
+.globl $len
+$len:
+  lw a0, 4(sp)                             # Load arg
+  beq a0, zero, label_27                   # None is an illegal argument
+  lw t0, 0(a0)                             # Get type tag of arg
+  li t1, 3                                 # Load type tag of `str`
+  beq t0, t1, label_28                     # Go to len(str)
+  li t1, -1                                # Load type tag for list objects
+  beq t0, t1, label_29                     # Go to len(list)
+  label_27:                                # Invalid argument
+  li a0, 1                                 # Exit code for: Invalid argument
+  la a1, const_12                          # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+  label_28:                                # Get length of string
+  lw a0, 12(a0)                            # Load attribute: __len__
+  jr ra                                    # Return to caller
+  label_29:                                # Get length of list
+  lw a0, 12(a0)                            # Load attribute: __len__
+  jr ra                                    # Return to caller
+
+.globl $input
+$input:
+  li a0, 6                                 # Exit code for: Unsupported operation
+  la a1, const_15                          # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+
+.globl alloc
+alloc:
+  lw a1, 4(a0)                             # Get size of object in words
+  j alloc2                                 # Allocate object with exact size
+
+.globl alloc2
+alloc2:
+  li a2, 4                                 # Word size in bytes
+  mul a2, a1, a2                           # Calculate number of bytes to allocate
+  add a2, gp, a2                           # Estimate where GP will move
+  bgeu a2, s11, label_30                   # Go to OOM handler if too large
+  lw t0, 4(a0)                             # Get size of object in words
+  mv t2, a0                                # Initialize src ptr
+  mv t3, gp                                # Initialize dest ptr
+  label_31:                                # Copy-loop header
+  lw t1, 0(t2)                             # Load next word from src
+  sw t1, 0(t3)                             # Store next word to dest
+  addi t2, t2, 4                           # Increment src
+  addi t3, t3, 4                           # Increment dest
+  addi t0, t0, -1                          # Decrement counter
+  bne t0, zero, label_31                   # Loop if more words left to copy
+  mv a0, gp                                # Save new object's address to return
+  sw a1, 4(a0)                             # Set size of new object in words (same as requested size)
+  mv gp, a2                                # Set next free slot in the heap
+  jr ra                                    # Return to caller
+  label_30:                                # OOM handler
+  li a0, 5                                 # Exit code for: Out of memory
+  la a1, const_16                          # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+
+.globl abort
+abort:
+  mv t0, a0                                # Save exit code in temp
+  li a0, 4                                 # Code for ecall: print_string
+  ecall                                    # Print error message in a1
+  li a1, 10                                # Load newline character
+  li a0, 11                                # Code for ecall: print_char
+  ecall                                    # Print newline
+  mv a1, t0                                # Move exit code to a1
+  li a0, 17                                # Code for ecall: exit2
+  ecall                                    # Exit with code
+  label_32:                                # Infinite loop
+  j label_32                               # Prevent fallthrough
+
+.globl heap.init
+heap.init:
+  mv a1, a0                                # Move requested size to A1
+  li a0, 9                                 # Code for ecall: sbrk
+  ecall                                    # Request A1 bytes
+  jr ra                                    # Return to caller
+
+.globl error.None
+error.None:
+  li a0, 4                                 # Exit code for: Operation on None
+  la a1, const_17                          # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+
+.globl error.Div
+error.Div:
+  li a0, 2                                 # Exit code for: Divison by zero
+  la a1, const_18                          # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+
+.globl error.OOB
+error.OOB:
+  li a0, 3                                 # Exit code for: Index out of bounds
+  la a1, const_19                          # Load error message as str
+  addi a1, a1, 16                          # Load address of attribute __str__
+  j abort                                  # Abort
+
+.data
+
+.globl const_0
+const_0:
+  .word 2                                  # Type tag for class: bool
+  .word 4                                  # Object size
+  .word $bool$dispatchTable                # Pointer to dispatch table
+  .word 0                                  # Constant value of attribute: __bool__
+  .align 2
+
+.globl const_1
+const_1:
+  .word 2                                  # Type tag for class: bool
+  .word 4                                  # Object size
+  .word $bool$dispatchTable                # Pointer to dispatch table
+  .word 1                                  # Constant value of attribute: __bool__
+  .align 2
+
+.globl const_16
+const_16:
+  .word 3                                  # Type tag for class: str
+  .word 8                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_20                           # Constant value of attribute: __len__
+  .string "Out of memory"                  # Constant value of attribute: __str__
+  .align 2
+
+.globl const_19
+const_19:
+  .word 3                                  # Type tag for class: str
+  .word 9                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_21                           # Constant value of attribute: __len__
+  .string "Index out of bounds"            # Constant value of attribute: __str__
+  .align 2
+
+.globl const_18
+const_18:
+  .word 3                                  # Type tag for class: str
+  .word 8                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_22                           # Constant value of attribute: __len__
+  .string "Divison by zero"                # Constant value of attribute: __str__
+  .align 2
+
+.globl const_13
+const_13:
+  .word 3                                  # Type tag for class: str
+  .word 6                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_6                            # Constant value of attribute: __len__
+  .string "True"                           # Constant value of attribute: __str__
+  .align 2
+
+.globl const_17
+const_17:
+  .word 3                                  # Type tag for class: str
+  .word 9                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_23                           # Constant value of attribute: __len__
+  .string "Operation on None"              # Constant value of attribute: __str__
+  .align 2
+
+.globl const_12
+const_12:
+  .word 3                                  # Type tag for class: str
+  .word 9                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_24                           # Constant value of attribute: __len__
+  .string "Invalid argument"               # Constant value of attribute: __str__
+  .align 2
+
+.globl const_15
+const_15:
+  .word 3                                  # Type tag for class: str
+  .word 10                                 # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_25                           # Constant value of attribute: __len__
+  .string "Unsupported operation"          # Constant value of attribute: __str__
+  .align 2
+
+.globl const_14
+const_14:
+  .word 3                                  # Type tag for class: str
+  .word 6                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_7                            # Constant value of attribute: __len__
+  .string "False"                          # Constant value of attribute: __str__
+  .align 2
+
+.globl const_2
+const_2:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 0                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_3
+const_3:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 1                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_4
+const_4:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 2                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_5
+const_5:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 3                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_6
+const_6:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 4                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_7
+const_7:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 5                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_8
+const_8:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 6                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_9
+const_9:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 7                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_10
+const_10:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 8                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_11
+const_11:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 9                                  # Constant value of attribute: __int__
+  .align 2
+
+.globl const_20
+const_20:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 13                                 # Constant value of attribute: __int__
+  .align 2
+
+.globl const_22
+const_22:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 15                                 # Constant value of attribute: __int__
+  .align 2
+
+.globl const_24
+const_24:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 16                                 # Constant value of attribute: __int__
+  .align 2
+
+.globl const_23
+const_23:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 17                                 # Constant value of attribute: __int__
+  .align 2
+
+.globl const_21
+const_21:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 19                                 # Constant value of attribute: __int__
+  .align 2
+
+.globl const_25
+const_25:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 21                                 # Constant value of attribute: __int__
+  .align 2
+
