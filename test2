@@ -103,7 +103,7 @@ main:
   sw t0, 16(a0)                            # Set list element at index: 0
   sw a0, $z, t0                            # Assign global: z (using tmp register)
   la a0, $.list$prototype                  # Load pointer to prototype of list object
-  li a1, 4                                 # Object size for list with 3 elements
+  li a1, 4                                 # Object size for list with 0 elements
   jal alloc2                               # Alloc list object with specified size
   la t0, const_2                           # Load integer literal: 0
   sw t0, 12(a0)                            # Set attribute: __len__
@@ -158,10 +158,10 @@ main:
   j label_5                                # Loop back to header
   label_6:                                 # for-loop footer
   lw a0, $x                                # Load global: x
-  sw a0, -20(fp)                           # Push on stack slot 5
-  addi sp, sp, -20                         # Increment stack pointer by 5
+  sw a0, -16(fp)                           # Push on stack slot 4
+  addi sp, sp, -16                         # Increment stack pointer by 4
   jal $print                               # Invoke function: print
-  addi sp, sp, 20                          # Decrement stack pointer by 5
+  addi sp, sp, 16                          # Decrement stack pointer by 4
   j label_2                                # Loop back to header
   label_3:                                 # for-loop footer
   label_0:                                 # End of program
