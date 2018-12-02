@@ -94,7 +94,7 @@ main:
   lw t0, -4(fp)                            # Pop stack slot 1
   sw t0, 16(a0)                            # Set list element at index: 0
   sw a0, $z, t0                            # Assign global: z (using tmp register)
-  lw a0, $x                                # Load global: x
+  lw a0, $z                                # Load global: z
   bnez a0, label_1                         # Ensure not None
   j error.None                             # Go to error handler
   label_1:                                 # Not None
@@ -108,18 +108,20 @@ main:
   lw t2, 12(t2)                            # Load attribute: __int__
   bgeu t1, t2, label_3                     # Exit loop if idx >= len(iter)
   addi t1, t1, 1                           # Increment idx
-  sw t1, -4(fp)                            # Push on stack slot 1
+  sw t1, -8(fp)                            # Push on stack slot 2
   addi t1, t1, 3                           # Compute list element offset in words
   li t2, 4                                 # Word size in bytes
   mul t1, t1, t2                           # Compute list element offset in bytes
   add t1, t0, t1                           # Pointer to list element
   lw t0, 0(t1)                             # Get list element
-  sw a0, $x, t0                            # Assign global: x (using tmp register)
+  sw t0, $x, t1                            # Assign global: x (using tmp register)
   lw a0, $x                                # Load global: x
-  sw a0, -8(fp)                            # Push on stack slot 2
-  addi sp, sp, -8                          # Increment stack pointer by 2
+  sw a0, -12(fp)                           # Push on stack slot 3
+  addi sp, sp, -12                         # Increment stack pointer by 3
   jal $print                               # Invoke function: print
-  addi sp, sp, 8                           # Decrement stack pointer by 2
+  addi sp, sp, 12                          # Decrement stack pointer by 3
+  j label_2                                # Loop back to header
+  label_3:                                 # for-loop footer
   label_0:                                 # End of program
   li a0, 10                                # Code for ecall: exit
   ecall
