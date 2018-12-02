@@ -207,7 +207,7 @@ $print_list:
   mul t1, t1, t2                           # Compute list element offset in bytes
   add t1, t0, t1                           # Pointer to list element
   lw t0, 0(t1)                             # Get list element
-  sw a0, 8(fp)                             # Assign var: print_list.x
+  sw t0, 8(fp)                             # Assign var: print_list.x
   lw a0, 8(fp)                             # Load var: print_list.x
   sw a0, -12(fp)                           # Push on stack slot 3
   addi sp, sp, -12                         # Increment stack pointer by 3
@@ -229,6 +229,7 @@ $print_list:
   label_17:                                # Done making boolean
   lw a0, 12(a0)                            # Load attribute: __bool__
   beq a0, zero, label_18                   # Conditional branch
+  mv a0, zero                              # Returning None implicitly
   j label_12                               # Go to return
   j label_19                               # Then body complete; jump to end-if
   label_18:                                # Else body
@@ -237,7 +238,6 @@ $print_list:
   label_15:                                # for-loop footer
   mv a0, zero                              # Load None
   j label_12                               # Jump to function epilogue
-  mv a0, zero                              # Returning None implicitly
   label_12:                                # Epilogue
   lw ra, 0(fp)                             # Get return address
   lw fp, 4(fp)                             # Use control link to restore caller's fp
