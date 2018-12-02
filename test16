@@ -120,6 +120,8 @@ main:
   addi sp, sp, -12                         # Increment stack pointer by 3
   jal $print                               # Invoke function: print
   addi sp, sp, 12                          # Decrement stack pointer by 3
+  j label_2                                # Loop back to header
+  label_3:                                 # for-loop footer
   label_0:                                 # End of program
   li a0, 10                                # Code for ecall: exit
   ecall
