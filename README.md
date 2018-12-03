@@ -10,3 +10,7 @@ M -> id | M * M
 second step:      
 E-> M | E + M    
 M -> id | M * id
+To make the language LL(1)(not left-recursive and left-factored):  
+E -> M | M + E  
+M -> id | id * M  
+(For now, this should be right-associative) 
