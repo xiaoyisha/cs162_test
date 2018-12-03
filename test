@@ -49,15 +49,6 @@ $A$prototype:
   .word const_3                            # Initial value of attribute: a
   .align 2
 
-.globl $B$prototype
-$B$prototype:
-  .word 5                                  # Type tag for class: B
-  .word 5                                  # Object size
-  .word $B$dispatchTable                   # Pointer to dispatch table
-  .word const_3                            # Initial value of attribute: a
-  .word const_1                            # Initial value of attribute: b
-  .align 2
-
 .globl $object$dispatchTable
 $object$dispatchTable:
   .word $object.__init__                   # Implementation for method: object.__init__
@@ -78,9 +69,21 @@ $str$dispatchTable:
 $A$dispatchTable:
   .word $object.__init__                   # Implementation for method: A.__init__
 
-.globl $B$dispatchTable
-$B$dispatchTable:
-  .word $B.__init__                        # Implementation for method: B.__init__
+.globl $a1
+$a1:
+  .word 0                                  # Initial value of global var: a1
+
+.globl $a2
+$a2:
+  .word 0                                  # Initial value of global var: a2
+
+.globl $a3
+$a3:
+  .word 0                                  # Initial value of global var: a3
+
+.globl $a4
+$a4:
+  .word 0                                  # Initial value of global var: a4
 
 .text
 
@@ -93,15 +96,56 @@ main:
   mv s10, gp                               # Set beginning of heap
   add s11, s10, s11                        # Set end of heap (= start of heap + heap size)
   addi fp, sp, 4                           # New fp is just below stack top
-  la a0, $B$prototype                      # Load pointer to prototype of: B
+  la a0, $A$prototype                      # Load pointer to prototype of: A
   jal alloc                                # Allocate new object in A0
   sw a0, -4(fp)                            # Push on stack slot 1
   addi sp, sp, -4                          # Increment stack pointer by 1
   lw a1, 8(a0)                             # Load address of object's dispatch table
-  lw a1, 0(a1)                             # Load address of method: B.__init__
+  lw a1, 0(a1)                             #  Load address of method: A.__init__
   jalr a1                                  # Invoke method: B.__init__
   addi sp, sp, 4                           # Decrement stack pointer by 1
   lw a0, -4(fp)                            # Pop stack slot 1
+  sw a0, $a1, t0                           # Assign global: a1 (using tmp register)
+  lw a0, $a1                               # Load global: a1
+  sw a0, $a2, t0                           # Assign global: a2 (using tmp register)
+  la a0, $A$prototype                      # Load pointer to prototype of: A
+  jal alloc                                # Allocate new object in A0
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  lw a1, 8(a0)                             # Load address of object's dispatch table
+  lw a1, 0(a1)                             #  Load address of method: A.__init__
+  jalr a1                                  # Invoke method: B.__init__
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  lw a0, -4(fp)                            # Pop stack slot 1
+  sw a0, $a3, t0                           # Assign global: a3 (using tmp register)
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
   label_0:                                 # End of program
   li a0, 10                                # Code for ecall: exit
   ecall
@@ -187,26 +231,6 @@ $input:
   addi a1, a1, 16                          # Load address of attribute __str__
   j abort                                  # Abort
 
-.globl $B.__init__
-$B.__init__:
-  sw fp, 0(sp)                             # Put control link on stack top + 0
-  sw ra, -4(sp)                            # Put return address on stack top + 1
-  addi sp, sp, -8                          # Increment stack pointer by 2
-  addi fp, sp, 4                           # New fp is just below stack top
-  label_11:                                # Begin function statements
-  la a0, const_8                           # Load string literal
-  sw a0, -4(fp)                            # Push on stack slot 1
-  addi sp, sp, -4                          # Increment stack pointer by 1
-  jal $print                               # Invoke function: print
-  addi sp, sp, 4                           # Decrement stack pointer by 1
-  mv a0, zero                              # Load None
-  j label_12                               # Jump to function epilogue
-  label_12:                                # Epilogue
-  lw ra, 0(fp)                             # Get return address
-  lw fp, 4(fp)                             # Use control link to restore caller's fp
-  addi sp, sp, 8                           # Decrement stack pointer by 2
-  jr ra                                    # Return to caller
-
 .globl alloc
 alloc:
   lw a1, 4(a0)                             # Get size of object in words
@@ -217,24 +241,24 @@ alloc2:
   li a2, 4                                 # Word size in bytes
   mul a2, a1, a2                           # Calculate number of bytes to allocate
   add a2, gp, a2                           # Estimate where GP will move
-  bgeu a2, s11, label_13                   # Go to OOM handler if too large
+  bgeu a2, s11, label_11                   # Go to OOM handler if too large
   lw t0, 4(a0)                             # Get size of object in words
   mv t2, a0                                # Initialize src ptr
   mv t3, gp                                # Initialize dest ptr
-  label_14:                                # Copy-loop header
+  label_12:                                # Copy-loop header
   lw t1, 0(t2)                             # Load next word from src
   sw t1, 0(t3)                             # Store next word to dest
   addi t2, t2, 4                           # Increment src
   addi t3, t3, 4                           # Increment dest
   addi t0, t0, -1                          # Decrement counter
-  bne t0, zero, label_14                   # Loop if more words left to copy
+  bne t0, zero, label_12                   # Loop if more words left to copy
   mv a0, gp                                # Save new object's address to return
   sw a1, 4(a0)                             # Set size of new object in words (same as requested size)
   mv gp, a2                                # Set next free slot in the heap
   jr ra                                    # Return to caller
-  label_13:                                # OOM handler
+  label_11:                                # OOM handler
   li a0, 5                                 # Exit code for: Out of memory
-  la a1, const_9                           # Load error message as str
+  la a1, const_8                           # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
   j abort                                  # Abort
 
@@ -249,8 +273,8 @@ abort:
   mv a1, t0                                # Move exit code to a1
   li a0, 17                                # Code for ecall: exit2
   ecall                                    # Exit with code
-  label_15:                                # Infinite loop
-  j label_15                               # Prevent fallthrough
+  label_13:                                # Infinite loop
+  j label_13                               # Prevent fallthrough
 
 .globl heap.init
 heap.init:
@@ -262,21 +286,21 @@ heap.init:
 .globl error.None
 error.None:
   li a0, 4                                 # Exit code for: Operation on None
-  la a1, const_10                          # Load error message as str
+  la a1, const_9                           # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
   j abort                                  # Abort
 
 .globl error.Div
 error.Div:
   li a0, 2                                 # Exit code for: Divison by zero
-  la a1, const_11                          # Load error message as str
+  la a1, const_10                          # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
   j abort                                  # Abort
 
 .globl error.OOB
 error.OOB:
   li a0, 3                                 # Exit code for: Index out of bounds
-  la a1, const_12                          # Load error message as str
+  la a1, const_11                          # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
   j abort                                  # Abort
 
@@ -301,36 +325,27 @@ const_1:
 .globl const_8
 const_8:
   .word 3                                  # Type tag for class: str
-  .word 5                                  # Object size
-  .word $str$dispatchTable                 # Pointer to dispatch table
-  .word const_13                           # Constant value of attribute: __len__
-  .string "B"                              # Constant value of attribute: __str__
-  .align 2
-
-.globl const_9
-const_9:
-  .word 3                                  # Type tag for class: str
   .word 8                                  # Object size
   .word $str$dispatchTable                 # Pointer to dispatch table
-  .word const_14                           # Constant value of attribute: __len__
+  .word const_12                           # Constant value of attribute: __len__
   .string "Out of memory"                  # Constant value of attribute: __str__
-  .align 2
-
-.globl const_12
-const_12:
-  .word 3                                  # Type tag for class: str
-  .word 9                                  # Object size
-  .word $str$dispatchTable                 # Pointer to dispatch table
-  .word const_15                           # Constant value of attribute: __len__
-  .string "Index out of bounds"            # Constant value of attribute: __str__
   .align 2
 
 .globl const_11
 const_11:
   .word 3                                  # Type tag for class: str
+  .word 9                                  # Object size
+  .word $str$dispatchTable                 # Pointer to dispatch table
+  .word const_13                           # Constant value of attribute: __len__
+  .string "Index out of bounds"            # Constant value of attribute: __str__
+  .align 2
+
+.globl const_10
+const_10:
+  .word 3                                  # Type tag for class: str
   .word 8                                  # Object size
   .word $str$dispatchTable                 # Pointer to dispatch table
-  .word const_16                           # Constant value of attribute: __len__
+  .word const_14                           # Constant value of attribute: __len__
   .string "Divison by zero"                # Constant value of attribute: __str__
   .align 2
 
@@ -339,16 +354,16 @@ const_5:
   .word 3                                  # Type tag for class: str
   .word 6                                  # Object size
   .word $str$dispatchTable                 # Pointer to dispatch table
-  .word const_17                           # Constant value of attribute: __len__
+  .word const_15                           # Constant value of attribute: __len__
   .string "True"                           # Constant value of attribute: __str__
   .align 2
 
-.globl const_10
-const_10:
+.globl const_9
+const_9:
   .word 3                                  # Type tag for class: str
   .word 9                                  # Object size
   .word $str$dispatchTable                 # Pointer to dispatch table
-  .word const_18                           # Constant value of attribute: __len__
+  .word const_16                           # Constant value of attribute: __len__
   .string "Operation on None"              # Constant value of attribute: __str__
   .align 2
 
@@ -357,7 +372,7 @@ const_4:
   .word 3                                  # Type tag for class: str
   .word 9                                  # Object size
   .word $str$dispatchTable                 # Pointer to dispatch table
-  .word const_19                           # Constant value of attribute: __len__
+  .word const_17                           # Constant value of attribute: __len__
   .string "Invalid argument"               # Constant value of attribute: __str__
   .align 2
 
@@ -366,7 +381,7 @@ const_7:
   .word 3                                  # Type tag for class: str
   .word 10                                 # Object size
   .word $str$dispatchTable                 # Pointer to dispatch table
-  .word const_20                           # Constant value of attribute: __len__
+  .word const_18                           # Constant value of attribute: __len__
   .string "Unsupported operation"          # Constant value of attribute: __str__
   .align 2
 
@@ -375,7 +390,7 @@ const_6:
   .word 3                                  # Type tag for class: str
   .word 6                                  # Object size
   .word $str$dispatchTable                 # Pointer to dispatch table
-  .word const_21                           # Constant value of attribute: __len__
+  .word const_19                           # Constant value of attribute: __len__
   .string "False"                          # Constant value of attribute: __str__
   .align 2
 
@@ -387,12 +402,20 @@ const_2:
   .word 0                                  # Constant value of attribute: __int__
   .align 2
 
-.globl const_19
-const_19:
+.globl const_17
+const_17:
   .word 1                                  # Type tag for class: int
   .word 4                                  # Object size
   .word $int$dispatchTable                 # Pointer to dispatch table
   .word 16                                 # Constant value of attribute: __int__
+  .align 2
+
+.globl const_16
+const_16:
+  .word 1                                  # Type tag for class: int
+  .word 4                                  # Object size
+  .word $int$dispatchTable                 # Pointer to dispatch table
+  .word 17                                 # Constant value of attribute: __int__
   .align 2
 
 .globl const_13
@@ -400,15 +423,7 @@ const_13:
   .word 1                                  # Type tag for class: int
   .word 4                                  # Object size
   .word $int$dispatchTable                 # Pointer to dispatch table
-  .word 1                                  # Constant value of attribute: __int__
-  .align 2
-
-.globl const_18
-const_18:
-  .word 1                                  # Type tag for class: int
-  .word 4                                  # Object size
-  .word $int$dispatchTable                 # Pointer to dispatch table
-  .word 17                                 # Constant value of attribute: __int__
+  .word 19                                 # Constant value of attribute: __int__
   .align 2
 
 .globl const_15
@@ -416,27 +431,19 @@ const_15:
   .word 1                                  # Type tag for class: int
   .word 4                                  # Object size
   .word $int$dispatchTable                 # Pointer to dispatch table
-  .word 19                                 # Constant value of attribute: __int__
-  .align 2
-
-.globl const_17
-const_17:
-  .word 1                                  # Type tag for class: int
-  .word 4                                  # Object size
-  .word $int$dispatchTable                 # Pointer to dispatch table
   .word 4                                  # Constant value of attribute: __int__
   .align 2
 
-.globl const_20
-const_20:
+.globl const_18
+const_18:
   .word 1                                  # Type tag for class: int
   .word 4                                  # Object size
   .word $int$dispatchTable                 # Pointer to dispatch table
   .word 21                                 # Constant value of attribute: __int__
   .align 2
 
-.globl const_21
-const_21:
+.globl const_19
+const_19:
   .word 1                                  # Type tag for class: int
   .word 4                                  # Object size
   .word $int$dispatchTable                 # Pointer to dispatch table
@@ -451,16 +458,16 @@ const_3:
   .word 42                                 # Constant value of attribute: __int__
   .align 2
 
-.globl const_14
-const_14:
+.globl const_12
+const_12:
   .word 1                                  # Type tag for class: int
   .word 4                                  # Object size
   .word $int$dispatchTable                 # Pointer to dispatch table
   .word 13                                 # Constant value of attribute: __int__
   .align 2
 
-.globl const_16
-const_16:
+.globl const_14
+const_14:
   .word 1                                  # Type tag for class: int
   .word 4                                  # Object size
   .word $int$dispatchTable                 # Pointer to dispatch table
