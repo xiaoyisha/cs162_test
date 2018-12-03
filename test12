@@ -150,8 +150,8 @@ main:
   lw t0, -4(fp)                            # Pop stack slot 1
   lw t0, 12(t0)                            # Load attribute: __bool__
   lw a0, 12(a0)                            # Load attribute: __bool__
-  snez t0, t0                              # Ensure that operand for == is 1 or 0
-  snez a0, a0                              # Ensure that operand for == is 1 or 0
+  snez t0, t0                              # Ensure that operand for != is 1 or 0
+  snez a0, a0                              # Ensure that operand for != is 1 or 0
   xor a0, t0, a0                           # Operator !=
   beqz a0, label_9                         # Choose boolean to make
   la a0, const_1                           # Make True
@@ -169,8 +169,8 @@ main:
   lw t0, -4(fp)                            # Pop stack slot 1
   lw t0, 12(t0)                            # Load attribute: __bool__
   lw a0, 12(a0)                            # Load attribute: __bool__
-  snez t0, t0                              # Ensure that operand for == is 1 or 0
-  snez a0, a0                              # Ensure that operand for == is 1 or 0
+  snez t0, t0                              # Ensure that operand for != is 1 or 0
+  snez a0, a0                              # Ensure that operand for != is 1 or 0
   xor a0, t0, a0                           # Operator !=
   beqz a0, label_11                        # Choose boolean to make
   la a0, const_1                           # Make True
@@ -188,8 +188,8 @@ main:
   lw t0, -4(fp)                            # Pop stack slot 1
   lw t0, 12(t0)                            # Load attribute: __bool__
   lw a0, 12(a0)                            # Load attribute: __bool__
-  snez t0, t0                              # Ensure that operand for == is 1 or 0
-  snez a0, a0                              # Ensure that operand for == is 1 or 0
+  snez t0, t0                              # Ensure that operand for != is 1 or 0
+  snez a0, a0                              # Ensure that operand for != is 1 or 0
   xor a0, t0, a0                           # Operator !=
   beqz a0, label_13                        # Choose boolean to make
   la a0, const_1                           # Make True
@@ -207,8 +207,8 @@ main:
   lw t0, -4(fp)                            # Pop stack slot 1
   lw t0, 12(t0)                            # Load attribute: __bool__
   lw a0, 12(a0)                            # Load attribute: __bool__
-  snez t0, t0                              # Ensure that operand for == is 1 or 0
-  snez a0, a0                              # Ensure that operand for == is 1 or 0
+  snez t0, t0                              # Ensure that operand for != is 1 or 0
+  snez a0, a0                              # Ensure that operand for != is 1 or 0
   xor a0, t0, a0                           # Operator !=
   beqz a0, label_15                        # Choose boolean to make
   la a0, const_1                           # Make True
