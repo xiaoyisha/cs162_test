@@ -93,6 +93,15 @@ main:
   mv s10, gp                               # Set beginning of heap
   add s11, s10, s11                        # Set end of heap (= start of heap + heap size)
   addi fp, sp, 4                           # New fp is just below stack top
+  la a0, $B$prototype                      # Load pointer to prototype of: B
+  jal alloc                                # Allocate new object in A0
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  lw a1, 8(a0)                             # Load address of object's dispatch table
+  lw a1, 0(a1)                             # Load address of method: B.__init__
+  jalr a1                                  # Invoke method: B.__init__
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  lw a0, -4(fp)                            # Pop stack slot 1
   label_0:                                 # End of program
   li a0, 10                                # Code for ecall: exit
   ecall
@@ -192,7 +201,6 @@ $B.__init__:
   addi sp, sp, 4                           # Decrement stack pointer by 1
   mv a0, zero                              # Load None
   j label_12                               # Jump to function epilogue
-  mv a0, zero                              # Returning None implicitly
   label_12:                                # Epilogue
   lw ra, 0(fp)                             # Get return address
   lw fp, 4(fp)                             # Use control link to restore caller's fp
