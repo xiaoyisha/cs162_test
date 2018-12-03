@@ -68,20 +68,15 @@ main:
   mv s10, gp                               # Set beginning of heap
   add s11, s10, s11                        # Set end of heap (= start of heap + heap size)
   addi fp, sp, 4                           # New fp is just below stack top
-  la a0, $object$prototype                 # Load pointer to prototype of: object
-  jal alloc                                # Allocate new object in A0
+  la a0, const_1                           # Load boolean literal: true
   sw a0, -4(fp)                            # Push on stack slot 1
-  addi sp, sp, -4                          # Increment stack pointer by 1
-  lw a1, 8(a0)                             # Load address of object's dispatch table
-  lw a1, 0(a1)                             # Load address of method: object.__init__
-  jalr a1                                  # Invoke method: object.__init__
-  addi sp, sp, 4                           # Decrement stack pointer by 1
-  lw a0, -4(fp)                            # Pop stack slot 1
-  sw a0, -4(fp)                            # Push on stack slot 1
-  mv a0, zero                              # Load None
+  la a0, const_1                           # Load boolean literal: true
   lw t0, -4(fp)                            # Pop stack slot 1
-  xor a0, t0, a0                           # Compare references
-  seqz a0, a0                              # Operator is
+  lw t0, 12(t0)                            # Load attribute: __bool__
+  lw a0, 12(a0)                            # Load attribute: __bool__
+  snez t0, t0                              # Ensure that operand for == is 1 or 0
+  seqz a0, a0                              # Ensure that operand for == is 0 or 1 (flipped)
+  xor a0, t0, a0                           # Operator ==
   beqz a0, label_1                         # Choose boolean to make
   la a0, const_1                           # Make True
   j label_2                                # Jump over 'Make False' branch
@@ -92,41 +87,135 @@ main:
   addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
   addi sp, sp, 4                           # Decrement stack pointer by 1
-  la a0, $int$prototype                    # Load pointer to prototype of: int
-  jal alloc                                # Allocate new object in A0
+  la a0, const_1                           # Load boolean literal: true
   sw a0, -4(fp)                            # Push on stack slot 1
-  addi sp, sp, -4                          # Increment stack pointer by 1
-  lw a1, 8(a0)                             # Load address of object's dispatch table
-  lw a1, 0(a1)                             # Load address of method: int.__init__
-  jalr a1                                  # Invoke method: int.__init__
-  addi sp, sp, 4                           # Decrement stack pointer by 1
-  lw a0, -4(fp)                            # Pop stack slot 1
-  sw a0, -4(fp)                            # Push on stack slot 1
-  addi sp, sp, -4                          # Increment stack pointer by 1
-  jal $print                               # Invoke function: print
-  addi sp, sp, 4                           # Decrement stack pointer by 1
-  la a0, $str$prototype                    # Load pointer to prototype of: str
-  jal alloc                                # Allocate new object in A0
-  sw a0, -4(fp)                            # Push on stack slot 1
-  addi sp, sp, -4                          # Increment stack pointer by 1
-  lw a1, 8(a0)                             # Load address of object's dispatch table
-  lw a1, 0(a1)                             # Load address of method: str.__init__
-  jalr a1                                  # Invoke method: str.__init__
-  addi sp, sp, 4                           # Decrement stack pointer by 1
-  lw a0, -4(fp)                            # Pop stack slot 1
+  la a0, const_0                           # Load boolean literal: false
+  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t0)                            # Load attribute: __bool__
+  lw a0, 12(a0)                            # Load attribute: __bool__
+  snez t0, t0                              # Ensure that operand for == is 1 or 0
+  seqz a0, a0                              # Ensure that operand for == is 0 or 1 (flipped)
+  xor a0, t0, a0                           # Operator ==
+  beqz a0, label_3                         # Choose boolean to make
+  la a0, const_1                           # Make True
+  j label_4                                # Jump over 'Make False' branch
+  label_3:                                 # Branch to make False
+  la a0, const_0                           # Make False
+  label_4:                                 # Done making boolean
   sw a0, -4(fp)                            # Push on stack slot 1
   addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
   addi sp, sp, 4                           # Decrement stack pointer by 1
-  la a0, $bool$prototype                   # Load pointer to prototype of: bool
-  jal alloc                                # Allocate new object in A0
+  la a0, const_0                           # Load boolean literal: false
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, const_1                           # Load boolean literal: true
+  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t0)                            # Load attribute: __bool__
+  lw a0, 12(a0)                            # Load attribute: __bool__
+  snez t0, t0                              # Ensure that operand for == is 1 or 0
+  seqz a0, a0                              # Ensure that operand for == is 0 or 1 (flipped)
+  xor a0, t0, a0                           # Operator ==
+  beqz a0, label_5                         # Choose boolean to make
+  la a0, const_1                           # Make True
+  j label_6                                # Jump over 'Make False' branch
+  label_5:                                 # Branch to make False
+  la a0, const_0                           # Make False
+  label_6:                                 # Done making boolean
   sw a0, -4(fp)                            # Push on stack slot 1
   addi sp, sp, -4                          # Increment stack pointer by 1
-  lw a1, 8(a0)                             # Load address of object's dispatch table
-  lw a1, 0(a1)                             # Load address of method: bool.__init__
-  jalr a1                                  # Invoke method: bool.__init__
+  jal $print                               # Invoke function: print
   addi sp, sp, 4                           # Decrement stack pointer by 1
-  lw a0, -4(fp)                            # Pop stack slot 1
+  la a0, const_0                           # Load boolean literal: false
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, const_0                           # Load boolean literal: false
+  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t0)                            # Load attribute: __bool__
+  lw a0, 12(a0)                            # Load attribute: __bool__
+  snez t0, t0                              # Ensure that operand for == is 1 or 0
+  seqz a0, a0                              # Ensure that operand for == is 0 or 1 (flipped)
+  xor a0, t0, a0                           # Operator ==
+  beqz a0, label_7                         # Choose boolean to make
+  la a0, const_1                           # Make True
+  j label_8                                # Jump over 'Make False' branch
+  label_7:                                 # Branch to make False
+  la a0, const_0                           # Make False
+  label_8:                                 # Done making boolean
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  la a0, const_1                           # Load boolean literal: true
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, const_1                           # Load boolean literal: true
+  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t0)                            # Load attribute: __bool__
+  lw a0, 12(a0)                            # Load attribute: __bool__
+  snez t0, t0                              # Ensure that operand for == is 1 or 0
+  snez a0, a0                              # Ensure that operand for == is 0 or 1 (flipped)
+  xor a0, t0, a0                           # Operator ==
+  beqz a0, label_9                         # Choose boolean to make
+  la a0, const_1                           # Make True
+  j label_10                               # Jump over 'Make False' branch
+  label_9:                                 # Branch to make False
+  la a0, const_0                           # Make False
+  label_10:                                # Done making boolean
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  la a0, const_1                           # Load boolean literal: true
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, const_0                           # Load boolean literal: false
+  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t0)                            # Load attribute: __bool__
+  lw a0, 12(a0)                            # Load attribute: __bool__
+  snez t0, t0                              # Ensure that operand for == is 1 or 0
+  snez a0, a0                              # Ensure that operand for == is 0 or 1 (flipped)
+  xor a0, t0, a0                           # Operator ==
+  beqz a0, label_11                        # Choose boolean to make
+  la a0, const_1                           # Make True
+  j label_12                               # Jump over 'Make False' branch
+  label_11:                                # Branch to make False
+  la a0, const_0                           # Make False
+  label_12:                                # Done making boolean
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  la a0, const_0                           # Load boolean literal: false
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, const_1                           # Load boolean literal: true
+  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t0)                            # Load attribute: __bool__
+  lw a0, 12(a0)                            # Load attribute: __bool__
+  snez t0, t0                              # Ensure that operand for == is 1 or 0
+  snez a0, a0                              # Ensure that operand for == is 0 or 1 (flipped)
+  xor a0, t0, a0                           # Operator ==
+  beqz a0, label_13                        # Choose boolean to make
+  la a0, const_1                           # Make True
+  j label_14                               # Jump over 'Make False' branch
+  label_13:                                # Branch to make False
+  la a0, const_0                           # Make False
+  label_14:                                # Done making boolean
+  sw a0, -4(fp)                            # Push on stack slot 1
+  addi sp, sp, -4                          # Increment stack pointer by 1
+  jal $print                               # Invoke function: print
+  addi sp, sp, 4                           # Decrement stack pointer by 1
+  la a0, const_0                           # Load boolean literal: false
+  sw a0, -4(fp)                            # Push on stack slot 1
+  la a0, const_0                           # Load boolean literal: false
+  lw t0, -4(fp)                            # Pop stack slot 1
+  lw t0, 12(t0)                            # Load attribute: __bool__
+  lw a0, 12(a0)                            # Load attribute: __bool__
+  snez t0, t0                              # Ensure that operand for == is 1 or 0
+  snez a0, a0                              # Ensure that operand for == is 0 or 1 (flipped)
+  xor a0, t0, a0                           # Operator ==
+  beqz a0, label_15                        # Choose boolean to make
+  la a0, const_1                           # Make True
+  j label_16                               # Jump over 'Make False' branch
+  label_15:                                # Branch to make False
+  la a0, const_0                           # Make False
+  label_16:                                # Done making boolean
   sw a0, -4(fp)                            # Push on stack slot 1
   addi sp, sp, -4                          # Increment stack pointer by 1
   jal $print                               # Invoke function: print
@@ -143,33 +232,33 @@ $object.__init__:
 .globl $print
 $print:
   lw a0, 4(sp)                             # Load arg
-  beq a0, zero, label_4                    # None is an illegal argument
+  beq a0, zero, label_18                   # None is an illegal argument
   lw t0, 0(a0)                             # Get type tag of arg
   li t1, 1                                 # Load type tag of `int`
-  beq t0, t1, label_5                      # Go to print(int)
+  beq t0, t1, label_19                     # Go to print(int)
   li t1, 3                                 # Load type tag of `str`
-  beq t0, t1, label_6                      # Go to print(str)
+  beq t0, t1, label_20                     # Go to print(str)
   li t1, 2                                 # Load type tag of `bool`
-  beq t0, t1, label_7                      # Go to print(bool)
-  label_4:                                 # Invalid argument
+  beq t0, t1, label_21                     # Go to print(bool)
+  label_18:                                # Invalid argument
   li a0, 1                                 # Exit code for: Invalid argument
   la a1, const_3                           # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
   j abort                                  # Abort
-  label_7:                                 # Print bool object in A0
+  label_21:                                # Print bool object in A0
   lw a0, 12(a0)                            # Load attribute __bool__
-  beq a0, zero, label_9                    # Go to: print(False)
+  beq a0, zero, label_23                   # Go to: print(False)
   la a0, const_4                           # String representation: True
-  j label_6                                # Go to: print(str)
-  label_9:                                 # Print False object in A0
+  j label_20                               # Go to: print(str)
+  label_23:                                # Print False object in A0
   la a0, const_5                           # String representation: False
-  j label_6                                # Go to: print(str)
-  label_6:                                 # Print str object in A0
+  j label_20                               # Go to: print(str)
+  label_20:                                # Print str object in A0
   addi a1, a0, 16                          # Load address of attribute __str__
-  j label_8                                # Print the null-terminated string is now in A1
+  j label_22                               # Print the null-terminated string is now in A1
   mv a0, zero                              # Load None
-  j label_3                                # Go to return
-  label_5:                                 # Print int object in A0
+  j label_17                               # Go to return
+  label_19:                                # Print int object in A0
   lw a1, 12(a0)                            # Load attribute __int__
   li a0, 1                                 # Code for ecall: print_int
   ecall                                    # Print integer
@@ -177,35 +266,35 @@ $print:
   li a0, 11                                # Code for ecall: print_char
   ecall                                    # Print character
   mv a0, zero                              # Load None
-  j label_3                                # Go to return
-  label_8:                                 # Print null-terminated string in A1
+  j label_17                               # Go to return
+  label_22:                                # Print null-terminated string in A1
   li a0, 4                                 # Code for ecall: print_string
   ecall                                    # Print string
   li a1, 10                                # Load newline character
   li a0, 11                                # Code for ecall: print_char
   ecall                                    # Print character
   mv a0, zero                              # Load None
-  label_3:                                 # End of function
+  label_17:                                # End of function
   jr ra                                    # Return to caller
 
 .globl $len
 $len:
   lw a0, 4(sp)                             # Load arg
-  beq a0, zero, label_10                   # None is an illegal argument
+  beq a0, zero, label_24                   # None is an illegal argument
   lw t0, 0(a0)                             # Get type tag of arg
   li t1, 3                                 # Load type tag of `str`
-  beq t0, t1, label_11                     # Go to len(str)
+  beq t0, t1, label_25                     # Go to len(str)
   li t1, -1                                # Load type tag for list objects
-  beq t0, t1, label_12                     # Go to len(list)
-  label_10:                                # Invalid argument
+  beq t0, t1, label_26                     # Go to len(list)
+  label_24:                                # Invalid argument
   li a0, 1                                 # Exit code for: Invalid argument
   la a1, const_3                           # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
   j abort                                  # Abort
-  label_11:                                # Get length of string
+  label_25:                                # Get length of string
   lw a0, 12(a0)                            # Load attribute: __len__
   jr ra                                    # Return to caller
-  label_12:                                # Get length of list
+  label_26:                                # Get length of list
   lw a0, 12(a0)                            # Load attribute: __len__
   jr ra                                    # Return to caller
 
@@ -226,22 +315,22 @@ alloc2:
   li a2, 4                                 # Word size in bytes
   mul a2, a1, a2                           # Calculate number of bytes to allocate
   add a2, gp, a2                           # Estimate where GP will move
-  bgeu a2, s11, label_13                   # Go to OOM handler if too large
+  bgeu a2, s11, label_27                   # Go to OOM handler if too large
   lw t0, 4(a0)                             # Get size of object in words
   mv t2, a0                                # Initialize src ptr
   mv t3, gp                                # Initialize dest ptr
-  label_14:                                # Copy-loop header
+  label_28:                                # Copy-loop header
   lw t1, 0(t2)                             # Load next word from src
   sw t1, 0(t3)                             # Store next word to dest
   addi t2, t2, 4                           # Increment src
   addi t3, t3, 4                           # Increment dest
   addi t0, t0, -1                          # Decrement counter
-  bne t0, zero, label_14                   # Loop if more words left to copy
+  bne t0, zero, label_28                   # Loop if more words left to copy
   mv a0, gp                                # Save new object's address to return
   sw a1, 4(a0)                             # Set size of new object in words (same as requested size)
   mv gp, a2                                # Set next free slot in the heap
   jr ra                                    # Return to caller
-  label_13:                                # OOM handler
+  label_27:                                # OOM handler
   li a0, 5                                 # Exit code for: Out of memory
   la a1, const_7                           # Load error message as str
   addi a1, a1, 16                          # Load address of attribute __str__
@@ -258,8 +347,8 @@ abort:
   mv a1, t0                                # Move exit code to a1
   li a0, 17                                # Code for ecall: exit2
   ecall                                    # Exit with code
-  label_15:                                # Infinite loop
-  j label_15                               # Prevent fallthrough
+  label_29:                                # Infinite loop
+  j label_29                               # Prevent fallthrough
 
 .globl heap.init
 heap.init:
