@@ -17,11 +17,19 @@ Note: use the converged utilities.
 ![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205064610.png)  
 An example:  
 https://inst.eecs.berkeley.edu/~cs188/fa18/assets/sections/section5_solutions.pdf  
-Note that in a gridworld, when you choose a direction, it doesn't mean that you will end in the supposed grid.  
-
+Note that in a gridworld, when you choose a direction, it doesn't mean that you will end in the supposed grid.   
 - `Q learning`   
-
-
+Can compare `Q-value iteration` with `value iteration`: Q state has action a.  
+Can compare `Q learning` with `TD`: Q learning should take action a into account.  
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205071118.png)    
+- `Feature-based Q-learning`  
+Why we need this:  
+E.G. We would like to use a Q-learning agent for Pacman, but the state size for a large grid is too massive to hold in memory. To solve this, we will switch to feature-based representation of Pacman’s state. You’ll notice that these features depend only on the state, not
+the actions you take.  
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205071804.png)   
+A good example:  
+https://inst.eecs.berkeley.edu/~cs188/fa18/assets/sections/section5_solutions.pdf  
+Should notice the diffrence between Qnew and Q(after the update).  
 ## Games  
 - Some Conclusion  
 There is no game tree where the value of the root for expectimax is lower than the value of the root for minimax. One is optimal play – the other is suboptimal play averaged with optimal play, which by definiton leads to a higher value for MIN.  
