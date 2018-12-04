@@ -1,5 +1,5 @@
 # cs164_review
-## Lexical Analysis
+## Lexical Analysis and Syntactic analysis
 - When decribing the language finite-state machines represent, remember to simplify the result. 
 - `Subset Construction Algorithm`
 - `Context Free Language(CFG)`:    
@@ -35,8 +35,16 @@ Usually due to gross ambiguity in the grammar.
 Example: a sequence of identifiers
 S ->epsilon | id | id S  
 - `LR(1)` Parsing Tables are Big   
-Idea: merge the DFA states whose items. Differ only in the lookahead tokens. We say that such states have the same core. (`LALR` States)   
+Idea: merge the DFA states whose items. Differ only in the lookahead tokens. We say that such states have the same core. (`LALR` States) 
 Can have Reduce/Reduce Conflict.  
+
+## Semantic analysis and Typechecking
+- `Conform with`    
+- `Sound`  
+- Typechecking Examples
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205035447.png)
+
+
 
 
 
