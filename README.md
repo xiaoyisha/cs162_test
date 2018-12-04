@@ -35,7 +35,7 @@ Usually due to gross ambiguity in the grammar.
 Example: a sequence of identifiers
 S ->epsilon | id | id S  
 - `LR(1)` Parsing Tables are Big   
-Idea: merge the DFA states whose items. Differ only in the lookahead tokens. We say that such states have the same core. (LALR States)   
+Idea: merge the DFA states whose items. Differ only in the lookahead tokens. We say that such states have the same core. (`LALR` States)   
 Can have Reduce/Reduce Conflict.  
 
 
