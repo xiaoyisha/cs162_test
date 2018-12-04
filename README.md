@@ -42,7 +42,26 @@ Can have Reduce/Reduce Conflict.
 - `Conform with`    
 - `Sound`  
 - Typechecking Examples
-![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205035447.png)
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205035447.png)    
+(need to include the special case)   
+- Operational Semantics Examples  
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205041205.png)  
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205041226.png)   
+(incorrect example is as following)  
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205041448.png)  
+Comment: The lower 4 lines on the left side are quite incorrect; in an operational semantics rule, there should be no type-related statements, judgments, or conclusions. This rule assumes that the expression (id1, id2) = e already typechecks, and in any case, v1 and v2 are not types, since they are values instead.  
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205044148.png)  
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205050537.png)   
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205050613.png)  
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205050734.png)  
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205051603.png)   
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205051627.png)  
+
+
+
+
+
+
 
 
 
