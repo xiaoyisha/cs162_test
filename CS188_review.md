@@ -1,16 +1,27 @@
 ## MDPs and RL  
-- Utility  
+- `Utility`  
 1. U is monotonically increasing and its rate of increase is increasing (its second derivative is positive).   
 U(L) > U(EMV (L)).  
-- Value Iteration  
+- `Value Iteration`  
 ![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205054607.png)  
 - MDP Example   
 https://inst.eecs.berkeley.edu/~cs188/fa18/assets/sections/section4_solutions.pdf   
-- Policy Iteration   
+- `Policy Iteration`   
 Alternative approach for optimal values:    
 Step 1: Policy evaluation: calculate utilities for some fixed policy (not optimal utilities!) until convergence    
 Step 2: Policy improvement: update policy using one-step look-ahead with resulting converged (but not optimal!) utilities as future values  
-Repeat steps until policy converges
+Repeat steps until policy converges   
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205062408.png)  
+Note: use the converged utilities.    
+- `TD learning`   
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205064610.png)  
+An example:  
+https://inst.eecs.berkeley.edu/~cs188/fa18/assets/sections/section5_solutions.pdf  
+Note that in a gridworld, when you choose a direction, it doesn't mean that you will end in the supposed grid.  
+
+- `Q learning`   
+
+
 ## Games  
 - Some Conclusion  
 There is no game tree where the value of the root for expectimax is lower than the value of the root for minimax. One is optimal play – the other is suboptimal play averaged with optimal play, which by definiton leads to a higher value for MIN.  
