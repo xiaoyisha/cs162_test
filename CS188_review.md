@@ -1,5 +1,5 @@
 ## Search   
-- `Uninformed Search`  
+### Uninformed Search  
 1. `Depth-First Search`  
 2. `Breadth-First Search`  
 3. `Uniform-Cost Search` 
@@ -19,7 +19,7 @@ Idea: get DFS’s space advantage with BFS’s time / shallow-solution advantage
 1. Run a DFS with depth limit 1. If no solution…  
 2. Run a DFS with depth limit 2. If no solution…  
 3. Run a DFS with depth limit 3. …  
-- `Informed Search`  
+### Informed Search  
 1. `Greedy Search`   
 2. `A* Search`   
 - `Graph Search`    
@@ -27,6 +27,17 @@ Idea: never expand a state twice
 - Optimality of A* Tree Search   
 ![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205125301.png)   
 ## CSPs  
+### Formulate a problem as a CSP problem
+- Variables
+- Domains(or unary constraints)
+- Binary constraints
+### Arc Consistency 
+### Value Ordering
+- Minimum remaining values (MRV)
+### Tree Structured CSPs
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205160411.png)
+E.G. We fix Xj for some j and assign it a value from its domain (i.e. use cutset conditioning on one variable). The rest of the CSP now forms a tree structure, which can be efficiently solved without backtracking by enforcing arc consistency. We try all possible values for our selected variable Xj until we find a solution.
+
 
 
 ## MDPs and RL  
