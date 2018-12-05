@@ -10,10 +10,10 @@ A search problem consists of:
 3. A start state and a goal test  
 A solution is a sequence of actions (a plan) which transforms the start state to a goal state   
 E.G. Problem: Eat-All-Dots   
-**** States: {(x,y), dot booleans} ****
-**** Actions: NSEW ****
-3. Successor: update location and possibly a dot boolean
-4. Goal test: dots all false
+States: {(x,y), dot booleans}   
+Actions: NSEW   
+Successor: update location and possibly a dot boolean
+Goal test: dots all false
 - `Iterative Deepening`  
 Idea: get DFS’s space advantage with BFS’s time / shallow-solution advantages   
 1. Run a DFS with depth limit 1. If no solution…  
