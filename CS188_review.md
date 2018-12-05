@@ -1,3 +1,31 @@
+## Search   
+- `Uninformed Search`  
+1. `Depth-First Search`  
+2. `Breadth-First Search`  
+3. `Uniform-Cost Search` 
+- Search Problems  
+A search problem consists of:  
+1. A state space
+2. A successor function(with actions, costs)  
+3. A start state and a goal test  
+A solution is a sequence of actions (a plan) which transforms the start state to a goal state   
+E.G. Problem: Eat-All-Dots   
+1. States: {(x,y), dot booleans}
+2. Actions: NSEW
+3. Successor: update location and possibly a dot boolean
+4. Goal test: dots all false
+- `Iterative Deepening`  
+Idea: get DFS’s space advantage with BFS’s time / shallow-solution advantages   
+1. Run a DFS with depth limit 1. If no solution…  
+2. Run a DFS with depth limit 2. If no solution…  
+3. Run a DFS with depth limit 3. …  
+- `Informed Search`  
+1. `Greedy Search`   
+2. `A* Search`   
+- `Graph Search`    
+Idea: never expand a state twice   
+- Optimality of A* Tree Search   
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205125301.png)  
 ## MDPs and RL  
 - `Utility`  
 1. U is monotonically increasing and its rate of increase is increasing (its second derivative is positive).   
