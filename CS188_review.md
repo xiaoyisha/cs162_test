@@ -26,18 +26,25 @@ Idea: get DFS’s space advantage with BFS’s time / shallow-solution advantage
 Idea: never expand a state twice   
 - Optimality of A* Tree Search   
 ![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205125301.png)   
+
 ## CSPs  
 ### Formulate a problem as a CSP problem
 - Variables
 - Domains(or unary constraints)
 - Binary constraints
+- Example
+https://inst.eecs.berkeley.edu/~cs188/fa18/assets/sections/section3_solutions.pdf
 ### Arc Consistency 
 ### Value Ordering
 - Minimum remaining values (MRV)
+### 
 ### Tree Structured CSPs
 ![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205160411.png)
 E.G. We fix Xj for some j and assign it a value from its domain (i.e. use cutset conditioning on one variable). The rest of the CSP now forms a tree structure, which can be efficiently solved without backtracking by enforcing arc consistency. We try all possible values for our selected variable Xj until we find a solution.
 
+## Games
+### Alpha-beta Pruning
+### Nonzero-sum Game
 
 
 ## MDPs and RL  
@@ -76,8 +83,7 @@ Should notice the diffrence between Qnew and Q(after the update).
 - Some Conclusion  
 There is no game tree where the value of the root for expectimax is lower than the value of the root for minimax. One is optimal play – the other is suboptimal play averaged with optimal play, which by definiton leads to a higher value for MIN.  
 - An interesting example:  
-Imagine that player 1 wishes to act optimally (rationally), and player 1 knows that player 2 also intends to act optimally. However, player 1 also knows that player 2 (mistakenly) believes that player 1 is moving uniformly at random rather than optimally. Explain how player 1 should use this knowledge to select a move. Your answer should be a precise algorithm involving a game tree search, and should include a
-sketch of an appropriate game tree with player 1’s move at the root. Be clear what type of nodes are at each ply and whose turn each ply represents.   
+Imagine that player 1 wishes to act optimally (rationally), and player 1 knows that player 2 also intends to act optimally. However, player 1 also knows that player 2 (mistakenly) believes that player 1 is moving uniformly at random rather than optimally. Explain how player 1 should use this knowledge to select a move. Your answer should be a precise algorithm involving a game tree search, and should include a sketch of an appropriate game tree with player 1’s move at the root. Be clear what type of nodes are at each ply and whose turn each ply represents.   
 Use two games trees:   
 Game tree 1: max is replaced by a chance node. Solve this tree to find the policy of MIN.    
 Game tree 2: the original tree, but MIN doesn’t have any choices now, instead is constrained to follow the policy found from Game Tree 1.   
