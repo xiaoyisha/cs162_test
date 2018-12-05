@@ -33,7 +33,8 @@ Idea: never expand a state twice
 - Domains(or unary constraints)
 - Binary constraints
 - Example
-https://inst.eecs.berkeley.edu/~cs188/fa18/assets/sections/section3_solutions.pdf
+https://inst.eecs.berkeley.edu/~cs188/fa18/assets/sections/section3_solutions.pdf   
+
 ### Arc Consistency 
 ### Value Ordering
 - Minimum remaining values (MRV)
@@ -44,7 +45,9 @@ E.G. We fix Xj for some j and assign it a value from its domain (i.e. use cutset
 
 ## Games
 ### Alpha-beta Pruning
-### Nonzero-sum Game
+### Nonzero-sum Game  
+- A good example:  
+https://inst.eecs.berkeley.edu/~cs188/fa18/assets/sections/section3_solutions.pdf  
 
 
 ## MDPs and RL  
