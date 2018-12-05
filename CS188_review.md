@@ -10,8 +10,8 @@ A search problem consists of:
 3. A start state and a goal test  
 A solution is a sequence of actions (a plan) which transforms the start state to a goal state   
 E.G. Problem: Eat-All-Dots   
-1. States: {(x,y), dot booleans}
-2. Actions: NSEW
+**** States: {(x,y), dot booleans} ****
+**** Actions: NSEW ****
 3. Successor: update location and possibly a dot boolean
 4. Goal test: dots all false
 - `Iterative Deepening`  
