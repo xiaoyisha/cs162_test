@@ -25,7 +25,10 @@ Idea: get DFS’s space advantage with BFS’s time / shallow-solution advantage
 - `Graph Search`    
 Idea: never expand a state twice   
 - Optimality of A* Tree Search   
-![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205125301.png)  
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181205125301.png)   
+## CSPs  
+
+
 ## MDPs and RL  
 - `Utility`  
 1. U is monotonically increasing and its rate of increase is increasing (its second derivative is positive).   
