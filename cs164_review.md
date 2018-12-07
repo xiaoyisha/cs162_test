@@ -120,12 +120,14 @@ the result back on the stack
 ### From Stack Machine to Assembly Language
 #### Instructions Sample
 ![image](https://github.com/xiaoyisha/cs162_test/blob/master/instructions0.png)
-– Branch to label if reg 1 = reg 2
+- Branch to label if reg 1 = reg 2
 `beq reg 1 , reg 2 , label`
 - Unconditional jump to label
 `j label`
 - Jump to label, save address of next instruction in `ra`
 `jal label`
+- Jump to address in register reg
+`jr reg`
 ### Code Generation Examples
 `cgen(i) = li a0, i`
 
@@ -142,6 +144,19 @@ invocation
 - New instruction: `jal label`
 - Jump to label, save address of next instruction in `ra`
 ![image](https://github.com/xiaoyisha/cs162_test/blob/master/cgen%20for%20function%20call.png)
+### Code Generation for Function Definition
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/cgen%20for%20function%20def.png)
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544139937(1).png)
+### Allocating Temporaries in the AR
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/20181207075457.png)
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544140828(1).png)
+#### use nt
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544141061(1).png)
+### Object Oriented
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544141446(1).png)
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544141614(1).png)
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544141767(1).png)
+
 
 
 
