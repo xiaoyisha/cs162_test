@@ -156,17 +156,23 @@ invocation
 ![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544141446(1).png)
 ![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544141614(1).png)
 ![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544141767(1).png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Operational Semantics
+### Chocopy Values
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544153454(1).png)
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544153648(1).png)
+### Operational Rules for Chocopy
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544153764(1).png)
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544153917(1).png)
+#### Non-expression Return
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544154634(1).png)
+#### Function Invocation
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544154962(1).png)
+Note that y's are locally defined variables and functions
+#### More Notation
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544155104(1).png)
+#### Class Method Dispatch
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544155322(1).png)
+#### Class Method Definition
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544155823(1).png)
+#### For new object: T()
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/1544156759(1).png)
