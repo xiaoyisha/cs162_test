@@ -6,8 +6,8 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <fcntl.h>
 #include <signal.h>
+#include <fcntl.h>
 #include <sys/wait.h>
 #include <termios.h>
 #include <unistd.h>
@@ -48,8 +48,8 @@ typedef struct fun_desc {
 fun_desc_t cmd_table[] = {
   {cmd_help, "?", "show this help menu"},
   {cmd_exit, "exit", "exit the command shell"},
-  {cmd_pwd, "pwd", "print the current working directory"},
-  {cmd_cd, "cd", "change the current working directory"},
+  {cmd_pwd, "pwd", "show the current position"},
+  {cmd_cd, "cd", "change position"},
   {cmd_wait, "wait", "wait for all background processes to finish"}
 };
 
@@ -70,29 +70,30 @@ int cmd_exit(unused struct tokens *tokens) {
   exit(0);
 }
 
-int cmd_pwd(unused struct tokens *tokens) {
-  char cur_dir[4096];
-  if (getcwd(cur_dir, 4096) == NULL) {
-    printf("Error printing current directory\n");
-  }
-  printf("%s\n", cur_dir);
-  return 1;
+int cmd_pwd(unused struct tokens *tokens){
+    char cur_dir[4096];
+    if (getcwd(cur_dir, 4096) == NULL) {
+        printf("Error printing current directory\n");
+    }
+    printf("%s\n", cur_dir);
+    return 1;
 }
 
-int cmd_cd(struct tokens *tokens) {
-  char *targ_dir = tokens_get_token(tokens, 1);
-  if (targ_dir == NULL || strcmp(targ_dir, "~") == 0) {
+int cmd_cd(unused struct tokens *tokens){
+    char *targ_dir = tokens_get_token(tokens, 1);
+    if (targ_dir == NULL || strcmp(targ_dir, "~") == 0) {
     targ_dir = getenv("HOME");
     if (targ_dir == NULL) {
       printf("Error changing directory\n");
       return -1;
+        }
     }
-  }
-  int success = chdir(targ_dir);
-  if (success == -1) {
-    printf("Error changing directory\n");
-  }
-  return success;
+    int success = chdir(targ_dir);
+    if (success == -1) {
+        printf("Error changing directory\n");
+    }
+    return success;
+    return 3;
 }
 
 int cmd_wait(unused struct tokens *tokens) {
@@ -105,7 +106,8 @@ int cmd_wait(unused struct tokens *tokens) {
   return 1;
 }
 
-int run_program_thru_path(char *prog, char *args[]) {
+int run_program_thru_path(char *prog, char *args[])
+{
   char *PATH = getenv("PATH");
   if (PATH == NULL) {
     return -1;
@@ -225,8 +227,7 @@ void init_shell() {
     /* Save the current termios to a variable, so it can be restored later. */
     tcgetattr(shell_terminal, &shell_tmodes);
   }
-
-  for (int i = 0; i < sizeof(ignore_signals) / sizeof(int); i++) {
+    for (int i = 0; i < sizeof(ignore_signals) / sizeof(int); i++) {
     signal(ignore_signals[i], SIG_IGN);
   }
 }
@@ -265,3 +266,4 @@ int main(unused int argc, unused char *argv[]) {
 
   return 0;
 }
+
