@@ -1,0 +1,21 @@
+# cs188_review1
+## BN
+### Sampling
+#### Prior Sampling
+#### Rejection Sampling
+#### Likelihood Weighting
+#### Gibbs Sampling
+## Decision Networks
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/188_photos/1544233888(1).png)
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/188_photos/1544233998(1).png)
+![image](https://github.com/xiaoyisha/cs162_test/blob/master/188_photos/1544234165(1).png)
+### POMDP
+## HMM
+### Particle Filtering
+Viterbi Algorithm
+## Naive Bayes
+### Smoothing
+## NN
+- Theorem (Universal Function Approximators). A two-layer neural network with a sufficient number of neurons can approximate any continuous function to any desired accuracy.
+### Inductive Learning
+- Learn a function from examples
