@@ -57,35 +57,35 @@ y and z can be only registers or constants
     - Apply to a control-flow graph(method body) in isolation
 ### Local optimization
 #### Algebraic Simplification
-`x := x * 0` -> `x := 0`
-`x := x * 1` -> `x := x`
-`x := x + 0` -> `x := x`
-`x := x * 2`-> `x := x + x`
-`y := y ** 2`-> `y := y * y`
-`x := x * 8` -> `x := x << 3`
-`x := x * 15` -> `t := 4; x := t -x`
+`x := x * 0` -> `x := 0`  
+`x := x * 1` -> `x := x`  
+`x := x + 0` -> `x := x`  
+`x := x * 2`-> `x := x + x`  
+`y := y ** 2`-> `y := y * y`  
+`x := x * 8` -> `x := x << 3`  
+`x := x * 15` -> `t := 4; x := t -x`  
 #### Constant Folding
 ###### Operators on constants can be computed at compiler time. In general, if there is a statement `x := y op z` and y and z are constants, then `y op z` can be computed at compiler time
-`x := 2 + 2` -> `x := 4`
+`x := 2 + 2` -> `x := 4`  
 `if 2 < 0 jump L` can be deleted
 #### Flow of Control Optimizations
 ###### Eliminating unreachable code
 #### Single Assignment Form
 ###### Some optimizations are simplified if each assignment is to a temporary that has not appeared already in the basic block
-`x := a + y`    ----->    `x := a + y`
-`a := x`        ----->    `a1 := x`
-`x := a * x`    ----->    `x1 := a1 * x`
-`b := x + a`    ----->    `b := x1 + a1`
+`x := a + y`    ----->    `x := a + y`  
+`a := x`        ----->    `a1 := x`  
+`x := a * x`    ----->    `x1 := a1 * x`  
+`b := x + a`    ----->    `b := x1 + a1`  
 #### Common Subexpression Elimination
 ###### Assume basic block is in single assignment form. All assignments with same rhs compute the same value
-`x := y + z`    ----->    `x := y + z`
-`...`           ----->    `...`
-`w := y * z`    ----->    `w := x`
+`x := y + z`    ----->    `x := y + z`  
+`...`           ----->    `...`  
+`w := y * z`    ----->    `w := x`  
 #### Copy Propagation
 ###### If `w := x` appears in a block, all subsequent uses of `w` can be replaced with uses of `x`
-`b := z + y`    ----->    `b := z + y`
-`a := b`        ----->    `a := b`
-`x := 2 * a`    ----->    `x := 2*b`
+`b := z + y`    ----->    `b := z + y`  
+`a := b`        ----->    `a := b`  
+`x := 2 * a`    ----->    `x := 2*b`  
 This does not make the program smaller or faster but might enable other optimizations, e.g. constant folding and dead code elimination.
 #### Dead Code Elimination
 ###### If `w := rhs` appears in a basic block, `w` does not appear anywhere else in the program. Then `w := rhs` is dead and can be eliminated. Dead = does not contribute to the program's result
