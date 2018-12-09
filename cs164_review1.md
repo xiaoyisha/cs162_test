@@ -110,3 +110,105 @@ This does not make the program smaller or faster but might enable other optimiza
 ###### compiling `x*x` generates a lot of code, requires a lookup-by-name
 #### So we use inline cache
 ###### Dynamic types at a given expression are very often exactly the same. Cache the last-seen-type and jump directly on cache hit.
+
+## Global Optimization
+### Global (Data)Flow Analysis
+###### Rules 1-4 relate the out of one statement to the in of the successor statement, they propagate information forward across CFG edges
+- Rule 1
+if Cout(x, pi) = * for some i, then Cin(x, s) = *
+- Rule 2
+if Cout(x, pi) = c and Cout(x, pj) = d and d ≠ c, then Cin(x, s) = *
+- Rul2 3
+if Cout(x, pi) = c or # for all i, then Cin(x, s) = c
+- Rule 4
+if Cout(x, pi) = # for all i, then Cin(x, s) = #
+###### Now we need rules relating the in of a statement to the out of the same statement
+- Rule 5
+Cout(x, y:=) = Cin(x, y:=) if x ≠ y
+- Rule 6
+Cout(x, x := e) = eval(e, Cin)
+    - eval(v, Cin) = Cin(v, x := e), where v is some variable
+    - eval(k, Cin) = k, where k is a constant
+    - eval(e1 op e2, Cin) = eval(e1, Cin) op eval(e2, Cin), where op is an operator. If both eval(e1, Cin) and eval(e2, Cin) are constants. If either eval(e1, Cin) or eval(e2, Cin) is *
+    - eval(e1 op e2, Cin) = #, otherwise
+###### An Algorithm
+- For every entry s to the program, set Cin(x, s) = *
+- Set Cin(x, s) = Cout(x, s) = # everywhere else
+- repeat until all points satisfy 1-6
+###### Ordering 
+- * is the largest value, # is the least, all constants are in between and incomparable
+- Rules 1-4 can be written using lub
+- Cin(x, s) = lub{Cout(x, p) | p is a predecessos of s}
+
+### Global constant propagation
+### Liveness Analysis
+###### Once constants have been globally propagated, we would like to eliminate dead code
+A variable x is live at statement s if
+- There exists a statement s' that uses x
+- There is a path from s to s'
+- That path has no intervening assignment to x  
+
+A statement `x := ...` is dead code if `x` is dead after the assignment
+###### Liveness Rule
+- Rule 1
+Lout(x, p) = v {Lin(x, s) | s is a successor of p}
+- Rule 2
+Lin(x, x := e) = false if e does not refer to x
+- Rule 3
+Lin(x, x := e) = Lout(x, x := e) if e refers to x
+- Rule 4
+Lin(x, s) = true if s refers to x on the rhs
+- Rule 5
+Lin(x, s) = Lout(x, s) if s does not refer to x
+###### An Algorithm
+- Let all L_(...) = false initially
+- Repeat until all statements s satisfy rules 1-5
+## Register Allocation
+###### Managing the Memory Hierarchy
+- Programs are written as if there are only two kinds of memory: main memory and disk
+- Programmer is responsible for moving data from disk to memory
+- Hardware is responsible for moving data between memory and caches
+- Compiler is responsible for moving data between memory and registers
+###### basic rule
+Temporaries t1 and t2 can share the same register if at any point in the program at most one of t1 or t2 is live
+###### Algorithm
+- Compute live variables for each point
+- Register Interference Graph
+- Two temporaries can be allocated to the same register if there is no edge connecting them
+###### Computing Graph Coloring
+- Pick a node t with fewer than k nerghbors in RIG
+- Eliminate t and its edges from RIG and push t in a stack
+- Repeat until the graph has one node
+- Then start assigning colors to nodes in the stack
+###### If we get stuck to pick node
+- Pick a node as a candidate for spilling
+- A spilled temporary "lives" in memory
+- Before each operation that uses f, insert `f := load fa`
+- After each operation that defines f, insert `store f, fa`
+- We need recompute the liveness information
+    - f is live only
+        - Between a `f := load fa` and the next instruction
+        - Between a `store f, fa` and the preceding instr.
+- We need to recompute RIG after spilling
+    - The only changes are in removing some of the edges of the spilled node
+###### Determine what to spill
+- Spill temporaries with most conlicts
+- Spill temporaries with few definitions and uses
+- Avoid spilling in inner loops
+###### Compiler can do part of cache optimization
+- Called loop interchange
+## Exceptions
+###### Language Design and Implementation Issues
+- Resource exhaustion 
+- Invalid input
+- Null pointer dereference
+###### Two ways of dealing with errors
+- Handle them where you detect them
+e.g. null pointer dereference -> stop execution
+- Let the caller handle the errors
+e.g. an error when opening a file
+a) If permissions are insufficient -> prompt for passwd
+b) If file does not exist -> ask for new file name
+But we must tell the caller about the error
+###### Typing Exceptions
+###### Operational Semantics of Exceptions
