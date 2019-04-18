@@ -1,79 +1,98 @@
-   // e 在边界上的情况
-    HalfEdge * prev = e->prev;
-    HalfEdge * next = e->next;
-    HalfEdge * p = e->pair;
+   // e 在内部的情况，需要处理 p 所在的三角片， p 为 e 的对称边
+    if(p != NULL){
 
-    // 新建一个顶点
-    Vertex * v = new Vertex();
-    v->pos = v->newPos = newVertexPosition[e];
-    v->old = false;
+        v->pos = v->newPos = newVertexPosition[e];
 
-    // 新建三条半边
+        // update pair
+        p->pair = vOut;
+        vOut->pair = p;
 
-    // 这条边将成为 e 的新 next
-    HalfEdge * eNext = new HalfEdge();
+        HalfEdge * prev = p->prev;
+        HalfEdge * next = p->next;
 
-    // 这条边是从 v 发出的半边
-    HalfEdge * vOut = new HalfEdge();
 
-    // 这条边是指向 v 的半边
-    HalfEdge * vIn = new HalfEdge();
+        // 新建三条半边
 
-    // 新建一个面
-    Face * vFace = new Face();
+        // 这条边将成为 p 的新 next
+        HalfEdge * pNext = new HalfEdge();
 
-    // 更新拓扑信息
-    /******** face A *******/
-    // edge
-    e->next = eNext;
+        // 这条边是从 v 发出的半边
+        HalfEdge * vOut = new HalfEdge();
 
-    eNext->old = false;
-    eNext->origin = v;
-    eNext->pair = vIn;
-    eNext->prev = e;
-    eNext->next = prev;
-    eNext->face = e->face;
+        // 这条边是指向 v 的半边
+        HalfEdge * vIn = new HalfEdge();
 
-    prev->prev = eNext;
+        // 新建一个面
+        Face * vFace = new Face();
 
-    // vertex
-    // isa
-    v->edge = eNext;
-    // isa
+/****************************** 更新拓扑数据 ***********************************/
+        /******** face A *******/
+        // edge
+        p->next = pNext;
 
-    // face
-    e->face->edge = e;
-    /******** face A *******/
+        pNext->old = false;
+        pNext->origin = v;
+        // isa
+        pNext->pair = vIn;
+        pNext->prev = p;
+        pNext->next = prev;
+        pNext->face = p->face;
+        // isa
 
-    /******** face B *******/
-    // edge
-    vOut->old = true; // !!
-    vOut->origin = v;
-    vOut->pair = NULL;
-    vOut->prev = vIn;
-    vOut->next = next;
-    vOut->face = vFace;
+        prev->prev = pNext;
 
-    next->prev = vOut;
-    next->next = vIn;
-    next->face = vFace;
+        // vertex
 
-    vIn->old = false;
-    vIn->origin = prev->origin;
-    vIn->pair = eNext;
-    vIn->prev = next;
-    vIn->next = vOut;
-    vIn->face = vFace;
+        // face
+        p->face->edge = p;
 
-    // vertex
-    v->edge = eNext;
+        /******** face A *******/
 
-    // face
-    vFace->edge = vOut;
-    /******** face B *******/
+        /******** face B *******/
+        // edge
+        vOut->old = true;
+        vOut->origin = v;
+        // isa
+        vOut->pair = NULL;
+        vOut->prev = vIn;
+        vOut->next = next;
+        vOut->face = vFace;
 
-    vertices.push_back(v);
-    halfEdges.push_back(eNext);
-    halfEdges.push_back(vOut);
-    halfEdges.push_back(vIn);
-    faces.push_back(vFace);
+
+        next->next = vIn;
+        next->face = vFace;
+
+        vIn->pair = pNext;
+        vIn->prev = next;
+        vIn->next = vOut;
+        vIn->face = vFace;
+
+        // isa
+
+        next->prev = vOut;
+
+
+        vIn->old = false;
+        vIn->origin = prev->origin;
+
+
+        // vertex
+        v->edge = pNext;
+
+        // face
+        vFace->edge = vOut;
+        /******** face B *******/
+
+
+/****************************** 更新拓扑数据 ***********************************/
+
+
+        halfEdges.push_back(pNext);
+        halfEdges.push_back(vOut);
+        halfEdges.push_back(vIn);
+        faces.push_back(vFace);
+
+        // update pair
+        e->pair = vOut;
+        vOut->pair = e;
+        
