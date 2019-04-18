@@ -1,0 +1,79 @@
+   // e 在边界上的情况
+    HalfEdge * prev = e->prev;
+    HalfEdge * next = e->next;
+    HalfEdge * p = e->pair;
+
+    // 新建一个顶点
+    Vertex * v = new Vertex();
+    v->pos = v->newPos = newVertexPosition[e];
+    v->old = false;
+
+    // 新建三条半边
+
+    // 这条边将成为 e 的新 next
+    HalfEdge * eNext = new HalfEdge();
+
+    // 这条边是从 v 发出的半边
+    HalfEdge * vOut = new HalfEdge();
+
+    // 这条边是指向 v 的半边
+    HalfEdge * vIn = new HalfEdge();
+
+    // 新建一个面
+    Face * vFace = new Face();
+
+    // 更新拓扑信息
+    /******** face A *******/
+    // edge
+    e->next = eNext;
+
+    eNext->old = false;
+    eNext->origin = v;
+    eNext->pair = vIn;
+    eNext->prev = e;
+    eNext->next = prev;
+    eNext->face = e->face;
+
+    prev->prev = eNext;
+
+    // vertex
+    // isa
+    v->edge = eNext;
+    // isa
+
+    // face
+    e->face->edge = e;
+    /******** face A *******/
+
+    /******** face B *******/
+    // edge
+    vOut->old = true; // !!
+    vOut->origin = v;
+    vOut->pair = NULL;
+    vOut->prev = vIn;
+    vOut->next = next;
+    vOut->face = vFace;
+
+    next->prev = vOut;
+    next->next = vIn;
+    next->face = vFace;
+
+    vIn->old = false;
+    vIn->origin = prev->origin;
+    vIn->pair = eNext;
+    vIn->prev = next;
+    vIn->next = vOut;
+    vIn->face = vFace;
+
+    // vertex
+    v->edge = eNext;
+
+    // face
+    vFace->edge = vOut;
+    /******** face B *******/
+
+    vertices.push_back(v);
+    halfEdges.push_back(eNext);
+    halfEdges.push_back(vOut);
+    halfEdges.push_back(vIn);
+    faces.push_back(vFace);
